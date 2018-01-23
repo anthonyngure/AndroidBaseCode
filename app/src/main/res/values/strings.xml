@@ -1,0 +1,44 @@
+<!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+    <string name="app_name">Tosh</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_chat_sdk">ChatSDKActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_data_loading_test">Data Loading Test</string>
+    <string name="title_activity_basic">BasicActivity</string>
+    <string name="title_activity_data_loading">Data Loading Test Activity</string>
+    <string name="title_activity_drawable_utils">DrawableUtilsActivity</string>
+    <string name="change_color">Change Color</string>
+    <string name="title_activity_chips">ChipsActivity</string>
+    <string name="toggle">Toggle</string>
+    <string name="border">Border color</string>
+    <string name="text_color">Text color</string>
+    <string name="color_">Color</string>
+    <string name="chip_view">Chip View</string>
+    <string name="chip_view_layout">Chip View Layout</string>
+    <string name="single_selectable">Single Selectable</string>
+    <string name="none_selectable">None Selectable</string>
+    <string name="multiple_selectable">Multiple Selectable</string>
+    <string name="horizontal">Horizontal</string>
+    <string name="empty">Empty</string>
+    <string name="title_activity_auto_complete">AutoCompleteActivity</string>
+    <string name="user_local_source">User Local Source</string>
+    <string name="use_network_source">Use Network Source</string>
+    <string name="title_activity_filterable_list_view">Filterable ListView</string>
+    <string name="title_activity_network_image">Network Image</string>
+    <string name="show_progress_bar">Show Progress Bar</string>
+    <string name="status">Status:</string>
+</resources>

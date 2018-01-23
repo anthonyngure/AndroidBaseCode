@@ -1,0 +1,108 @@
+/*
+ * Copyright (c) 2018.
+ *
+ * Anthony Ngure
+ *
+ * Email : anthonyngure25@gmail.com
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'project-report'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId "ke.co.toshngure.androidbasecode"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        pickFirst 'org/joda/time/format/messages_en.properties'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+greendao {
+    schemaVersion 1
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$supportLibVersion"
+    implementation "com.android.support:design:$supportLibVersion"
+    implementation "com.android.support:palette-v7:$supportLibVersion"
+    implementation "com.android.support:cardview-v7:$supportLibVersion"
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    implementation 'com.github.jaychang0917:SimpleRecyclerView:1.2.3'
+    implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.google.android:flexbox:0.3.1'
+    implementation 'com.jaeger.statusbarutil:library:1.4.0'
+    implementation('com.wang.avi:library:2.1.3') {
+        transitive = true
+        exclude group: 'com.android.support'
+    }
+    implementation 'in.srain.cube:ultra-ptr:1.0.11'
+
+
+    //implementation 'com.github.anthonyngure:ToshBaseCode:-SNAPSHOT'
+    //implementation 'com.github.anthonyngure:CodeBase2:-SNAPSHOT'
+
+
+    /*implementation 'com.github.anthonyngure.CodeBase2:basecode:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:dataloading:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:camera:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:chipcloud:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:compressor:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:editor:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:filters:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:logging:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:showcase:-SNAPSHOT'
+    implementation 'com.github.anthonyngure.CodeBase2:views:-SNAPSHOT'*/
+
+    implementation project(':basecode')
+    implementation project(':camera')
+    implementation project(':chipcloud')
+    implementation project(':compressor')
+    implementation project(':dataloading')
+    implementation project(':editor')
+    implementation project(':filters')
+    implementation project(':logging')
+    implementation project(':showcase')
+    implementation project(':views')
+}
+
+configurations.all {
+    // Check for updates every build
+    //resolutionStrategy.cacheChangingModulesFor 86400, 'seconds'
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}

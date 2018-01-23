@@ -1,0 +1,15 @@
+<!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+    <string name="app_name">camera</string>
+    <string name="done">Done</string>
+    <string name="request_write_storage_permission_text">Approval is needed to save your photo on your device</string>
+    <string name="title_activity_photo_edit">Photo Edit</string>
+
+</resources>

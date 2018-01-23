@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+    <declare-styleable name="DashboardItemView">
+        <attr name="divTitle" format="string" />
+        <attr name="divTitleColor" format="color" />
+        <attr name="divIcon" format="reference" />
+        <attr name="divIconTint" format="color" />
+        <attr name="divIconSize" format="dimension" />
+        <attr name="divIconBackground" format="color" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditorCore">
+        <attr name="editorEditable" format="boolean" />
+        <attr name="editorPlaceholder" format="string" />
+    </declare-styleable>
+</resources>

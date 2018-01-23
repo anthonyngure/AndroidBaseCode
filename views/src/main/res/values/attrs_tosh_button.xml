@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+
+    <declare-styleable name="ToshButton">
+        <attr name="tbDrawableTint" format="color" />
+    </declare-styleable>
+</resources>

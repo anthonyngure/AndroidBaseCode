@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+    <item name="sectioning_adapter_tag_key_view_viewholder" type="id" />
+    <item name="toolbar" type="id" />
+</resources>
+

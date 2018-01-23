@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "305365092125",
+    "firebase_url": "https://chatsdk-1c81e.firebaseio.com",
+    "project_id": "chatsdk-1c81e",
+    "storage_bucket": "chatsdk-1c81e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:305365092125:android:5992ac82d0c8e61c",
+        "android_client_info": {
+          "package_name": "ke.co.laysan.tosh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "305365092125-gbvjrpn5ilrqlog20d3d5067ugpi33ca.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ke.co.laysan.tosh",
+            "certificate_hash": "668f27825af264ee6373799b6ac99dc0a3808211"
+          }
+        },
+        {
+          "client_id": "305365092125-qkqi346knd78fdt6c9csfldmclpa20or.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVZ9lQFE3yizRcGPsLD-xoAYLHHDL9eF0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "305365092125-qkqi346knd78fdt6c9csfldmclpa20or.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

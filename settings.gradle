@@ -1,0 +1,19 @@
+/*
+ * Copyright (c) 2018.
+ *
+ * Anthony Ngure
+ *
+ * Email : anthonyngure25@gmail.com
+ */
+
+include ':app'
+include ':basecode'
+include ':dataloading'
+include ':camera'
+include ':compressor'
+include ':showcase'
+include ':filters'
+include ':logging'
+include ':chipcloud'
+include ':editor'
+include ':views'

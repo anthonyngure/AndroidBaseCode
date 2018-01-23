@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Data Loading</string>
+    <string name="message_empty_data">Nothing here yet :(</string>
+    <string name="message_loading_more">Loading more…</string>
+    <string name="message_more_data_request_exhausted">Nothing more, pull down to refresh :(</string>
+    <style name="TransparentText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+    <declare-styleable name="SimpleListItemView">
+        <attr name="sliTitle" format="string" />
+        <attr name="sliTitleColor" format="color" />
+        <attr name="sliTitleTopBottomPadding" format="dimension" />
+        <attr name="sliSubTitle" format="string" />
+        <attr name="sliSubTitleColor" format="color" />
+        <attr name="sliDrawable" format="reference" />
+        <attr name="sliDrawableTint" format="color" />
+        <attr name="sliDrawableCentered" format="boolean" />
+        <attr name="sliDividerColor" format="boolean" />
+        <attr name="sliDividerVisible" format="boolean" />
+    </declare-styleable>
+
+</resources>

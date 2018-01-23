@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ke.co.toshngure.androidbasecode.activity.NetworkImageActivity"
+    tools:showIn="@layout/activity_network_image">
+
+    <LinearLayout style="@style/BaseApp.LinearLayout.Vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp">
+
+            <ke.co.toshngure.views.NetworkImage
+                android:id="@+id/circledNI"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/list_row_padding"
+                android:layout_weight="1"
+                app:niBackground="@color/colorPrimary"
+                app:niCircled="true"
+                app:niSrc="@drawable/header" />
+
+
+            <ke.co.toshngure.views.NetworkImage
+                android:id="@+id/normalNI"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/list_row_padding"
+                android:layout_weight="1"
+                app:niBackground="@color/colorAccent"
+                app:niCircled="false"
+                app:niSrc="@drawable/header" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/BaseApp.LinearLayout.Vertical"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:id="@+id/sourceTV"
+                style="@style/BaseApp.Body"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:text="@string/status" />
+
+            <Button
+                android:id="@+id/drawableBtn"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Drawable or D. Resource" />
+
+            <Button
+                android:id="@+id/networkBtn"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Network" />
+
+
+            <Button
+                android:id="@+id/mediaStoreBtn"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Media Store" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

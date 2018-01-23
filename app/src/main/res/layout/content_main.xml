@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="ke.co.toshngure.androidbasecode.activity.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/dataLoadingFullFragmentSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Full Fragment Data Loading" />
+
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/dataLoadingBottomSheetSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Bottom Sheet Data Loading" />
+
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/networkImageSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Network Image" />
+
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/dialogSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Default Base Dialog" />
+
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/customMessageDialogSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Custom Message Base Dialog" />
+
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/drawableUtilsSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Drawable Utils" />
+
+    </LinearLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
