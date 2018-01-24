@@ -53,6 +53,11 @@
             style="@style/TestSimpleListItemView"
             app:sliTitle="Drawable Utils" />
 
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/prefUtilsImplSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="PrefUtilsImpl Utils" />
+
     </LinearLayout>
 
 

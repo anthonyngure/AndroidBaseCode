@@ -82,4 +82,9 @@ public class MainActivity extends BaseActivity {
     public void onNetworkImageSLIV() {
         NetworkImageActivity.start(this);
     }
+
+    @OnClick(R.id.prefUtilsImplSLIV)
+    public void onPrefUtilsImplSLIV() {
+        PrefUtilsImplActivity.start(this);
+    }
 }

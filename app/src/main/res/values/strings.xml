@@ -41,4 +41,6 @@
     <string name="title_activity_network_image">Network Image</string>
     <string name="show_progress_bar">Show Progress Bar</string>
     <string name="status">Status:</string>
+    <string name="title_activity_pref_utils_impl">PrefUtilsImplActivity</string>
+    <string name="pref_test">pref_test</string>
 </resources>

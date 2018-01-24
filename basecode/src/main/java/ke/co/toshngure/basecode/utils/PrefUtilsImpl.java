@@ -86,5 +86,6 @@ public abstract class PrefUtilsImpl {
     @NonNull
     private String resolveKey(@StringRes int key) {
         return String.valueOf("key_" + key);
+        //return getContext().getString(key).trim().replaceAll(" ","");
     }
 }
