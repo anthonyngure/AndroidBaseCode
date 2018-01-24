@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="list_row_padding">8dp</dimen>
     <string name="app_name">Data Loading</string>
-    <string name="message_empty_data">Nothing here yet :(</string>
-    <string name="message_loading_more">Loading more…</string>
-    <string name="message_more_data_request_exhausted">Nothing more, pull down to refresh :(</string>
+    <string name="message_connection_error">Seems like your connection to the server is taking too long :( Tap to retry or check your network status</string>
+    <string name="message_empty_data">Oops! Nothing here yet :( Tap to refresh</string>
+    <string name="message_loading">Loading…</string>
+    <string name="message_no_more_data">Nothing more :( Tap to retry or pull down to refresh.</string>
+    <string name="message_refreshing">Refreshing…</string>
     <style name="TransparentText" parent="@android:style/TextAppearance">
         <item name="android:textColor">@android:color/transparent</item>
     </style>

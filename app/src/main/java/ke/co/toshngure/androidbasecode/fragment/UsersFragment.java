@@ -10,31 +10,32 @@ package ke.co.toshngure.androidbasecode.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
-import com.jaychang.srv.SimpleRecyclerView;
+import com.jaychang.srv.SimpleCell;
 import com.loopj.android.http.AsyncHttpClient;
 
-import ke.co.toshngure.dataloading.DataLoadingConfig;
-import ke.co.toshngure.dataloading.ModelListFragment;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.cell.UserCell;
 import ke.co.toshngure.androidbasecode.model.User;
 import ke.co.toshngure.androidbasecode.network.Client;
+import ke.co.toshngure.dataloading.DataLoadingConfig;
+import ke.co.toshngure.dataloading.ModelListFragment;
 import ke.co.toshngure.views.NetworkImage;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UsersFragment extends ModelListFragment<User, UserCell> {
+public class UsersFragment extends ModelListFragment<User, UserCell>
+        implements SimpleCell.OnCellClickListener<User> {
 
+
+    private int requestsCount;
 
     public UsersFragment() {
         // Required empty public constructor
@@ -54,74 +55,63 @@ public class UsersFragment extends ModelListFragment<User, UserCell> {
     }
 
     @Override
-    protected UserCell onCreateCell(User item) {
-        return new UserCell(item);
+    public UserCell onCreateCell(User item) {
+        UserCell userCell = new UserCell(item);
+        userCell.setOnCellClickListener(this);
+        return userCell;
     }
 
     @Override
-    protected DataLoadingConfig getDataLoadingConfig() {
+    public DataLoadingConfig getDataLoadingConfig() {
         return new DataLoadingConfig()
-                .setUrl("http://toshngure.kstars.co.ke/basecodeapp/public/api/v1/users")
-                .setCacheEnabled(false)
-                .setCursorsEnabled(true)
-                .setDebugEnabled(true)
-                .setPerPage(10);
+                .withUrl("https://toshngure.co.ke/basecode/public/api/v1/users")
+                .withCursorsEnabled()
+                .withRefreshEnabled()
+                .withLoadingMoreEnabled()
+                .withDebugEnabled()
+                .withPerPage(10);
+
+        /*return new DataLoadingConfig()
+                .withAutoRefreshDisabled()
+                .withCacheEnabled(5)
+                .withDebugEnabled();*/
     }
 
+
     @Override
-    protected AsyncHttpClient getClient() {
+    public AsyncHttpClient getClient() {
         return Client.getInstance().getClient();
     }
 
     @Override
-    protected Class<User> getModelClass() {
+    public Class<User> getModelClass() {
         return User.class;
     }
 
     @Override
-    protected void setUpSimpleRecyclerView(SimpleRecyclerView simpleRecyclerView) {
-        super.setUpSimpleRecyclerView(simpleRecyclerView);
-        simpleRecyclerView.showDivider();
-    }
-
-    @Override
-    protected void setUpTopView(FrameLayout topViewContainer) {
+    public void setUpTopView(FrameLayout topViewContainer) {
         super.setUpTopView(topViewContainer);
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, null);
-        NetworkImage topViewNI = view.findViewById(R.id.topViewNI);
-        topViewContainer.addView(view);
+        LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, topViewContainer);
+        NetworkImage topViewNI = topViewContainer.findViewById(R.id.topViewNI);
         topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
     }
 
 
-    /*@Override
-    protected int getFreshLoadView() {
-        return R.layout.custom_fresh_load_view;
-    }*/
-
     @Override
-    protected void setUpBottomView(FrameLayout bottomViewContainer) {
+    public void setUpBottomView(FrameLayout bottomViewContainer) {
         super.setUpBottomView(bottomViewContainer);
-        /*View view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, null);
-        BaseNetworkImage topViewNI = view.findViewById(R.id.topViewNI);
-        bottomViewContainer.addView(view);
-        topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");*/
+        LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, bottomViewContainer);
+        NetworkImage topViewNI = bottomViewContainer.findViewById(R.id.topViewNI);
+        topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.fragment_users, menu);
-        super.onCreateOptionsMenu(menu, inflater);
+    public boolean hasCollapsibleTopView() {
+        return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.action_change_cursors:
-                getSimpleRecyclerView().getAllCells().clear();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-
+    public void onCellClicked(@NonNull User user) {
+        Toast.makeText(getContext(), user.getId() + " = " + user.getName(), Toast.LENGTH_SHORT).show();
     }
 }

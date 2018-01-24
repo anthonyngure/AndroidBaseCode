@@ -23,8 +23,6 @@ public class DataLoadingActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentsContainer, UsersFragment.newInstance())
                 .commit();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }

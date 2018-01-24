@@ -52,25 +52,28 @@ public class UserCell extends SimpleCell<User, UserCell.UserViewHolder> {
         userViewHolder.bind(getItem());
     }
 
-    public class UserViewHolder extends SimpleViewHolder {
+    static class UserViewHolder extends SimpleViewHolder {
 
         @BindView(R.id.avatarNI)
         NetworkImage avatarNI;
         @BindView(R.id.nameTV)
         TextView nameTV;
+        @BindView(R.id.usernameTV)
+        TextView usernameTV;
         @BindView(R.id.emailTV)
         TextView emailTV;
 
-        public UserViewHolder(@NonNull View itemView) {
+        UserViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
         @SuppressLint("SetTextI18n")
-        public void bind(User item) {
+        void bind(User item) {
             avatarNI.loadImageFromNetwork(item.getAvatar());
-            nameTV.setText(item.getName() + "(" + item.getUsername() + ")");
-            emailTV.setText(item.getEmail() + "?id=" + item.getId());
+            nameTV.setText("ID = " + item.getId() + " - " + item.getName());
+            usernameTV.setText(item.getUsername());
+            emailTV.setText(item.getEmail());
         }
     }
 }

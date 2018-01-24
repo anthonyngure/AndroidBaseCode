@@ -20,45 +20,44 @@ public class DataLoadingConfig {
     /*If should immediately load fresh data after loading cache*/
     private boolean autoRefreshEnabled = true;
     /*If should load data when a user pulls down*/
-    private boolean refreshEnabled = true;
+    private boolean refreshEnabled = false;
     /*If should load data when a user reaches at the bottom*/
-    private boolean loadingMoreEnabled = true;
+    private boolean loadingMoreEnabled = false;
     /*If items are cached*/
     private boolean cacheEnabled = false;
     private int loadMoreThreshold = 0;
     private String url;
     private boolean debugEnabled = false;
     private int perPage = 10;
-    private boolean connectionEnabled = true;
-    private boolean cursorsEnabled = true;
+    private boolean cursorsEnabled = false;
 
     public DataLoadingConfig() {
     }
 
-    public DataLoadingConfig disableConnection() {
-        this.refreshEnabled = false;
-        this.loadingMoreEnabled = false;
+    boolean isAutoRefreshEnabled() {
+        return autoRefreshEnabled;
+    }
+
+    public DataLoadingConfig withAutoRefreshDisabled() {
         this.autoRefreshEnabled = false;
-        this.connectionEnabled = false;
         return this;
     }
 
-    public DataLoadingConfig disableConnection(boolean disableConnection) {
-        if (disableConnection) {
-            this.refreshEnabled = false;
-            this.loadingMoreEnabled = false;
-            this.autoRefreshEnabled = false;
-            this.connectionEnabled = false;
-        }
+    boolean isRefreshEnabled() {
+        return refreshEnabled;
+    }
+
+    public DataLoadingConfig withRefreshEnabled() {
+        this.refreshEnabled = true;
         return this;
     }
 
-    public boolean isCursorsEnabled() {
-        return cursorsEnabled;
+    boolean isLoadingMoreEnabled() {
+        return loadingMoreEnabled;
     }
 
-    public DataLoadingConfig setCursorsEnabled(boolean cursorsEnabled) {
-        this.cursorsEnabled = cursorsEnabled;
+    public DataLoadingConfig withLoadingMoreEnabled() {
+        this.loadingMoreEnabled = true;
         return this;
     }
 
@@ -66,26 +65,13 @@ public class DataLoadingConfig {
         return loaderId;
     }
 
-    public DataLoadingConfig setLoaderId(int loaderId) {
+    boolean isCacheEnabled() {
+        return cacheEnabled;
+    }
+
+    public DataLoadingConfig withCacheEnabled(int loaderId) {
+        this.cacheEnabled = true;
         this.loaderId = loaderId;
-        return this;
-    }
-
-    boolean isAutoRefreshEnabled() {
-        return autoRefreshEnabled;
-    }
-
-    public DataLoadingConfig setAutoRefreshEnabled(boolean autoRefreshEnabled) {
-        this.autoRefreshEnabled = autoRefreshEnabled;
-        return this;
-    }
-
-    public boolean isLoadingMoreEnabled() {
-        return loadingMoreEnabled;
-    }
-
-    public DataLoadingConfig setLoadingMoreEnabled(boolean loadingMoreEnabled) {
-        this.loadingMoreEnabled = loadingMoreEnabled;
         return this;
     }
 
@@ -93,7 +79,7 @@ public class DataLoadingConfig {
         return loadMoreThreshold;
     }
 
-    public DataLoadingConfig setLoadMoreThreshold(int loadMoreThreshold) {
+    public DataLoadingConfig withLoadMoreThreshold(int loadMoreThreshold) {
         this.loadMoreThreshold = loadMoreThreshold;
         return this;
     }
@@ -102,62 +88,36 @@ public class DataLoadingConfig {
         return url;
     }
 
-    public DataLoadingConfig setUrl(String url) {
+    public DataLoadingConfig withUrl(String url) {
         this.url = url;
         return this;
     }
 
-    public boolean isDebugEnabled() {
+    boolean isDebugEnabled() {
         return debugEnabled;
     }
 
-    public DataLoadingConfig setDebugEnabled(boolean debugEnabled) {
-        this.debugEnabled = debugEnabled;
+    public DataLoadingConfig withDebugEnabled() {
+        this.debugEnabled = true;
         return this;
     }
 
-    public boolean isCacheEnabled() {
-        return cacheEnabled;
-    }
-
-    public DataLoadingConfig setCacheEnabled(boolean cacheEnabled) {
-        this.cacheEnabled = cacheEnabled;
-        return this;
-    }
-
-    public boolean isRefreshEnabled() {
-        return refreshEnabled;
-    }
-
-    public DataLoadingConfig setRefreshEnabled(boolean refreshEnabled) {
-        this.refreshEnabled = refreshEnabled;
-        return this;
-    }
-
-    @Override
-    public String toString() {
-        return "DataLoadingConfig{" +
-                "loaderId=" + loaderId +
-                ", autoRefreshEnabled=" + autoRefreshEnabled +
-                ", refreshEnabled=" + refreshEnabled +
-                ", loadingMoreEnabled=" + loadingMoreEnabled +
-                ", cacheEnabled=" + cacheEnabled +
-                ", loadMoreThreshold=" + loadMoreThreshold +
-                ", url='" + url + '\'' +
-                ", debugEnabled=" + debugEnabled +
-                '}';
-    }
-
-    public int getPerPage() {
+    int getPerPage() {
         return perPage;
     }
 
-    public DataLoadingConfig setPerPage(int perPage) {
+    public DataLoadingConfig withPerPage(int perPage) {
         this.perPage = perPage;
         return this;
     }
 
-    public boolean isConnectionEnabled() {
-        return connectionEnabled;
+    boolean isCursorsEnabled() {
+        return cursorsEnabled;
     }
+
+    public DataLoadingConfig withCursorsEnabled() {
+        this.cursorsEnabled = true;
+        return this;
+    }
+
 }

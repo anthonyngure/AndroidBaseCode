@@ -17,26 +17,21 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="@android:color/transparent"
             app:expandedTitleTextAppearance="@style/TransparentText"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <FrameLayout
                 android:id="@+id/topViewContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:layout_collapseMode="parallax"
                 app:layout_collapseParallaxMultiplier="1.0">
 
@@ -68,12 +63,15 @@
                 cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
                 cube_ptr:ptr_resistance="1.7">
 
-                <include layout="@layout/layout_simple_recyclerview"/>
+                <FrameLayout
+                    android:id="@+id/simpleRecyclerViewContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
             </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
             <FrameLayout
-                android:id="@+id/freshLoadViewContainer"
+                android:id="@+id/freshLoadContainer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </FrameLayout>
@@ -84,8 +82,7 @@
             android:id="@+id/bottomViewContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
-        </FrameLayout>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

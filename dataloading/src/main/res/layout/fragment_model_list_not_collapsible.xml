@@ -38,14 +38,17 @@
             cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
             cube_ptr:ptr_resistance="1.7">
 
-            <include layout="@layout/layout_simple_recyclerview" />
+            <FrameLayout
+                android:id="@+id/simpleRecyclerViewContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
         <FrameLayout
-            android:id="@+id/freshLoadViewContainer"
+            android:id="@+id/freshLoadContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"></FrameLayout>
 
     </FrameLayout>
 

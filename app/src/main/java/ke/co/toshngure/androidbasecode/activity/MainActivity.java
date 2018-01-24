@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
-import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheet;
+import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheetFragment;
 
 public class MainActivity extends BaseActivity {
 
@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        //getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -53,12 +53,13 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.dataLoadingBottomSheetSLIV)
     public void onDataLoadingBottomSheetSLIVClick() {
-        UsersFragmentBottomSheet.newInstance().show(getSupportFragmentManager(), "IIIIIIIIIIII");
+        UsersFragmentBottomSheetFragment.newInstance().show(getSupportFragmentManager(), "IIIIIIIIIIII");
     }
 
     @OnClick(R.id.dataLoadingFullFragmentSLIV)
     public void onDataLoadingFullFragmentSLIVClick() {
         startActivity(new Intent(this, DataLoadingActivity.class));
+        //ReusableFragmentActivity.start(this, UsersFragment.newInstance(), getString(R.string.app_name));
     }
 
     @OnClick(R.id.drawableUtilsSLIV)
