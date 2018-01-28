@@ -139,6 +139,11 @@ public class ModelListFragment<M, C extends SimpleCell<M, ?>> extends Fragment i
     }
 
     @Override
+    public SimpleRecyclerView getSimpleRecyclerView() {
+        return mDataLoadingFragmentImpl.mSimpleRecyclerView;
+    }
+
+    @Override
     public String getLoadingMessage() {
         return getString(R.string.message_loading);
     }

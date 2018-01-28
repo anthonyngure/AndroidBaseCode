@@ -333,6 +333,8 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements PtrHandl
 
         SimpleRecyclerView onCreateSimpleRecyclerView();
 
+        SimpleRecyclerView getSimpleRecyclerView();
+
         int getFreshLoadGravity();
 
         String getLoadingMessage();

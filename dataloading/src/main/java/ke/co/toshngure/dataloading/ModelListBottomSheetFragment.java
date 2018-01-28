@@ -134,6 +134,11 @@ public class ModelListBottomSheetFragment<M, C extends SimpleCell<M, ?>> extends
     }
 
     @Override
+    public SimpleRecyclerView getSimpleRecyclerView() {
+        return mDataLoadingFragmentImpl.mSimpleRecyclerView;
+    }
+
+    @Override
     public int getFreshLoadGravity() {
         return Gravity.TOP | Gravity.CENTER_HORIZONTAL;
     }

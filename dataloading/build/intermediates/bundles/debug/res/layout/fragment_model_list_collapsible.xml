@@ -52,10 +52,10 @@
             android:layout_above="@id/bottomViewContainer">
 
             <in.srain.cube.views.ptr.PtrClassicFrameLayout
-                android:visibility="gone"
                 android:id="@+id/ptrClassicFrameLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:visibility="gone"
                 cube_ptr:ptr_duration_to_close="200"
                 cube_ptr:ptr_duration_to_close_header="1000"
                 cube_ptr:ptr_keep_header_when_refresh="true"
@@ -66,7 +66,7 @@
                 <FrameLayout
                     android:id="@+id/simpleRecyclerViewContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
 
             </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
@@ -82,7 +82,7 @@
             android:id="@+id/bottomViewContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"/>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 
