@@ -33,23 +33,23 @@ public final class BeeLog {
 
     public static void d(String subTag, Object message) {
         if (DEBUG) {
-            Log.d(subTag, subTag + " : " + message);
-            addToHistory(subTag, String.valueOf(message));
+            Log.d(tag, subTag + " : " + message);
+            addToHistory(tag, String.valueOf(message));
         }
     }
 
     public static void e(String subTag, Object message) {
         if (DEBUG) {
-            Log.e(subTag, subTag + " : " + message);
-            addToHistory(subTag, String.valueOf(message));
+            Log.e(tag, subTag + " : " + message);
+            addToHistory(tag, String.valueOf(message));
         }
     }
 
     public static void e(String subTag, Exception e) {
         if (DEBUG) {
             if (e != null) {
-                Log.e(subTag, subTag + " : " + e.getLocalizedMessage());
-                addToHistory(subTag, e.getLocalizedMessage());
+                Log.e(tag, subTag + " : " + e.getLocalizedMessage());
+                addToHistory(tag, e.getLocalizedMessage());
                 e.printStackTrace();
             }
         }
@@ -57,16 +57,16 @@ public final class BeeLog {
 
     public static void w(String subTag, Object message) {
         if (DEBUG) {
-            Log.w(subTag, subTag + " : " + message);
-            addToHistory(subTag, String.valueOf(message));
+            Log.w(tag, subTag + " : " + message);
+            addToHistory(tag, String.valueOf(message));
         }
     }
 
 
     public static void i(String subTag, Object message) {
         if (DEBUG) {
-            Log.i(subTag, subTag + " : " + message);
-            addToHistory(subTag, String.valueOf(message));
+            Log.i(tag, subTag + " : " + message);
+            addToHistory(tag, String.valueOf(message));
         }
     }
 
@@ -76,8 +76,8 @@ public final class BeeLog {
 
     public static void e(String subTag, Throwable e) {
         if (DEBUG) {
-            Log.e(subTag, subTag + " : " + e.getMessage());
-            addToHistory(subTag, e.getMessage());
+            Log.e(tag, subTag + " : " + e.getMessage());
+            addToHistory(tag, e.getMessage());
         }
     }
 }
