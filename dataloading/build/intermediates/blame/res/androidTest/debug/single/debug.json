@@ -1364,12 +1364,12 @@
         "source": "C:\\Users\\Tosh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\bd1e42b99a98f21730c6af56be327752\\res\\drawable\\abc_ratingbar_small_material.xml"
     },
     {
-        "merged": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_tooltip.xml.flat",
-        "source": "C:\\Users\\Tosh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\bd1e42b99a98f21730c6af56be327752\\res\\layout\\tooltip.xml"
-    },
-    {
         "merged": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-v21_notification_action_background.xml.flat",
         "source": "C:\\Users\\Tosh\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.0.2.aar\\eacdaf225688e55ea48829353d504a88\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_tooltip.xml.flat",
+        "source": "C:\\Users\\Tosh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\bd1e42b99a98f21730c6af56be327752\\res\\layout\\tooltip.xml"
     },
     {
         "merged": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_layout_default_simple_recycler_view.xml.flat",
@@ -1606,10 +1606,6 @@
     {
         "merged": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldrtl-xhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Tosh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.0.2.aar\\bd1e42b99a98f21730c6af56be327752\\res\\drawable-ldrtl-xhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_layout_empty_simple_recycler_view.xml.flat",
-        "source": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\bundles\\debug\\res\\layout\\layout_empty_simple_recycler_view.xml"
     },
     {
         "merged": "E:\\RealHustle\\AndroidBaseCode\\dataloading\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",

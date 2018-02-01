@@ -16,7 +16,7 @@
     tools:context="ke.co.toshngure.androidbasecode.activity.NetworkImageActivity"
     tools:showIn="@layout/activity_network_image">
 
-    <LinearLayout style="@style/BaseApp.LinearLayout.Vertical">
+    <LinearLayout style="@style/BaseCode.LinearLayout.Vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,12 +47,12 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/BaseApp.LinearLayout.Vertical"
+            style="@style/BaseCode.LinearLayout.Vertical"
             android:padding="@dimen/activity_vertical_margin">
 
             <TextView
                 android:id="@+id/sourceTV"
-                style="@style/BaseApp.Body"
+                style="@style/BaseCode.Body"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:text="@string/status" />
 

@@ -8,40 +8,56 @@
 
 <resources>
 
-    <style name="BaseApp">
+    <style name="BaseCode">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="BaseApp.Heading">
+    <style name="BaseCode.Heading">
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
         <item name="android:textStyle">bold</item>
         <item name="android:text">@string/app_name</item>
         <item name="android:layout_marginBottom">@dimen/list_row_padding</item>
     </style>
 
-    <style name="BaseApp.Body">
+    <style name="BaseCode.Body">
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Body2</item>
         <item name="android:text">@string/lorem_text</item>
     </style>
 
-    <style name="BaseApp.Image">
+    <style name="BaseCode.Image">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:scaleType">centerCrop</item>
         <item name="android:contentDescription">@string/app_name</item>
     </style>
 
     <!--Linear Layout-->
-    <style name="BaseApp.LinearLayout" />
+    <style name="BaseCode.LinearLayout" />
 
-    <style name="BaseApp.LinearLayout.Vertical">
+    <style name="BaseCode.LinearLayout.Vertical">
         <item name="android:orientation">vertical</item>
     </style>
 
 
     <!--Image Button-->
-    <style name="BaseApp.ImageButton" parent="Widget.AppCompat.ImageButton">
+    <style name="BaseCode.ImageButton" parent="Widget.AppCompat.ImageButton">
         <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <style name="BaseCode.CardViewContainer" parent="CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardElevation">3dp</item>
+        <item name="contentPadding">10dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="android:layout_margin">3dp</item>
+    </style>
+
+    <style name="BaseCode.CardViewHeader" parent="CardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
 

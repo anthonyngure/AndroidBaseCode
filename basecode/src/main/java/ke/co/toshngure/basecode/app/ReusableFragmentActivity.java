@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 
 import ke.co.toshngure.basecode.R;
 
@@ -23,7 +22,7 @@ public class ReusableFragmentActivity extends BaseAppActivity {
     private static Fragment mFragment;
 
     public static void start(Context context, Fragment fragment, String title, @Nullable String subTitle) {
-        Intent starter = new Intent(context, FragmentActivity.class);
+        Intent starter = new Intent(context, ReusableFragmentActivity.class);
         starter.putExtra(EXTRA_TITLE, title);
         starter.putExtra(EXTRA_SUB_TITLE, subTitle);
         mFragment = fragment;

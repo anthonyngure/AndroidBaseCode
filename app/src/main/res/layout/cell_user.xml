@@ -8,7 +8,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/BaseApp.LinearLayout"
+    style="@style/BaseCode.LinearLayout"
     android:background="?attr/selectableItemBackground"
     android:padding="@dimen/list_row_padding">
 
@@ -21,20 +21,20 @@
         app:niBackground="@color/colorAccent"
         app:niCircled="true" />
 
-    <LinearLayout style="@style/BaseApp.LinearLayout.Vertical">
+    <LinearLayout style="@style/BaseCode.LinearLayout.Vertical">
 
         <TextView
             android:id="@+id/nameTV"
-            style="@style/BaseApp.Heading" />
+            style="@style/BaseCode.Heading" />
 
 
         <TextView
             android:id="@+id/usernameTV"
-            style="@style/BaseApp.Body" />
+            style="@style/BaseCode.Body" />
 
         <TextView
             android:id="@+id/emailTV"
-            style="@style/BaseApp.Body" />
+            style="@style/BaseCode.Body" />
 
     </LinearLayout>
 

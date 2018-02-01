@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
+import ke.co.toshngure.androidbasecode.fragment.UsersFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheetFragment;
+import ke.co.toshngure.basecode.app.ReusableFragmentActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -58,8 +60,8 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.dataLoadingFullFragmentSLIV)
     public void onDataLoadingFullFragmentSLIVClick() {
-        startActivity(new Intent(this, DataLoadingActivity.class));
-        //ReusableFragmentActivity.start(this, UsersFragment.newInstance(), getString(R.string.app_name));
+        //startActivity(new Intent(this, DataLoadingActivity.class));
+        ReusableFragmentActivity.start(this, UsersFragment.newInstance(), getString(R.string.app_name));
     }
 
     @OnClick(R.id.drawableUtilsSLIV)
@@ -88,4 +90,5 @@ public class MainActivity extends BaseActivity {
     public void onPrefUtilsImplSLIV() {
         PrefUtilsImplActivity.start(this);
     }
+
 }
