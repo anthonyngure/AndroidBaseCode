@@ -6,7 +6,7 @@
  * Email : anthonyngure25@gmail.com
  */
 
-package ke.co.toshngure.compressor;
+package ke.co.toshngure.camera;
 
 import android.content.Context;
 import android.graphics.Bitmap;

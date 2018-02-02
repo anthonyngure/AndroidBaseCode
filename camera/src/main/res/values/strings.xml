@@ -11,5 +11,6 @@
     <string name="done">Done</string>
     <string name="request_write_storage_permission_text">Approval is needed to save your photo on your device</string>
     <string name="title_activity_photo_edit">Photo Edit</string>
-
+    <string name="add_a_photo">Add a photo</string>
+    <string name="add_a_photo_required">Add a photo(<![CDATA[<b><font color=#FF0000>required</b>]]>)</string>
 </resources>

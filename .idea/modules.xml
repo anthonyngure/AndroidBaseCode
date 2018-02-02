@@ -7,7 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/basecode/basecode.iml" filepath="$PROJECT_DIR$/basecode/basecode.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
       <module fileurl="file://$PROJECT_DIR$/chipcloud/chipcloud.iml" filepath="$PROJECT_DIR$/chipcloud/chipcloud.iml" />
-      <module fileurl="file://$PROJECT_DIR$/compressor/compressor.iml" filepath="$PROJECT_DIR$/compressor/compressor.iml" />
       <module fileurl="file://$PROJECT_DIR$/dataloading/dataloading.iml" filepath="$PROJECT_DIR$/dataloading/dataloading.iml" />
       <module fileurl="file://$PROJECT_DIR$/editor/editor.iml" filepath="$PROJECT_DIR$/editor/editor.iml" />
       <module fileurl="file://$PROJECT_DIR$/filters/filters.iml" filepath="$PROJECT_DIR$/filters/filters.iml" />

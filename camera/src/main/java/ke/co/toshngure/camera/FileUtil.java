@@ -6,7 +6,7 @@
  * Email : anthonyngure25@gmail.com
  */
 
-package ke.co.toshngure.basecode.utils;
+package ke.co.toshngure.camera;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -22,8 +22,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import ke.co.toshngure.basecode.R;
 
 /**
  * Created on : June 18, 2016

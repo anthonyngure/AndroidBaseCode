@@ -6,7 +6,7 @@
  * Email : anthonyngure25@gmail.com
  */
 
-package ke.co.toshngure.compressor;
+package ke.co.toshngure.camera;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 
-
 /**
  * Created on : June 18, 2016
  * Author     : zetbaitsu
@@ -42,7 +41,7 @@ class ImageUtil {
     }
 
     public static Bitmap getScaledBitmap(Context context, Uri imageUri, float maxWidth, float maxHeight, Bitmap.Config bitmapConfig) {
-        String filePath = Utils.getRealPathFromURI(context, imageUri);
+        String filePath = FileUtil.getRealPathFromURI(context, imageUri);
         Bitmap scaledBitmap = null;
 
         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -153,8 +152,8 @@ class ImageUtil {
                 matrix.postRotate(270);
             }
             scaledBitmap = Bitmap.createBitmap(scaledBitmap, 0, 0,
-                                               scaledBitmap.getWidth(), scaledBitmap.getHeight(),
-                                               matrix, true);
+                    scaledBitmap.getWidth(), scaledBitmap.getHeight(),
+                    matrix, true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -196,7 +195,7 @@ class ImageUtil {
         /** if prefix is null, set prefix "" */
         prefix = TextUtils.isEmpty(prefix) ? "" : prefix;
         /** reset fileName by prefix and custom file name */
-        fileName = TextUtils.isEmpty(fileName) ? prefix + Utils.splitFileName(Utils.getFileName(context, uri))[0] : fileName;
+        fileName = TextUtils.isEmpty(fileName) ? prefix + FileUtil.splitFileName(FileUtil.getFileName(context, uri))[0] : fileName;
         return file.getAbsolutePath() + File.separator + fileName + "." + extension;
     }
 

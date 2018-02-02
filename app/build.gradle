@@ -91,7 +91,6 @@ dependencies {
     implementation project(':basecode')
     implementation project(':camera')
     implementation project(':chipcloud')
-    implementation project(':compressor')
     implementation project(':dataloading')
     implementation project(':editor')
     implementation project(':filters')

@@ -6,11 +6,11 @@
 
 package ke.co.toshngure.basecode.app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
 import ke.co.toshngure.basecode.R;
 
@@ -21,7 +21,7 @@ public class ReusableFragmentActivity extends BaseAppActivity {
     public static final String EXTRA_SUB_TITLE = "extra_sub_title";
     private static Fragment mFragment;
 
-    public static void start(Context context, Fragment fragment, String title, @Nullable String subTitle) {
+    public static void start(AppCompatActivity context, Fragment fragment, String title, @Nullable String subTitle) {
         Intent starter = new Intent(context, ReusableFragmentActivity.class);
         starter.putExtra(EXTRA_TITLE, title);
         starter.putExtra(EXTRA_SUB_TITLE, subTitle);
@@ -29,7 +29,7 @@ public class ReusableFragmentActivity extends BaseAppActivity {
         context.startActivity(starter);
     }
 
-    public static void start(Context context, Fragment fragment, String title) {
+    public static void start(AppCompatActivity context, Fragment fragment, String title) {
         start(context, fragment, title, null);
     }
 
@@ -43,6 +43,7 @@ public class ReusableFragmentActivity extends BaseAppActivity {
         }
 
         setTitle(getIntent().getStringExtra(EXTRA_TITLE));
+        getToolbar().setTitle(getIntent().getStringExtra(EXTRA_TITLE));
 
         if (getIntent().getStringExtra(EXTRA_SUB_TITLE) != null) {
             getSupportActionBar().setSubtitle(getIntent().getStringExtra(EXTRA_SUB_TITLE));
