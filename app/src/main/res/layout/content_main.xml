@@ -58,6 +58,11 @@
             style="@style/TestSimpleListItemView"
             app:sliTitle="PrefUtilsImpl Utils" />
 
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/imagePickerSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Image Picker Test" />
+
     </LinearLayout>
 
 

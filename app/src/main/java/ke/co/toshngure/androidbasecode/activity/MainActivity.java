@@ -17,6 +17,7 @@ import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
+import ke.co.toshngure.androidbasecode.fragment.ImagePickerFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheetFragment;
 import ke.co.toshngure.basecode.app.ReusableFragmentActivity;
@@ -90,6 +91,11 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.prefUtilsImplSLIV)
     public void onPrefUtilsImplSLIV() {
         PrefUtilsImplActivity.start(this);
+    }
+
+    @OnClick(R.id.imagePickerSLIV)
+    public void onImagePickerSLIVSLIV() {
+        ReusableFragmentActivity.start(this, ImagePickerFragment.newInstance(), "Image Picker Test");
     }
 
 }

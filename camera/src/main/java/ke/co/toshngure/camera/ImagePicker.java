@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
@@ -40,8 +41,10 @@ public class ImagePicker extends FrameLayout {
     TextView textTV;
     private File file;
 
+    private Context mContext;
     private AppCompatActivity mActivity;
     private int mRequestCode;
+    private Fragment mFragment;
 
     public ImagePicker(@NonNull Context context) {
         this(context, null);
@@ -58,15 +61,27 @@ public class ImagePicker extends FrameLayout {
         photoFL = findViewById(R.id.photoFL);
         loaderFL = findViewById(R.id.loaderFL);
         textTV = findViewById(R.id.textTV);
+        deleteIV = findViewById(R.id.deleteIV);
         findViewById(R.id.deleteIV).setOnClickListener(this::onDeleteIVClicked);
+        addPhotoLL = findViewById(R.id.addPhotoLL);
         findViewById(R.id.addPhotoLL).setOnClickListener(this::onAddPhotoLLClicked);
     }
 
     public void setActivity(AppCompatActivity activity, int requestCode, boolean required) {
         this.mActivity = activity;
+        this.mContext = activity;
         this.mRequestCode = requestCode;
         if (required) {
             textTV.setText(Html.fromHtml(mActivity.getString(R.string.add_a_photo_required)));
+        }
+    }
+
+    public void setFragment(Fragment fragment, int requestCode, boolean required) {
+        this.mFragment = fragment;
+        this.mContext = fragment.getActivity();
+        this.mRequestCode = requestCode;
+        if (required) {
+            textTV.setText(Html.fromHtml(mContext.getString(R.string.add_a_photo_required)));
         }
     }
 
@@ -93,10 +108,10 @@ public class ImagePicker extends FrameLayout {
                 @Override
                 protected File doInBackground(Uri... uris) {
                     try {
-                        return new ImageCompressor.Builder(mActivity)
-                                .setDestinationDirectoryPath(FileUtil.getAppExternalDirectoryFolder(mActivity))
+                        return new ImageCompressor.Builder(mContext)
+                                .setDestinationDirectoryPath(FileUtil.getAppExternalDirectoryFolder(mContext))
                                 .setFileName("image_" + mRequestCode)
-                                .build().compressToFile(FileUtil.from(mActivity, uris[0]));
+                                .build().compressToFile(FileUtil.from(mContext, uris[0]));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -109,7 +124,7 @@ public class ImagePicker extends FrameLayout {
                     if (file != null) {
                         setFile(file);
                     } else {
-                        Toast.makeText(mActivity, "Image loading Failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Image loading Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
             }.execute(data.getData());
@@ -128,13 +143,25 @@ public class ImagePicker extends FrameLayout {
 
     private void onAddPhotoLLClicked(View view) {
         new AlertDialog.Builder(getContext())
-                .setTitle(R.string.add_a_photo)
+                .setTitle(R.string.add_a_photo_from)
                 .setItems(new String[]{"Gallery", "Camera"}, (dialogInterface, which) -> {
                     if (which == 0) {
-                        ImagePickerUtils.pickImage(mActivity, mRequestCode);
+                        if (mActivity != null) {
+                            ImagePickerUtils.pickImage(mActivity, mRequestCode);
+                        } else if (mFragment != null) {
+                            ImagePickerUtils.pickImage(mFragment, mRequestCode);
+                        } else {
+                            throw new IllegalArgumentException("You should have set an activity or fragment");
+                        }
                     } else {
-                        Intent startCustomCameraIntent = new Intent(mActivity, CameraActivity.class);
-                        mActivity.startActivityForResult(startCustomCameraIntent, mRequestCode);
+                        Intent cameraIntent = new Intent(mContext, CameraActivity.class);
+                        if (mActivity != null) {
+                            mActivity.startActivityForResult(cameraIntent, mRequestCode);
+                        } else if (mFragment != null) {
+                            mFragment.startActivityForResult(cameraIntent, mRequestCode);
+                        } else {
+                            throw new IllegalArgumentException("You should have set an activity or fragment");
+                        }
                     }
                 })
                 .setPositiveButton(android.R.string.cancel, (dialogInterface, i) -> {
