@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -53,6 +54,12 @@ public class ImagePicker extends FrameLayout {
     public ImagePicker(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         LayoutInflater.from(context).inflate(R.layout.view_image_picker, this, true);
+        photoIV = findViewById(R.id.photoIV);
+        photoFL = findViewById(R.id.photoFL);
+        loaderFL = findViewById(R.id.loaderFL);
+        textTV = findViewById(R.id.textTV);
+        findViewById(R.id.deleteIV).setOnClickListener(this::onDeleteIVClicked);
+        findViewById(R.id.addPhotoLL).setOnClickListener(this::onAddPhotoLLClicked);
     }
 
     public void setActivity(AppCompatActivity activity, int requestCode, boolean required) {
@@ -109,7 +116,7 @@ public class ImagePicker extends FrameLayout {
         }
     }
 
-    public void onDeleteIVClicked() {
+    private void onDeleteIVClicked(View view) {
         addPhotoLL.setVisibility(VISIBLE);
         loaderFL.setVisibility(GONE);
         photoFL.setVisibility(GONE);
@@ -119,7 +126,7 @@ public class ImagePicker extends FrameLayout {
         }
     }
 
-    public void onAddPhotoLLClicked() {
+    private void onAddPhotoLLClicked(View view) {
         new AlertDialog.Builder(getContext())
                 .setTitle(R.string.add_a_photo)
                 .setItems(new String[]{"Gallery", "Camera"}, (dialogInterface, which) -> {
