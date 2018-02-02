@@ -10,9 +10,9 @@ package ke.co.toshngure.androidbasecode.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity {
     public void onDataLoadingFullFragmentSLIVClick() {
         //startActivity(new Intent(this, DataLoadingActivity.class));
         ReusableFragmentActivity.start(this, UsersFragment.newInstance(), getString(R.string.app_name));
+        //startActivity(new Intent(this, TestActivity.class));
     }
 
     @OnClick(R.id.drawableUtilsSLIV)
@@ -70,15 +71,15 @@ public class MainActivity extends BaseActivity {
     }
 
     @OnClick(R.id.dialogSLIV)
-    public void onDialogSLIVClick() {
+    public void onDialogSLIVClick(View view) {
         showProgressDialog();
-        new Handler().postDelayed(this::hideProgressDialog, 5000);
+        view.postDelayed(this::hideProgressDialog, 5000);
     }
 
     @OnClick(R.id.customMessageDialogSLIV)
-    public void onCustomMessageSLIVClick() {
+    public void onCustomMessageSLIVClick(View view) {
         showProgressDialog(getString(R.string.appbar_scrolling_view_behavior));
-        new Handler().postDelayed(this::hideProgressDialog, 5000);
+        view.postDelayed(this::hideProgressDialog, 5000);
     }
 
     @OnClick(R.id.networkImageSLIV)
