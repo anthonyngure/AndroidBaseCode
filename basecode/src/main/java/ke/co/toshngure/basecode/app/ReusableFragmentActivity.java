@@ -33,6 +33,18 @@ public class ReusableFragmentActivity extends BaseAppActivity {
         start(context, fragment, title, null);
     }
 
+    public static void start(AppCompatActivity context, Fragment fragment, int requestCode, String title, @Nullable String subTitle) {
+        Intent starter = new Intent(context, ReusableFragmentActivity.class);
+        starter.putExtra(EXTRA_TITLE, title);
+        starter.putExtra(EXTRA_SUB_TITLE, subTitle);
+        mFragment = fragment;
+        context.startActivityForResult(starter, requestCode);
+    }
+
+    public static void start(AppCompatActivity context, Fragment fragment, int requestCode, String title) {
+        start(context, fragment, requestCode, title, null);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
