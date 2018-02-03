@@ -73,21 +73,18 @@ dependencies {
         exclude group: 'com.android.support'
     }
     implementation 'in.srain.cube:ultra-ptr:1.0.11'
-
     //implementation 'com.github.anthonyngure:ToshBaseCode:-SNAPSHOT'
     //implementation 'com.github.anthonyngure:CodeBase2:-SNAPSHOT'
-
     /*implementation 'com.github.anthonyngure.CodeBase2:basecode:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:dataloading:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:camera:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:chipcloud:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:compressor:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:editor:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:filters:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:logging:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:showcase:-SNAPSHOT'
-    implementation 'com.github.anthonyngure.CodeBase2:views:-SNAPSHOT'*/
-
+        implementation 'com.github.anthonyngure.CodeBase2:dataloading:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:camera:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:chipcloud:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:compressor:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:editor:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:filters:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:logging:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:showcase:-SNAPSHOT'
+        implementation 'com.github.anthonyngure.CodeBase2:views:-SNAPSHOT'*/
     implementation project(':basecode')
     implementation project(':camera')
     implementation project(':chipcloud')
@@ -97,6 +94,7 @@ dependencies {
     implementation project(':logging')
     implementation project(':showcase')
     implementation project(':views')
+    implementation project(':floatingsearchview')
 }
 
 configurations.all {

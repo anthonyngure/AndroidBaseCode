@@ -28,6 +28,7 @@ public abstract class PrefUtilsImpl {
 
     public void remove(@StringRes int key) {
         getSharedPreferences().edit().remove(resolveKey(key)).apply();
+        invalidate();
     }
 
     public void writeString(@StringRes int key, String value) {

@@ -63,6 +63,11 @@
             style="@style/TestSimpleListItemView"
             app:sliTitle="Image Picker Test" />
 
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/floatingSearchViewSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Floating View Search Test" />
+
     </LinearLayout>
 
 

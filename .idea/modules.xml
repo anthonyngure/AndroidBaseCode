@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/dataloading/dataloading.iml" filepath="$PROJECT_DIR$/dataloading/dataloading.iml" />
       <module fileurl="file://$PROJECT_DIR$/editor/editor.iml" filepath="$PROJECT_DIR$/editor/editor.iml" />
       <module fileurl="file://$PROJECT_DIR$/filters/filters.iml" filepath="$PROJECT_DIR$/filters/filters.iml" />
+      <module fileurl="file://$PROJECT_DIR$/floatingsearchview/library.iml" filepath="$PROJECT_DIR$/floatingsearchview/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/logging/logging.iml" filepath="$PROJECT_DIR$/logging/logging.iml" />
       <module fileurl="file://$PROJECT_DIR$/showcase/showcase.iml" filepath="$PROJECT_DIR$/showcase/showcase.iml" />
       <module fileurl="file://$PROJECT_DIR$/views/views.iml" filepath="$PROJECT_DIR$/views/views.iml" />
