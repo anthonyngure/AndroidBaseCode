@@ -1,6 +1,5 @@
 package ke.co.toshngure.dataloading;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -41,7 +40,10 @@ import in.srain.cube.views.ptr.PtrHandler;
  * Email : anthonyngure25@gmail.com.
  */
 
-class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements PtrHandler, OnLoadMoreListener, LoaderManager.LoaderCallbacks<List<C>> {
+class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
+        PtrHandler,
+        OnLoadMoreListener,
+        LoaderManager.LoaderCallbacks<List<C>> {
 
 
     private static final String TAG = "DataLoadingFragmentImpl";
@@ -157,22 +159,10 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements PtrHandl
         }
     }
 
-
-    @SuppressLint("StaticFieldLeak")
     @Override
     public Loader<List<C>> onCreateLoader(int id, Bundle args) {
         log("onCreateLoader");
-        return new BaseLoader<C>(mActivity) {
-            @Override
-            public List<C> onLoad() {
-                List<M> mList = mListener.onLoadCaches();
-                List<C> cList = new ArrayList<>();
-                for (M item : mList) {
-                    cList.add(mListener.onCreateCell(item));
-                }
-                return cList;
-            }
-        };
+        return new CacheLoader<>(mActivity, mListener);
     }
 
     @Override
@@ -195,7 +185,6 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements PtrHandl
     public void onLoaderReset(Loader<List<C>> loader) {
         log("onLoaderReset");
     }
-
 
     void connect() {
         log("connect");
@@ -241,7 +230,6 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements PtrHandl
         }
         return modelCursor;
     }
-
 
     private void resetCursors() {
         log("resetCursors");
@@ -347,6 +335,26 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements PtrHandl
 
         CursorImpl getCursorImpl();
 
+    }
+
+    public static final class CacheLoader<M, C> extends BaseLoader<C> {
+
+        private Listener<M, C> mListener;
+
+        public CacheLoader(Context context, Listener<M, C> listener) {
+            super(context);
+            this.mListener = listener;
+        }
+
+        @Override
+        public List<C> onLoad() {
+            List<M> mList = mListener.onLoadCaches();
+            List<C> cList = new ArrayList<>();
+            for (M item : mList) {
+                cList.add(mListener.onCreateCell(item));
+            }
+            return cList;
+        }
     }
 
     private final class ResponseHandler extends JsonHttpResponseHandler {

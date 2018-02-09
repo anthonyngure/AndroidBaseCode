@@ -18,7 +18,7 @@ import java.util.List;
  * Email : anthonyngure25@gmail.com.
  * Company : Laysan Incorporation
  */
-abstract class BaseLoader<T> extends AsyncTaskLoader<List<T>> {
+public abstract class BaseLoader<T> extends AsyncTaskLoader<List<T>> {
 
     private static final String TAG = BaseLoader.class.getSimpleName();
 
