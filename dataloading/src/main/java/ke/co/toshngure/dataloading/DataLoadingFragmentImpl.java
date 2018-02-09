@@ -337,7 +337,7 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
 
     }
 
-    public static final class CacheLoader<M, C> extends BaseLoader<C> {
+    private static final class CacheLoader<M, C> extends BaseLoader<C> {
 
         private Listener<M, C> mListener;
 
