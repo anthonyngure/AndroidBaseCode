@@ -12,16 +12,15 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
 import ke.co.toshngure.basecode.networking.ConnectionListener;
+import ke.co.toshngure.basecode.networking.ConnectionListenerManager;
 import ke.co.toshngure.basecode.utils.BaseUtils;
 
 /**
@@ -30,7 +29,9 @@ import ke.co.toshngure.basecode.utils.BaseUtils;
  * Company : VibeCampo Social Network..
  */
 
-public abstract class BaseAppFragment extends Fragment implements ConnectionListener {
+public abstract class BaseAppFragment extends Fragment implements
+        ConnectionListener,
+        ConnectionListenerManager.Listener {
 
     private static final String TAG = "BaseAppFragment";
 
@@ -65,58 +66,44 @@ public abstract class BaseAppFragment extends Fragment implements ConnectionList
 
     @Override
     public void onConnectionFailed(int statusCode, JSONObject response) {
-        log("Connection failed! " + statusCode + ", " + String.valueOf(response));
+        ConnectionListenerManager.onConnectionFailed(statusCode, response, this);
         hideProgressDialog();
-        if ((statusCode == 0) || (statusCode == 408)) {
-            new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.connection_timed_out)
-                    .setMessage(R.string.error_connection)
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .setPositiveButton(R.string.retry, (dialog, which) -> connect()).create().show();
-        } else {
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            builder.setCancelable(true)
-                    .setTitle(R.string.server_error)
-                    .setMessage(response.toString())
-                    .setNegativeButton(R.string.report, (dialog, which) -> {
-
-                    })
-                    .setPositiveButton(android.R.string.ok, null);
-            builder.create().show();
-        }
-
-    }
-
-    private void log(Object msg) {
-        if ( ((BaseAppActivity) getActivity()).isDebuggable()){
-            Log.d(TAG, String.valueOf(msg));
-        }
-    }
-
-
-    protected void showErrorAlertDialog(String message) {
-        new AlertDialog.Builder(getActivity()).setCancelable(true)
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, null)
-                .create()
-                .show();
     }
 
     @Override
     public void onConnectionSuccess(JSONObject response) {
-        log("onConnectionSuccess, Response = " + String.valueOf(response));
         hideProgressDialog();
+        ConnectionListenerManager.onConnectionSuccess(response, this);
     }
 
     @Override
     public void onConnectionProgress(int progress) {
-
+        ConnectionListenerManager.onConnectionProgress(progress);
     }
 
     @Override
     public Context getListenerContext() {
-        return getActivity();
+        return getContext();
+    }
+
+    @Override
+    public ConnectionListener getConnectionListener() {
+        return this;
+    }
+
+    @Override
+    public void onSuccessResponse(JSONObject data, JSONObject meta) {
+
+    }
+
+    @Override
+    public void onSuccessResponse(JSONArray data, JSONObject meta) {
+
+    }
+
+    @Override
+    public void onErrorResponse(String errorCode, String message, JSONObject data) {
+        ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
     }
 
 

@@ -25,7 +25,12 @@ import android.widget.Toast;
 
 import com.jaeger.library.StatusBarUtil;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import ke.co.toshngure.basecode.R;
+import ke.co.toshngure.basecode.networking.ConnectionListener;
+import ke.co.toshngure.basecode.networking.ConnectionListenerManager;
 import ke.co.toshngure.basecode.utils.BaseUtils;
 
 /**
@@ -33,7 +38,7 @@ import ke.co.toshngure.basecode.utils.BaseUtils;
  * Email : anthonyngure25@gmail.com.
  */
 
-public abstract class BaseAppActivity extends AppCompatActivity {
+public abstract class BaseAppActivity extends AppCompatActivity implements ConnectionListener, ConnectionListenerManager.Listener {
 
 
     private static int sessionDepth = 0;
@@ -214,5 +219,58 @@ public abstract class BaseAppActivity extends AppCompatActivity {
     }
 
     public abstract boolean isDebuggable();
+
+    @Override
+    public void connect() {
+
+    }
+
+    @Override
+    public void onConnectionStarted() {
+        showProgressDialog();
+    }
+
+
+    @Override
+    public void onConnectionFailed(int statusCode, JSONObject response) {
+        ConnectionListenerManager.onConnectionFailed(statusCode, response, this);
+        hideProgressDialog();
+    }
+
+    @Override
+    public void onConnectionSuccess(JSONObject response) {
+        hideProgressDialog();
+        ConnectionListenerManager.onConnectionSuccess(response, this);
+    }
+
+    @Override
+    public void onConnectionProgress(int progress) {
+        ConnectionListenerManager.onConnectionProgress(progress);
+    }
+
+    @Override
+    public Context getListenerContext() {
+        return this;
+    }
+
+    @Override
+    public ConnectionListener getConnectionListener() {
+        return this;
+    }
+
+    @Override
+    public void onSuccessResponse(JSONObject data, JSONObject meta) {
+
+    }
+
+    @Override
+    public void onSuccessResponse(JSONArray data, JSONObject meta) {
+
+    }
+
+    @Override
+    public void onErrorResponse(String errorCode, String message, JSONObject data) {
+        ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
+    }
 
 }

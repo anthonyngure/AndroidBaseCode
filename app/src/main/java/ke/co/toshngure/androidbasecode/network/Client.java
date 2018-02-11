@@ -14,7 +14,6 @@ import com.loopj.android.http.SyncHttpClient;
 import javax.net.ssl.HttpsURLConnection;
 
 import ke.co.toshngure.androidbasecode.BuildConfig;
-import ke.co.toshngure.basecode.networking.NoSSLv3Factory;
 import ke.co.toshngure.logging.BeeLog;
 
 
