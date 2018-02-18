@@ -162,6 +162,10 @@ public class ModelListBottomSheetFragment<M, C extends SimpleCell<M, ?>> extends
         return new DefaultCursorImpl();
     }
 
+    @Override
+    public void refresh() {
+        mDataLoadingFragmentImpl.refresh();
+    }
 
     protected int addUniqueCacheKey() {
         return 0;

@@ -37,8 +37,8 @@ import java.util.List;
  * @param <M>
  * @param <C>
  */
-public class ModelListFragment<M, C extends SimpleCell<M, ?>> extends Fragment implements
-        DataLoadingFragmentImpl.Listener<M, C> {
+public class ModelListFragment<M, C extends SimpleCell<M, ?>> extends Fragment
+        implements DataLoadingFragmentImpl.Listener<M, C> {
 
 
     private DataLoadingFragmentImpl<M, C> mDataLoadingFragmentImpl;
@@ -160,6 +160,11 @@ public class ModelListFragment<M, C extends SimpleCell<M, ?>> extends Fragment i
     @Override
     public CursorImpl getCursorImpl() {
         return new DefaultCursorImpl();
+    }
+
+    @Override
+    public void refresh() {
+        mDataLoadingFragmentImpl.refresh();
     }
 
 

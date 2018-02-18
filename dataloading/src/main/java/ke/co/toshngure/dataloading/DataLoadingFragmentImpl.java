@@ -291,6 +291,13 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
         mLoadingMoreViewManager.onDataParsed(cells);
     }
 
+    void refresh() {
+        mSimpleRecyclerView.removeAllCells();
+        hasMoreToTop = true;
+        hasMoreToBottom = true;
+        mPtrClassicFrameLayout.autoRefresh();
+    }
+
     interface Listener<M, C> {
 
         DataLoadingConfig getDataLoadingConfig();
@@ -331,6 +338,8 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
         String getNoMoreDataMessage();
 
         CursorImpl getCursorImpl();
+
+        void refresh();
 
     }
 
