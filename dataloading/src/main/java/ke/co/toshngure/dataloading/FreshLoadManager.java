@@ -62,6 +62,7 @@ public class FreshLoadManager {
             ptrClassicFrameLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
+            errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.connect());
             loadingLL.setVisibility(View.GONE);
             errorTV.setText(mDataLoadingFragmentImpl.mListener.getErrorMessage());
             Log.e(TAG, String.valueOf("StatusCode = " + statusCode + ", ERROR: " + error));
@@ -88,7 +89,6 @@ public class FreshLoadManager {
             ptrClassicFrameLayout.setVisibility(View.VISIBLE);
             freshLoadContainer.setVisibility(View.GONE);
         }
-        errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.connect());
     }
 
 
