@@ -20,7 +20,6 @@ import android.widget.FrameLayout;
 
 import com.jaychang.srv.SimpleCell;
 import com.jaychang.srv.SimpleRecyclerView;
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
@@ -100,11 +99,6 @@ public class ModelListBottomSheetFragment<M, C extends SimpleCell<M, ?>> extends
     @Override
     public String getCursorKeyPrefix() {
         return getModelClass().getSimpleName().toLowerCase() + "_" + addUniqueCacheKey();
-    }
-
-    @Override
-    public AsyncHttpClient getClient() {
-        return null;
     }
 
     @Override

@@ -8,6 +8,8 @@
 
 package ke.co.toshngure.dataloading;
 
+import com.loopj.android.http.AsyncHttpClient;
+
 /**
  * Created by Anthony Ngure on 15/09/2017.
  * Email : anthonyngure25@gmail.com.
@@ -30,6 +32,7 @@ public class DataLoadingConfig {
     private boolean debugEnabled = false;
     private int perPage = 10;
     private boolean cursorsEnabled = false;
+    private AsyncHttpClient asyncHttpClient;
 
     public DataLoadingConfig() {
     }
@@ -88,8 +91,9 @@ public class DataLoadingConfig {
         return url;
     }
 
-    public DataLoadingConfig withUrl(String url) {
+    public DataLoadingConfig withUrl(String url, AsyncHttpClient asyncHttpClient) {
         this.url = url;
+        this.asyncHttpClient = asyncHttpClient;
         return this;
     }
 
@@ -120,4 +124,7 @@ public class DataLoadingConfig {
         return this;
     }
 
+    public AsyncHttpClient getAsyncHttpClient() {
+        return asyncHttpClient;
+    }
 }

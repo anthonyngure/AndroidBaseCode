@@ -33,9 +33,16 @@ public class ConnectionListenerManager {
             try {
                 if (response != null) {
                     JSONObject meta = response.getJSONObject(Response.META);
-                    JSONObject data = response.getJSONObject(Response.DATA);
-                    listener.onErrorResponse(meta.getString(Response.ERROR_CODE),
-                            meta.getString(Response.MESSAGE), data);
+
+                    if (response.get(Response.DATA) instanceof JSONObject) {
+                        //Data is Object
+                        listener.onErrorResponse(meta.getString(Response.ERROR_CODE),
+                                meta.getString(Response.MESSAGE), meta.getJSONObject(Response.DATA));
+                    } else {
+                        //Data is Array
+                        listener.onErrorResponse(meta.getString(Response.ERROR_CODE),
+                                meta.getString(Response.MESSAGE), meta.getJSONArray(Response.DATA));
+                    }
                 } else {
                     onConnectionFailed(0, null, listener);
                 }
@@ -81,6 +88,10 @@ public class ConnectionListenerManager {
         }
     }
 
+    public static void onErrorResponse(String errorCode, String message, JSONArray data, Listener listener) {
+        showErrorAlertDialog(message, listener.getConnectionListener().getListenerContext());
+    }
+
     public static void onConnectionSuccess(JSONObject response, Listener listener) {
         Log.d(TAG, "onConnectionSuccess, Response = " + String.valueOf(response));
         try {
@@ -115,6 +126,8 @@ public class ConnectionListenerManager {
         void onSuccessResponse(JSONArray data, JSONObject meta);
 
         void onErrorResponse(String errorCode, String message, JSONObject data);
+
+        void onErrorResponse(String errorCode, String message, JSONArray data);
     }
 
 

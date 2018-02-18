@@ -19,7 +19,6 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.jaychang.srv.SimpleCell;
-import com.loopj.android.http.AsyncHttpClient;
 
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.cell.UserCell;
@@ -65,7 +64,7 @@ public class UsersFragmentBottomSheetFragment extends ModelListBottomSheetFragme
     @Override
     public DataLoadingConfig getDataLoadingConfig() {
         return new DataLoadingConfig()
-                .withUrl("https://toshngure.co.ke/basecode/public/api/v1/users")
+                .withUrl("https://toshngure.co.ke/basecode/public/api/v1/users", Client.getInstance().getClient())
                 .withCursorsEnabled()
                 .withRefreshEnabled()
                 .withLoadingMoreEnabled()
@@ -78,11 +77,6 @@ public class UsersFragmentBottomSheetFragment extends ModelListBottomSheetFragme
                 .withDebugEnabled();*/
     }
 
-
-    @Override
-    public AsyncHttpClient getClient() {
-        return Client.getInstance().getClient();
-    }
 
     @Override
     public Class<User> getModelClass() {

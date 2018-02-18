@@ -106,6 +106,10 @@ public abstract class BaseAppFragment extends Fragment implements
         ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
     }
 
+    @Override
+    public void onErrorResponse(String errorCode, String message, JSONArray data) {
+        ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
+    }
 
     public void toast(Object message) {
         ((BaseAppActivity) getActivity()).toast(message);

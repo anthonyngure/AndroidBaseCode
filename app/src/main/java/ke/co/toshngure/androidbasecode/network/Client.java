@@ -11,8 +11,6 @@ package ke.co.toshngure.androidbasecode.network;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 
-import javax.net.ssl.HttpsURLConnection;
-
 import ke.co.toshngure.androidbasecode.BuildConfig;
 import ke.co.toshngure.logging.BeeLog;
 
@@ -46,7 +44,7 @@ public class Client {
             /**
              * Client setup
              */
-            HttpsURLConnection.setDefaultSSLSocketFactory(new NoSSLv3Factory());
+            //HttpsURLConnection.setDefaultSSLSocketFactory(new NoSSLv3Factory());
             mClient = new AsyncHttpClient(true, 80, 443);
             setUpClient(mClient);
         }

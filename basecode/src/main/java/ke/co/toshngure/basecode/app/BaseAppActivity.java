@@ -273,4 +273,9 @@ public abstract class BaseAppActivity extends AppCompatActivity implements Conne
         ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
     }
 
+    @Override
+    public void onErrorResponse(String errorCode, String message, JSONArray data) {
+        ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
+    }
+
 }

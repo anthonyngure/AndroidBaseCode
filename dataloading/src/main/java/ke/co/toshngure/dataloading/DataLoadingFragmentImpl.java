@@ -20,7 +20,6 @@ import android.widget.FrameLayout;
 import com.jaychang.srv.OnLoadMoreListener;
 import com.jaychang.srv.SimpleCell;
 import com.jaychang.srv.SimpleRecyclerView;
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
@@ -201,7 +200,7 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
         log("Params : " + requestParams.toString());
         log("Url : " + mDataLoadingConfig.getUrl());
 
-        mListener.getClient().get(mActivity, mDataLoadingConfig.getUrl(), requestParams, new ResponseHandler());
+        mDataLoadingConfig.getAsyncHttpClient().get(mActivity, mDataLoadingConfig.getUrl(), requestParams, new ResponseHandler());
     }
 
     void updateModelCursor(ModelCursor modelCursor) {
@@ -307,8 +306,6 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
         List<M> onLoadCaches();
 
         String getCursorKeyPrefix();
-
-        AsyncHttpClient getClient();
 
         RequestParams getRequestParams();
 
