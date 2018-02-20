@@ -37,11 +37,11 @@ public class ConnectionListenerManager {
                     if (response.get(Response.DATA) instanceof JSONObject) {
                         //Data is Object
                         listener.onErrorResponse(meta.getString(Response.ERROR_CODE),
-                                meta.getString(Response.MESSAGE), meta.getJSONObject(Response.DATA));
+                                meta.getString(Response.MESSAGE), response.getJSONObject(Response.DATA));
                     } else {
                         //Data is Array
                         listener.onErrorResponse(meta.getString(Response.ERROR_CODE),
-                                meta.getString(Response.MESSAGE), meta.getJSONArray(Response.DATA));
+                                meta.getString(Response.MESSAGE), response.getJSONArray(Response.DATA));
                     }
                 } else {
                     onConnectionFailed(0, null, listener);
