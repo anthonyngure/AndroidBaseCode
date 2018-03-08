@@ -142,6 +142,7 @@ public class ConnectionHandler extends JsonHttpResponseHandler {
         }
 
         protected void onError(String errorCode, String message, JSONArray data) {
+            showErrorAlertDialog(message);
         }
 
         protected void onConnectionStarted() {
@@ -183,12 +184,12 @@ public class ConnectionHandler extends JsonHttpResponseHandler {
 
                     if (response.get(RESPONSE.DATA) instanceof JSONObject) {
                         //Data is Object
-                        onError(meta.getString(RESPONSE.ERROR_CODE),
-                                meta.getString(RESPONSE.MESSAGE), response.getJSONObject(RESPONSE.DATA));
+                        onError(meta.getString(RESPONSE.ERROR_CODE), meta.getString(RESPONSE.MESSAGE),
+                                response.getJSONObject(RESPONSE.DATA));
                     } else {
                         //Data is Array
-                        onError(meta.getString(RESPONSE.ERROR_CODE),
-                                meta.getString(RESPONSE.MESSAGE), response.getJSONArray(RESPONSE.DATA));
+                        onError(meta.getString(RESPONSE.ERROR_CODE), meta.getString(RESPONSE.MESSAGE),
+                                response.getJSONArray(RESPONSE.DATA));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -245,5 +246,6 @@ public class ConnectionHandler extends JsonHttpResponseHandler {
                     .create()
                     .show();
         }
+
     }
 }
