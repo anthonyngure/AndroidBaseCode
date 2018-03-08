@@ -8,19 +8,13 @@
 
 package ke.co.toshngure.basecode.fragment;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import ke.co.toshngure.basecode.app.BaseAppActivity;
-import ke.co.toshngure.basecode.networking.ConnectionListener;
-import ke.co.toshngure.basecode.networking.ConnectionListenerManager;
 import ke.co.toshngure.basecode.utils.BaseUtils;
 
 /**
@@ -29,13 +23,9 @@ import ke.co.toshngure.basecode.utils.BaseUtils;
  * Company : VibeCampo Social Network..
  */
 
-public abstract class BaseAppFragment extends Fragment implements
-        ConnectionListener,
-        ConnectionListenerManager.Listener {
+public abstract class BaseAppFragment extends Fragment {
 
     private static final String TAG = "BaseAppFragment";
-
-    
 
     public void showProgressDialog() {
         ((BaseAppActivity) getActivity()).showProgressDialog();
@@ -51,64 +41,6 @@ public abstract class BaseAppFragment extends Fragment implements
 
     public void hideProgressDialog() {
         ((BaseAppActivity) getActivity()).hideProgressDialog();
-    }
-
-    @Override
-    public void connect() {
-
-    }
-
-    @Override
-    public void onConnectionStarted() {
-        showProgressDialog();
-    }
-
-
-    @Override
-    public void onConnectionFailed(int statusCode, JSONObject response) {
-        ConnectionListenerManager.onConnectionFailed(statusCode, response, this);
-        hideProgressDialog();
-    }
-
-    @Override
-    public void onConnectionSuccess(JSONObject response) {
-        hideProgressDialog();
-        ConnectionListenerManager.onConnectionSuccess(response, this);
-    }
-
-    @Override
-    public void onConnectionProgress(int progress) {
-        ConnectionListenerManager.onConnectionProgress(progress);
-    }
-
-    @Override
-    public Context getListenerContext() {
-        return getContext();
-    }
-
-    @Override
-    public ConnectionListener getConnectionListener() {
-        return this;
-    }
-
-    @Override
-    public void onSuccessResponse(JSONObject data, JSONObject meta) {
-
-    }
-
-    @Override
-    public void onSuccessResponse(JSONArray data, JSONObject meta) {
-
-    }
-
-    @Override
-    public void onErrorResponse(String errorCode, String message, JSONObject data) {
-        ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
-    }
-
-    @Override
-    public void onErrorResponse(String errorCode, String message, JSONArray data) {
-        ConnectionListenerManager.onErrorResponse(errorCode, message, data, this);
     }
 
     public void toast(Object message) {

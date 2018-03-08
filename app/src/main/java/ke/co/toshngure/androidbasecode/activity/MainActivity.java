@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.floatingsearchview.SearchActivity;
+import ke.co.toshngure.androidbasecode.fragment.ConnectionHandlerFragment;
 import ke.co.toshngure.androidbasecode.fragment.ImagePickerFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheetFragment;
@@ -102,6 +103,11 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.floatingSearchViewSLIV)
     public void onFloatingSearchViewSLIV() {
         startActivity(new Intent(this, SearchActivity.class));
+    }
+
+    @OnClick(R.id.connectionHandlerSLIV)
+    public void onConnectionHandlerSLIV() {
+        ReusableFragmentActivity.start(this, ConnectionHandlerFragment.newInstance(), "Connection Handler Test");
     }
 
 }

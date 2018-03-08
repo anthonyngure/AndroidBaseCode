@@ -68,6 +68,11 @@
             style="@style/TestSimpleListItemView"
             app:sliTitle="Floating View Search Test" />
 
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/connectionHandlerSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Test Connection Handler" />
+
     </LinearLayout>
 
 

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Number Picker</string>
+    <string name="number_delete">Delete</string>
+    <string name="number_picker_minus_label">-</string>
+    <string name="number_picker_seperator">.</string>
+    <string name="number_picker_plus_minus">+/-</string>
+    <string name="picker_cancel">Cancel</string>
+    <string name="picker_set">OK</string>
+    <string name="min_error">Please input a number greater than or equal to %1$s</string>
+    <string name="max_error">Please input a number less than or equal to %1$s</string>
+    <string name="min_max_error">Please input a number between %1$s and %2$s</string>
+    <string name="time_picker_time_seperator">:</string>
+</resources>
