@@ -141,7 +141,7 @@ public class SlidingSearchResultsExampleFragment extends BaseExampleFragment {
             @Override
             public void onFocus() {
 
-                //show suggestions when search bar gains focus (typically history suggestions)
+                //index suggestions when search bar gains focus (typically history suggestions)
                 mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 3));
 
                 Log.d(TAG, "onFocus()");

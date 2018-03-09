@@ -10,6 +10,7 @@ package ke.co.toshngure.androidbasecode;
 
 import android.app.Application;
 
+import ke.co.toshngure.basecode.networking.RESTClient;
 import ke.co.toshngure.logging.BeeLog;
 
 
@@ -29,7 +30,28 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        BeeLog.init(true, "ToshNgure");
+        BeeLog.init(true, null);
+        RESTClient.init(new RESTClient.Config() {
+            @Override
+            protected Application getContext() {
+                return App.this;
+            }
+
+            @Override
+            protected String getBaseUrl() {
+                return "https://toshngure.co.ke/basecode/public/api/v1";
+            }
+
+            @Override
+            protected String getToken() {
+                return null;
+            }
+
+            @Override
+            protected boolean withLoggingEnabled() {
+                return BuildConfig.DEBUG;
+            }
+        });
         mInstance = this;
     }
 }

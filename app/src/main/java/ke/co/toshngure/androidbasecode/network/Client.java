@@ -42,7 +42,7 @@ public class Client {
     public AsyncHttpClient getClient() {
         if (mClient == null) {
             /**
-             * Client setup
+             * RESTClient setup
              */
             //HttpsURLConnection.setDefaultSSLSocketFactory(new NoSSLv3Factory());
             mClient = new AsyncHttpClient(true, 80, 443);

@@ -11,24 +11,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.loopj.android.http.RequestParams;
-
-import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import ke.co.toshngure.androidbasecode.R;
-import ke.co.toshngure.androidbasecode.network.Client;
+import ke.co.toshngure.androidbasecode.model.Post;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
-import ke.co.toshngure.basecode.networking.ConnectionHandler;
+import ke.co.toshngure.basecode.networking.RESTClient;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ConnectionHandlerFragment extends Fragment {
+public class PostsFragment extends Fragment {
 
 
     @BindView(R.id.connectBtn)
@@ -36,17 +35,16 @@ public class ConnectionHandlerFragment extends Fragment {
     @BindView(R.id.contentTV)
     TextView contentTV;
     Unbinder unbinder;
-    private ConnectionHandler.Callback connectionCallback;
 
-    public ConnectionHandlerFragment() {
+    public PostsFragment() {
         // Required empty public constructor
     }
 
-    public static ConnectionHandlerFragment newInstance() {
+    public static PostsFragment newInstance() {
 
         Bundle args = new Bundle();
 
-        ConnectionHandlerFragment fragment = new ConnectionHandlerFragment();
+        PostsFragment fragment = new PostsFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +53,7 @@ public class ConnectionHandlerFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_connection_handler, container, false);
+        View view = inflater.inflate(R.layout.fragment_posts, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -69,30 +67,17 @@ public class ConnectionHandlerFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        connectionCallback = new ConnectionHandler.Callback((BaseAppActivity) getActivity()) {
-            @Override
-            protected void onRetry() {
-                super.onRetry();
-                onConnectBtnClicked();
-            }
-
-            @Override
-            protected void onResponse(JSONArray data, JSONObject meta) {
-                super.onResponse(data, meta);
-                contentTV.setText(String.valueOf(data));
-            }
-        };
     }
 
     @OnClick(R.id.connectBtn)
     public void onConnectBtnClicked() {
-        String url = "https://toshngure.co.ke/basecode/public/api/v1/users";
-        RequestParams requestParams = new RequestParams();
-        requestParams.put("after", 0);
-        requestParams.put("before", 0);
-        requestParams.put("recent", true);
-        requestParams.put("perPage", 10);
-        Client.getInstance().getClient().get(url, requestParams, new ConnectionHandler(connectionCallback));
+        RESTClient.getInstance().index(Post.class, new RESTClient.Callback<Post>((BaseAppActivity) getActivity(), Post.class) {
+
+            @Override
+            protected void onResponse(List<Post> items, @Nullable JSONObject meta) {
+                super.onResponse(items, meta);
+            }
+        });
     }
 
 }

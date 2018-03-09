@@ -139,7 +139,7 @@ public class SlidingSearchViewExampleFragment extends BaseExampleFragment {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        //show suggestions when search bar gains focus (typically history suggestions)
+                        //index suggestions when search bar gains focus (typically history suggestions)
                         mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 3));
 
                     }

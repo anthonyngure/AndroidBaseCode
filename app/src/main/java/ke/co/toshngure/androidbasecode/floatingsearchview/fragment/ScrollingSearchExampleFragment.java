@@ -108,7 +108,7 @@ public class ScrollingSearchExampleFragment extends BaseExampleFragment implemen
 
                             @Override
                             public void onResults(List<ColorWrapper> results) {
-                                //show search results
+                                //index search results
                             }
 
                         });
@@ -126,7 +126,7 @@ public class ScrollingSearchExampleFragment extends BaseExampleFragment implemen
 
                             @Override
                             public void onResults(List<ColorWrapper> results) {
-                                //show search results
+                                //index search results
                             }
 
                         });
@@ -138,7 +138,7 @@ public class ScrollingSearchExampleFragment extends BaseExampleFragment implemen
             @Override
             public void onFocus() {
 
-                //show suggestions when search bar gains focus (typically history suggestions)
+                //index suggestions when search bar gains focus (typically history suggestions)
                 mSearchView.swapSuggestions(DataHelper.getHistory(getActivity(), 3));
 
                 Log.d(TAG, "onFocus()");
