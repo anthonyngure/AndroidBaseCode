@@ -262,6 +262,7 @@ public class Client {
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
+            throw new IllegalArgumentException("Used an item without a Resource Annotation");
         }
         return resource;
     }
