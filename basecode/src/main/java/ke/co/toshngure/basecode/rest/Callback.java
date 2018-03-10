@@ -168,7 +168,7 @@ public abstract class Callback<M> {
         }
     }
 
-    protected void onSuccess(JSONObject response) {
+    void onSuccess(JSONObject response) {
         Logger.log("onSuccess, Response = " + String.valueOf(response));
         if (showDialog) {
             baseAppActivity.hideProgressDialog();
@@ -209,7 +209,7 @@ public abstract class Callback<M> {
         }
     }
 
-    protected void onSuccess(JSONArray response) {
+    void onSuccess(JSONArray response) {
         Logger.log("onSuccess, Response = " + String.valueOf(response));
         if (showDialog) {
             baseAppActivity.hideProgressDialog();

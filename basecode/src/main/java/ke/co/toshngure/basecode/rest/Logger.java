@@ -1,5 +1,7 @@
 package ke.co.toshngure.basecode.rest;
 
+import android.util.Log;
+
 /**
  * Created by Anthony Ngure on 10/03/2018.
  * Email : anthonyngure25@gmail.com.
@@ -7,6 +9,7 @@ package ke.co.toshngure.basecode.rest;
 
 final class Logger {
 
+    private static final String TAG = "Logger";
     private static Logger mInstance;
     private static boolean debug = false;
 
@@ -30,7 +33,7 @@ final class Logger {
 
     static void log(Object msg) {
         if (debug) {
-            log(String.valueOf(msg));
+            Log.d(TAG, String.valueOf(msg));
         }
     }
 }
