@@ -9,6 +9,7 @@
 package ke.co.toshngure.basecode.rest;
 
 import android.app.Application;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.google.gson.ExclusionStrategy;
@@ -136,7 +137,7 @@ public class Client {
      * @param callback
      * @param <M>
      */
-    public <M> void store(M item, Callback<M> callback) {
+    public <M> void store(@NonNull M item, @NonNull Callback<M> callback) {
         Resource resource = getResource(item.getClass());
         String url = absoluteUrl(resource.relativeUrl());
         getClient().post(mConfig.getContext(), url, getBody(item), RequestParams.APPLICATION_JSON,
@@ -150,11 +151,15 @@ public class Client {
      * @param callback
      * @param <M>
      */
-    public <M> void store(List<M> items, Callback<M> callback) {
-        Resource resource = getResource(items.get(0).getClass());
-        String url = absoluteUrl(resource.relativeUrl());
-        getClient().post(mConfig.getContext(), url, getBody(items), RequestParams.APPLICATION_JSON,
-                new ResponseHandler(callback));
+    public <M> void store(@NonNull List<M> items, @NonNull Callback<M> callback) {
+        if (items.size() >= 1) {
+            Resource resource = getResource(items.get(0).getClass());
+            String url = absoluteUrl(resource.relativeUrl());
+            getClient().post(mConfig.getContext(), url, getBody(items), RequestParams.APPLICATION_JSON,
+                    new ResponseHandler(callback));
+        } else {
+            throw new IllegalArgumentException("The items.size() must be >= 1");
+        }
     }
 
     /**
@@ -164,7 +169,7 @@ public class Client {
      * @param callback
      * @param <M>
      */
-    public <M> void update(M item, Callback<M> callback) {
+    public <M> void update(@NonNull M item, @NonNull Callback<M> callback) {
         Resource resource = getResource(item.getClass());
         String url = absoluteUrl(resource.relativeUrl());
         getClient().put(mConfig.getContext(), url, getBody(item), RequestParams.APPLICATION_JSON,
@@ -178,7 +183,7 @@ public class Client {
      * @param callback
      * @param <M>
      */
-    private <M> void update(List<M> items, Callback<M> callback) {
+    private <M> void update(@NonNull List<M> items, @NonNull Callback<M> callback) {
         Resource resource = getResource(items.get(0).getClass());
         String url = absoluteUrl(resource.relativeUrl());
         getClient().post(mConfig.getContext(), url, getBody(items), RequestParams.APPLICATION_JSON,
@@ -188,13 +193,12 @@ public class Client {
     /**
      * Delete an item
      *
-     * @param mClass
      * @param id
      * @param callback
      * @param <M>
      */
-    public <M> void destroy(Class<M> mClass, long id, Callback<M> callback) {
-        Resource resource = getResource(mClass);
+    public <M> void destroy(long id, Callback<M> callback) {
+        Resource resource = getResource(callback.getModelClass());
         String url = absoluteUrl(resource.relativeUrl() + "/" + id);
         getClient().delete(url, callback.getRequestParams(), new ResponseHandler(callback));
     }
