@@ -154,11 +154,18 @@ public abstract class Callback<M> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         } else if (statusCode == 500) {
             builder.setCancelable(true)
                     .setTitle(R.string.server_error)
                     .setMessage(baseAppActivity.getString(R.string.error_application))
+                    .setNegativeButton(R.string.report, (dialog, which) -> {
+                    })
+                    .setPositiveButton(android.R.string.ok, null)
+                    .create().show();
+        } else if (statusCode == 404) {
+            builder.setCancelable(true)
+                    .setTitle("Not Found")
+                    .setMessage(String.valueOf(response))
                     .setNegativeButton(R.string.report, (dialog, which) -> {
                     })
                     .setPositiveButton(android.R.string.ok, null)
