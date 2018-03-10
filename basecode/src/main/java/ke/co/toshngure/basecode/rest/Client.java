@@ -237,9 +237,9 @@ public class Client {
         }).create();
 
         String data = gson.toJson(item);
+        Logger.log(data);
         jsonEntity = new StringEntity(data, ContentType.APPLICATION_JSON);
         Logger.log(jsonEntity);
-
         return jsonEntity;
     }
 
