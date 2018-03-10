@@ -23,6 +23,7 @@ import com.loopj.android.http.SyncHttpClient;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import cz.msebera.android.httpclient.entity.ContentType;
 import cz.msebera.android.httpclient.entity.StringEntity;
 import ke.co.toshngure.basecode.rest.annotations.Param;
 import ke.co.toshngure.basecode.rest.annotations.Resource;
@@ -216,15 +217,9 @@ public class Client {
                 return false;
             }
         }).create();
-
         String data = gson.toJson(items);
-        try {
-            jsonEntity = new StringEntity(data);
-            Logger.log(jsonEntity);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
+        jsonEntity = new StringEntity(data, ContentType.APPLICATION_JSON);
+        Logger.log(jsonEntity);
         return jsonEntity;
     }
 
