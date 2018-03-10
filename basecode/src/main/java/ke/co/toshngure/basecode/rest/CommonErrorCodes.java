@@ -1,4 +1,4 @@
-package ke.co.toshngure.basecode.networking;
+package ke.co.toshngure.basecode.rest;
 
 /**
  * Created by Anthony Ngure on 11/02/2018.

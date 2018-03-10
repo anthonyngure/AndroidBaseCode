@@ -1,4 +1,4 @@
-package ke.co.toshngure.basecode.networking;
+package ke.co.toshngure.basecode.rest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -8,7 +8,7 @@ import org.json.JSONObject;
  * Email : anthonyngure25@gmail.com.
  */
 
-public final class RESPONSE {
+public final class Response {
 
     public static final String DATA = "data";
     public static final String META = "meta";

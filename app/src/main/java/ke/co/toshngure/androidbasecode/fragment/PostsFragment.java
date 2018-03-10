@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,7 +20,9 @@ import butterknife.Unbinder;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.Post;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
-import ke.co.toshngure.basecode.networking.RESTClient;
+import ke.co.toshngure.basecode.rest.Callback;
+import ke.co.toshngure.basecode.rest.Client;
+import ke.co.toshngure.basecode.rest.ResponseHandler;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,13 +71,24 @@ public class PostsFragment extends Fragment {
 
     @OnClick(R.id.connectBtn)
     public void onConnectBtnClicked() {
-        RESTClient.getInstance().index(Post.class, new RESTClient.Callback<Post>((BaseAppActivity) getActivity(), Post.class) {
-
+        Client.getInstance().index(new Callback<Post>((BaseAppActivity) getActivity(), Post.class) {
             @Override
-            protected void onResponse(List<Post> items, @Nullable JSONObject meta) {
-                super.onResponse(items, meta);
+            protected void onRetry() {
+                super.onRetry();
             }
         });
+
+        Client.getInstance().getClient().post("", new ResponseHandler(new Callback((BaseAppActivity) getActivity()) {
+            @Override
+            protected void onRetry() {
+                super.onRetry();
+            }
+
+            @Override
+            protected void onResponse(JSONObject data, @Nullable JSONObject meta) {
+                super.onResponse(data, meta);
+            }
+        }));
     }
 
 }

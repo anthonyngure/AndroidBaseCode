@@ -10,7 +10,7 @@ package ke.co.toshngure.androidbasecode;
 
 import android.app.Application;
 
-import ke.co.toshngure.basecode.networking.RESTClient;
+import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.logging.BeeLog;
 
 
@@ -31,7 +31,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         BeeLog.init(true, null);
-        RESTClient.init(new RESTClient.Config() {
+        Client.init(new Client.Config() {
             @Override
             protected Application getContext() {
                 return App.this;
