@@ -7,8 +7,10 @@ import android.app.Application;
  * Email : anthonyngure25@gmail.com.
  */
 
-public abstract class ClientApp extends Application implements ClientAppCallback {
+public abstract class ClientApp extends Application {
 
     public ClientApp() {
     }
+
+    abstract Client.Config getClientConfig();
 }
