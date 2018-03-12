@@ -12,5 +12,5 @@ public abstract class ClientApp extends Application {
     public ClientApp() {
     }
 
-    abstract Client.Config getClientConfig();
+    protected abstract Client.Config getClientConfig();
 }
