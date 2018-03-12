@@ -9,6 +9,7 @@
 package ke.co.toshngure.basecode.rest;
 
 import android.app.Application;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -56,7 +57,7 @@ public class Client {
         }
     }
 
-    public static synchronized Client getInstance() {
+    public static synchronized Client getInstance(Context context) {
         if (mInstance == null) {
             throw new IllegalArgumentException("Client has not been initialized," +
                     " it should be initialized once, most probably in the Application class");
@@ -256,11 +257,6 @@ public class Client {
             throw new IllegalArgumentException("Used an item without a Resource Annotation");
         }
         return resource;
-    }
-
-    public void invalidate() {
-        mInstance = null;
-        mClient = null;
     }
 
     public static abstract class Config {
