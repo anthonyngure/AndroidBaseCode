@@ -9,7 +9,6 @@
 package ke.co.toshngure.basecode.rest;
 
 import android.app.Application;
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
@@ -57,7 +56,7 @@ public class Client {
         }
     }
 
-    public static synchronized Client getInstance(Context context) {
+    public static synchronized Client getInstance() {
         if (mInstance == null) {
             throw new IllegalArgumentException("Client has not been initialized," +
                     " it should be initialized once, most probably in the Application class");
