@@ -46,10 +46,10 @@ public class Client {
         mConfig = config;
     }
 
-    public static void init(Config config) {
+    public static void init(ClientApp clientApp) {
         if (mInstance == null) {
-            mInstance = new Client(config);
-            Logger.init(config.withLoggingEnabled());
+            mInstance = new Client(clientApp.getClientConfig());
+            Logger.init(clientApp.getClientConfig().withLoggingEnabled());
         } else {
             throw new IllegalArgumentException("Client should only be initialized once," +
                     " most probably in the Application class");
@@ -266,6 +266,7 @@ public class Client {
     public static abstract class Config {
 
         public Config() {
+
         }
 
         protected abstract Application getContext();
@@ -274,7 +275,9 @@ public class Client {
 
         protected abstract String getToken();
 
-        protected abstract boolean withLoggingEnabled();
+        protected boolean withLoggingEnabled() {
+            return true;
+        }
 
         protected int getRequestTimeout() {
             return 10000;
