@@ -46,10 +46,10 @@ public class Client {
         mConfig = config;
     }
 
-    public static void init(ClientApp clientApp) {
+    public static void init(Config config) {
         if (mInstance == null) {
-            mInstance = new Client(clientApp.getClientConfig());
-            Logger.init(clientApp.getClientConfig().withLoggingEnabled());
+            mInstance = new Client(config);
+            Logger.init(config.withLoggingEnabled());
         } else {
             throw new IllegalArgumentException("Client should only be initialized once," +
                     " most probably in the Application class");
