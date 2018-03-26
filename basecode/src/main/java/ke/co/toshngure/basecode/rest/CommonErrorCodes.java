@@ -6,7 +6,7 @@ package ke.co.toshngure.basecode.rest;
  */
 
 public class CommonErrorCodes {
-    public static final String VALIDATION_ERROR = "VALIDATION_ERROR";
+    public static final String VALIDATION = "VALIDATION";
     public static final String UNAUTHORIZED = "UNAUTHORIZED";
     public static final String TOKEN_MISSING = "TOKEN_MISSING";
     public static final String TOKEN_INVALID = "TOKEN_INVALID";

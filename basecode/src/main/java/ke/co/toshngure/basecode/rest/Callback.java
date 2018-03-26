@@ -79,7 +79,7 @@ public abstract class Callback<M> {
 
     protected void onError(String errorCode, String message, JSONObject data) {
         switch (errorCode) {
-            case CommonErrorCodes.VALIDATION_ERROR:
+            case CommonErrorCodes.VALIDATION:
                 StringBuilder sb = new StringBuilder();
                 Iterator<String> iterator = data.keys();
                 while (iterator != null && iterator.hasNext()) {
