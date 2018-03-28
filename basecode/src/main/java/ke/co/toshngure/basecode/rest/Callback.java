@@ -65,6 +65,9 @@ public abstract class Callback<M> {
     protected void onRetry() {
     }
 
+    protected void onCancel() {
+    }
+
     protected void onResponse(M item, @Nullable JSONObject meta) {
     }
 
@@ -120,7 +123,7 @@ public abstract class Callback<M> {
         new AlertDialog.Builder(baseAppActivity)
                 .setTitle(R.string.connection_timed_out)
                 .setMessage(R.string.error_connection)
-                .setNegativeButton(android.R.string.cancel, null)
+                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> onCancel())
                 .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
                 .create().show();
     }
