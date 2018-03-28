@@ -165,28 +165,15 @@ public class Client {
     /**
      * Update single item
      *
+     * @param id
      * @param item
      * @param callback
      * @param <M>
      */
-    public <M> void update(@NonNull M item, @NonNull Callback<M> callback) {
+    public <M> void update(long id, @NonNull M item, @NonNull Callback<M> callback) {
         Resource resource = getResource(item.getClass());
-        String url = absoluteUrl(resource.relativeUrl());
+        String url = absoluteUrl(resource.relativeUrl() + "/" + id);
         getClient().put(mConfig.getContext(), url, getBody(item), RequestParams.APPLICATION_JSON,
-                new ResponseHandler(callback));
-    }
-
-    /**
-     * Update multiple items
-     *
-     * @param items
-     * @param callback
-     * @param <M>
-     */
-    private <M> void update(@NonNull List<M> items, @NonNull Callback<M> callback) {
-        Resource resource = getResource(items.get(0).getClass());
-        String url = absoluteUrl(resource.relativeUrl());
-        getClient().post(mConfig.getContext(), url, getBody(items), RequestParams.APPLICATION_JSON,
                 new ResponseHandler(callback));
     }
 
