@@ -8,6 +8,7 @@
 
 package ke.co.toshngure.dataloading;
 
+import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -38,12 +39,20 @@ public class DataLoadingConfig {
 
     @StringRes
     private int loadingMessage = R.string.message_loading;
+    @ColorRes
+    private int loadingMessageColor = android.R.color.black;
     @StringRes
     private int errorMessage = R.string.message_connection_error;
+    @ColorRes
+    private int errorMessageColor = android.R.color.black;
     @StringRes
     private int emptyDataMessage = R.string.message_empty_data;
+    @ColorRes
+    private int emptyDataMessageColor = android.R.color.black;
     @StringRes
     private int noMoreDataMessage = R.string.message_no_more_data;
+    @ColorRes
+    private int noMoreDataMessageColor = android.R.color.black;
 
     public DataLoadingConfig() {
     }
@@ -143,8 +152,9 @@ public class DataLoadingConfig {
         return loadingMessage;
     }
 
-    public DataLoadingConfig withLoadingMessage(int loadingMessage) {
+    public DataLoadingConfig withLoadingMessage(@StringRes int loadingMessage, @ColorRes int loadingMessageColor) {
         this.loadingMessage = loadingMessage;
+        this.loadingMessageColor = loadingMessageColor;
         return this;
     }
 
@@ -152,8 +162,9 @@ public class DataLoadingConfig {
         return errorMessage;
     }
 
-    public DataLoadingConfig withErrorMessage(int errorMessage) {
+    public DataLoadingConfig withErrorMessage(@StringRes int errorMessage, @ColorRes int errorMessageColor) {
         this.errorMessage = errorMessage;
+        this.errorMessageColor = errorMessageColor;
         return this;
     }
 
@@ -161,8 +172,9 @@ public class DataLoadingConfig {
         return emptyDataMessage;
     }
 
-    public DataLoadingConfig withEmptyDataMessage(int emptyDataMessage) {
+    public DataLoadingConfig withEmptyDataMessage(@StringRes int emptyDataMessage, @ColorRes int emptyDataMessageColor) {
         this.emptyDataMessage = emptyDataMessage;
+        this.emptyDataMessageColor = emptyDataMessageColor;
         return this;
     }
 
@@ -170,8 +182,25 @@ public class DataLoadingConfig {
         return noMoreDataMessage;
     }
 
-    public DataLoadingConfig withNoMoreDataMessage(int noMoreDataMessage) {
+    public DataLoadingConfig withNoMoreDataMessage(@StringRes int noMoreDataMessage, @ColorRes int noMoreDataMessageColor) {
         this.noMoreDataMessage = noMoreDataMessage;
+        this.noMoreDataMessageColor = noMoreDataMessageColor;
         return this;
+    }
+
+    int getLoadingMessageColor() {
+        return loadingMessageColor;
+    }
+
+    int getErrorMessageColor() {
+        return errorMessageColor;
+    }
+
+    int getEmptyDataMessageColor() {
+        return emptyDataMessageColor;
+    }
+
+    int getNoMoreDataMessageColor() {
+        return noMoreDataMessageColor;
     }
 }

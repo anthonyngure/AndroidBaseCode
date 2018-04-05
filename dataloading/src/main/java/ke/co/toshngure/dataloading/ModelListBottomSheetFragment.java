@@ -88,7 +88,7 @@ public class ModelListBottomSheetFragment<M, C extends SimpleCell<M, ?>> extends
     }
 
     @Override
-    public void setUpBackground(ImageView background) {
+    public void setUpBackground(ImageView backgroundIV) {
 
     }
 

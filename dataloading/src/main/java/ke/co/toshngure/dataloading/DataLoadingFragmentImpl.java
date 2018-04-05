@@ -308,7 +308,7 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
 
         void setUpTopView(FrameLayout topViewContainer);
 
-        void setUpBackground(ImageView background);
+        void setUpBackground(ImageView backgroundIV);
 
         void setUpBottomView(FrameLayout bottomViewContainer);
 

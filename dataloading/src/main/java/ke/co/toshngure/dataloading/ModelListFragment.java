@@ -88,7 +88,7 @@ public class ModelListFragment<M, C extends SimpleCell<M, ?>> extends Fragment
     }
 
     @Override
-    public void setUpBackground(ImageView background) {
+    public void setUpBackground(ImageView backgroundIV) {
 
     }
 

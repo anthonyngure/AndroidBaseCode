@@ -68,6 +68,7 @@ public class LoadingMoreViewManager {
         messageTV.setVisibility(View.VISIBLE);
         loadingIV.setVisibility(View.GONE);
         messageTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessage());
+        messageTV.setTextColor(mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessageColor());
         Log.e(TAG, String.valueOf("StatusCode = " + statusCode + ", ERROR: " + error));
     }
 
@@ -82,6 +83,7 @@ public class LoadingMoreViewManager {
             messageTV.setVisibility(View.VISIBLE);
             loadingIV.setVisibility(View.GONE);
             messageTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getNoMoreDataMessage());
+            messageTV.setTextColor(mDataLoadingFragmentImpl.mDataLoadingConfig.getNoMoreDataMessageColor());
         }
     }
 }
