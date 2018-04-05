@@ -64,7 +64,7 @@ public class FreshLoadManager {
             errorLL.setVisibility(View.VISIBLE);
             errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.connect());
             loadingLL.setVisibility(View.GONE);
-            errorTV.setText(mDataLoadingFragmentImpl.mListener.getErrorMessage());
+            errorTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessage());
             Log.e(TAG, String.valueOf("StatusCode = " + statusCode + ", ERROR: " + error));
         }
     }
@@ -84,7 +84,7 @@ public class FreshLoadManager {
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
             loadingLL.setVisibility(View.GONE);
-            errorTV.setText(mDataLoadingFragmentImpl.mListener.getEmptyDataMessage());
+            errorTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessage());
         } else {
             ptrClassicFrameLayout.setVisibility(View.VISIBLE);
             freshLoadContainer.setVisibility(View.GONE);
@@ -113,7 +113,7 @@ public class FreshLoadManager {
         loadingLL = view.findViewById(R.id.loadingLL);
         loadingLL.setGravity(mDataLoadingFragmentImpl.mListener.getFreshLoadGravity());
         loadingTV = view.findViewById(R.id.loadingTV);
-        loadingTV.setText(mDataLoadingFragmentImpl.mListener.getLoadingMessage());
+        loadingTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getLoadingMessage());
 
         errorLL = view.findViewById(R.id.errorLL);
         errorLL.setGravity(mDataLoadingFragmentImpl.mListener.getFreshLoadGravity());

@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.jaychang.srv.SimpleCell;
 import com.jaychang.srv.SimpleRecyclerView;
@@ -87,6 +88,11 @@ public class ModelListBottomSheetFragment<M, C extends SimpleCell<M, ?>> extends
     }
 
     @Override
+    public void setUpBackground(ImageView background) {
+
+    }
+
+    @Override
     public void setUpBottomView(FrameLayout bottomViewContainer) {
 
     }
@@ -135,26 +141,6 @@ public class ModelListBottomSheetFragment<M, C extends SimpleCell<M, ?>> extends
     @Override
     public int getFreshLoadGravity() {
         return Gravity.TOP | Gravity.CENTER_HORIZONTAL;
-    }
-
-    @Override
-    public String getLoadingMessage() {
-        return getString(R.string.message_loading);
-    }
-
-    @Override
-    public String getErrorMessage() {
-        return getString(R.string.message_connection_error);
-    }
-
-    @Override
-    public String getEmptyDataMessage() {
-        return getString(R.string.message_empty_data);
-    }
-
-    @Override
-    public String getNoMoreDataMessage() {
-        return getString(R.string.message_no_more_data);
     }
 
     @Override

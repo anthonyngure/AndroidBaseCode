@@ -8,6 +8,8 @@
 
 package ke.co.toshngure.dataloading;
 
+import android.support.annotation.StringRes;
+
 import com.loopj.android.http.AsyncHttpClient;
 
 /**
@@ -33,6 +35,15 @@ public class DataLoadingConfig {
     private int perPage = 10;
     private boolean cursorsEnabled = false;
     private AsyncHttpClient asyncHttpClient;
+
+    @StringRes
+    private int loadingMessage = R.string.message_loading;
+    @StringRes
+    private int errorMessage = R.string.message_connection_error;
+    @StringRes
+    private int emptyDataMessage = R.string.message_empty_data;
+    @StringRes
+    private int noMoreDataMessage = R.string.message_no_more_data;
 
     public DataLoadingConfig() {
     }
@@ -124,7 +135,43 @@ public class DataLoadingConfig {
         return this;
     }
 
-    public AsyncHttpClient getAsyncHttpClient() {
+    AsyncHttpClient getAsyncHttpClient() {
         return asyncHttpClient;
+    }
+
+    int getLoadingMessage() {
+        return loadingMessage;
+    }
+
+    public DataLoadingConfig withLoadingMessage(int loadingMessage) {
+        this.loadingMessage = loadingMessage;
+        return this;
+    }
+
+    int getErrorMessage() {
+        return errorMessage;
+    }
+
+    public DataLoadingConfig withErrorMessage(int errorMessage) {
+        this.errorMessage = errorMessage;
+        return this;
+    }
+
+    int getEmptyDataMessage() {
+        return emptyDataMessage;
+    }
+
+    public DataLoadingConfig withEmptyDataMessage(int emptyDataMessage) {
+        this.emptyDataMessage = emptyDataMessage;
+        return this;
+    }
+
+    int getNoMoreDataMessage() {
+        return noMoreDataMessage;
+    }
+
+    public DataLoadingConfig withNoMoreDataMessage(int noMoreDataMessage) {
+        this.noMoreDataMessage = noMoreDataMessage;
+        return this;
     }
 }

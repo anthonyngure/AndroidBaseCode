@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 
 import com.jaychang.srv.OnLoadMoreListener;
 import com.jaychang.srv.SimpleCell;
@@ -97,6 +98,7 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
         simpleRecyclerViewContainer.addView(mSimpleRecyclerView);
         mListener.setUpTopView(view.findViewById(R.id.topViewContainer));
         mListener.setUpBottomView(view.findViewById(R.id.bottomViewContainer));
+        mListener.setUpBackground(view.findViewById(R.id.backgroundIV));
 
         if (mListener.hasCollapsibleTopView()) {
             AppBarLayout appBarLayout = view.findViewById(R.id.appBarLayout);
@@ -306,6 +308,8 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
 
         void setUpTopView(FrameLayout topViewContainer);
 
+        void setUpBackground(ImageView background);
+
         void setUpBottomView(FrameLayout bottomViewContainer);
 
 
@@ -328,14 +332,6 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
         SimpleRecyclerView getSimpleRecyclerView();
 
         int getFreshLoadGravity();
-
-        String getLoadingMessage();
-
-        String getErrorMessage();
-
-        String getEmptyDataMessage();
-
-        String getNoMoreDataMessage();
 
         CursorImpl getCursorImpl();
 
