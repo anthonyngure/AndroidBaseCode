@@ -93,6 +93,10 @@ public abstract class BaseAppActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
         setupToolbar();
         setUpStatusBarColor();
+        setUpTitleFromLabel();
+    }
+
+    protected void setUpTitleFromLabel() {
         String label = null;
         try {
             label = getResources().getString(

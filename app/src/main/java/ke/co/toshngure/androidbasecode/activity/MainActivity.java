@@ -110,4 +110,5 @@ public class MainActivity extends BaseActivity {
         ReusableFragmentActivity.start(this, PostsFragment.newInstance(), "Connection Handler Test");
     }
 
+
 }

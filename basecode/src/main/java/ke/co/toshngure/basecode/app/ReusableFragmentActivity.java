@@ -46,6 +46,11 @@ public class ReusableFragmentActivity extends BaseAppActivity {
     }
 
     @Override
+    protected void setUpTitleFromLabel() {
+        //super.setUpTitleFromLabel();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fragment);
@@ -57,7 +62,7 @@ public class ReusableFragmentActivity extends BaseAppActivity {
         setTitle(getIntent().getStringExtra(EXTRA_TITLE));
         getToolbar().setTitle(getIntent().getStringExtra(EXTRA_TITLE));
 
-        if (getIntent().getStringExtra(EXTRA_SUB_TITLE) != null) {
+        if (getIntent().getStringExtra(EXTRA_SUB_TITLE) != null && getSupportActionBar() != null) {
             getSupportActionBar().setSubtitle(getIntent().getStringExtra(EXTRA_SUB_TITLE));
         }
 
