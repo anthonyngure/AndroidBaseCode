@@ -1,5 +1,6 @@
 package ke.co.toshngure.dataloading;
 
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,7 +87,8 @@ public class FreshLoadManager {
             errorLL.setVisibility(View.VISIBLE);
             loadingLL.setVisibility(View.GONE);
             errorTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessage());
-            errorTV.setTextColor(mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessageColor());
+            errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
+                    mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessageColor()));
         } else {
             ptrClassicFrameLayout.setVisibility(View.VISIBLE);
             freshLoadContainer.setVisibility(View.GONE);
