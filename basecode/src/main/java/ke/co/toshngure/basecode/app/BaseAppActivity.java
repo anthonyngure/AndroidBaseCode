@@ -10,6 +10,7 @@ package ke.co.toshngure.basecode.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
@@ -17,6 +18,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,6 +38,7 @@ import ke.co.toshngure.basecode.utils.BaseUtils;
 
 public abstract class BaseAppActivity extends AppCompatActivity {
 
+    private static final String TAG = "BaseAppActivity";
 
     private static int sessionDepth = 0;
 
@@ -49,7 +53,7 @@ public abstract class BaseAppActivity extends AppCompatActivity {
     public BaseAppActivity() {
     }
 
-    public static int getSessionDepth() {
+    protected static int getSessionDepth() {
         return sessionDepth;
     }
 
@@ -89,6 +93,17 @@ public abstract class BaseAppActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
         setupToolbar();
         setUpStatusBarColor();
+        String label = null;
+        try {
+            label = getResources().getString(
+                    getPackageManager().getActivityInfo(getComponentName(), 0).labelRes);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, "Activity Label: " + label);
+        if (getToolbar() != null && !TextUtils.isEmpty(label)) {
+            getToolbar().setTitle(label);
+        }
     }
 
     protected void setUpStatusBarColor() {
