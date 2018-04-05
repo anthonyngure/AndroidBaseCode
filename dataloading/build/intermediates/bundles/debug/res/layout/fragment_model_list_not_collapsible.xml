@@ -14,6 +14,7 @@
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+
     <FrameLayout
         android:id="@+id/topViewContainer"
         android:layout_width="match_parent"
@@ -25,6 +26,13 @@
         android:layout_height="match_parent"
         android:layout_above="@id/bottomViewContainer"
         android:layout_below="@id/topViewContainer">
+
+        <ImageView
+            android:id="@+id/backgroundIV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:src="@android:color/white" />
 
         <in.srain.cube.views.ptr.PtrClassicFrameLayout
             android:id="@+id/ptrClassicFrameLayout"
