@@ -329,6 +329,12 @@ class DataLoadingFragmentImpl<M, C extends SimpleCell<M, ?>> implements
 
         SimpleRecyclerView onCreateSimpleRecyclerView();
 
+        /**
+         * Use this method to get access to the SimpleRecyclerView,
+         * Should be used after onCreate() has been called
+         *
+         * @return SimpleRecyclerView used in this fragment
+         */
         SimpleRecyclerView getSimpleRecyclerView();
 
         int getFreshLoadGravity();
