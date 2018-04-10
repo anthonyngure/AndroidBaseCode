@@ -78,7 +78,7 @@ public class SlidingSearchResultsExampleFragment extends BaseExampleFragment {
                     //the background.
                     mSearchView.showProgress();
 
-                    //simulates a query call to a data source
+                    //simulates a query call to a dataKey source
                     //with a new query.
                     DataHelper.findSuggestions(getActivity(), newQuery, 5,
                             FIND_SUGGESTION_SIMULATED_DELAY, new DataHelper.OnFindSuggestionsListener() {
@@ -86,7 +86,7 @@ public class SlidingSearchResultsExampleFragment extends BaseExampleFragment {
                                 @Override
                                 public void onResults(List<ColorSuggestion> results) {
 
-                                    //this will swap the data and
+                                    //this will swap the dataKey and
                                     //render the collapse/expand animations as necessary
                                     mSearchView.swapSuggestions(results);
 

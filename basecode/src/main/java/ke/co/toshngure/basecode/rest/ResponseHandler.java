@@ -64,13 +64,13 @@ public class ResponseHandler extends JsonHttpResponseHandler {
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
         super.onFailure(statusCode, headers, throwable, errorResponse);
-        mCallback.onFail(statusCode, errorResponse);
+        mCallback.onFailure(statusCode, errorResponse);
     }
 
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
         super.onFailure(statusCode, headers, throwable, errorResponse);
-        mCallback.onFail(statusCode, errorResponse);
+        mCallback.onFailure(statusCode, errorResponse);
     }
 
 }

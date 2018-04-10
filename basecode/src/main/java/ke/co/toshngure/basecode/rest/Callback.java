@@ -10,7 +10,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import ke.co.toshngure.basecode.R;
@@ -28,32 +27,18 @@ public abstract class Callback<M> {
     private boolean showDialog;
     @Nullable
     private Class<M> mClass;
-    private boolean hasMetaAndData;
 
     public Callback(BaseAppActivity baseAppActivity) {
-        this.baseAppActivity = baseAppActivity;
-        this.showDialog = true;
-        this.hasMetaAndData = true;
-        this.mClass = null;
+        this(baseAppActivity, null);
     }
+
 
     public Callback(BaseAppActivity baseAppActivity, @Nullable Class<M> mClass) {
-        this.baseAppActivity = baseAppActivity;
-        this.showDialog = true;
-        this.hasMetaAndData = true;
-        this.mClass = mClass;
+        this(baseAppActivity, mClass, true);
     }
 
-    public Callback(BaseAppActivity baseAppActivity, @Nullable Class<M> mClass, boolean hasMetaAndData) {
+    public Callback(BaseAppActivity baseAppActivity, @Nullable Class<M> mClass, boolean showDialog) {
         this.baseAppActivity = baseAppActivity;
-        this.showDialog = true;
-        this.hasMetaAndData = hasMetaAndData;
-        this.mClass = mClass;
-    }
-
-    public Callback(BaseAppActivity baseAppActivity, @Nullable Class<M> mClass, boolean hasMetaAndData, boolean showDialog) {
-        this.baseAppActivity = baseAppActivity;
-        this.hasMetaAndData = hasMetaAndData;
         this.showDialog = showDialog;
         this.mClass = mClass;
     }
@@ -68,45 +53,23 @@ public abstract class Callback<M> {
     protected void onCancel() {
     }
 
-    protected void onResponse(M item, @Nullable JSONObject meta) {
+    /**
+     * If you provide a model class this is the method to be called after parsing the response
+     *
+     * @param item
+     */
+    protected void onResponse(M item) {
     }
 
-    protected void onResponse(JSONObject data, @Nullable JSONObject meta) {
+    protected void onResponse(JSONObject data) {
     }
 
-    protected void onResponse(List<M> items, @Nullable JSONObject meta) {
+    protected void onResponse(List<M> items) {
     }
 
-    protected void onResponse(JSONArray data, @Nullable JSONObject meta) {
+    protected void onResponse(JSONArray data) {
     }
 
-    protected void onError(String errorCode, String message, JSONObject data) {
-        switch (errorCode) {
-            case CommonErrorCodes.VALIDATION:
-                StringBuilder sb = new StringBuilder();
-                Iterator<String> iterator = data.keys();
-                while (iterator != null && iterator.hasNext()) {
-                    String name = iterator.next();
-                    try {
-                        JSONArray valueErrors = data.getJSONArray(name);
-                        sb.append(name.toUpperCase()).append("\n");
-                        for (int i = 0; i < valueErrors.length(); i++) {
-                            sb.append(valueErrors.get(i)).append("\n");
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                showErrorAlertDialog(sb.toString());
-                break;
-            default:
-                showErrorAlertDialog(message);
-        }
-    }
-
-    protected void onError(String errorCode, String message, JSONArray data) {
-        showErrorAlertDialog(message);
-    }
 
     protected void onConnectionStarted() {
         Logger.log("onConnectionStarted");
@@ -128,50 +91,35 @@ public abstract class Callback<M> {
                 .create().show();
     }
 
-    protected void onFail(int statusCode, JSONArray response) {
+    protected void onFailure(int statusCode, JSONArray response) {
         Logger.log("Connection failed! " + statusCode + ", " + String.valueOf(response));
         if (showDialog) {
             baseAppActivity.hideProgressDialog();
         }
+        showErrorAlertDialog(String.valueOf(response));
     }
 
-    protected void onFail(int statusCode, JSONObject response) {
+    protected void onFailure(int statusCode, JSONObject response) {
         Logger.log("Connection failed! " + statusCode + ", " + String.valueOf(response));
         if (showDialog) {
             baseAppActivity.hideProgressDialog();
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(baseAppActivity);
-        if ((statusCode == 422 || statusCode == 400) && response != null) {
-            try {
-                JSONObject meta = response.getJSONObject(Response.META);
 
-                if (response.get(Response.DATA) instanceof JSONObject) {
-                    //Data is Object
-                    onError(meta.getString(Response.ERROR_CODE), meta.getString(Response.MESSAGE),
-                            response.getJSONObject(Response.DATA));
-                } else {
-                    //Data is Array
-                    onError(meta.getString(Response.ERROR_CODE), meta.getString(Response.MESSAGE),
-                            response.getJSONArray(Response.DATA));
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } else if (statusCode == 500) {
-            builder.setCancelable(true)
-                    .setTitle(R.string.server_error)
+        String message = Client.getConfig().getResponseDefinition().message(statusCode, response);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(baseAppActivity)
+                .setCancelable(true)
+                .setNegativeButton(R.string.report, (dialog, which) -> {
+                })
+                .setPositiveButton(android.R.string.ok, null);
+
+        if (statusCode == 500) {
+            builder.setTitle(R.string.server_error)
                     .setMessage(baseAppActivity.getString(R.string.error_application))
-                    .setNegativeButton(R.string.report, (dialog, which) -> {
-                    })
-                    .setPositiveButton(android.R.string.ok, null)
                     .create().show();
         } else if (statusCode == 404) {
-            builder.setCancelable(true)
-                    .setTitle("Not Found")
-                    .setMessage(String.valueOf(response))
-                    .setNegativeButton(R.string.report, (dialog, which) -> {
-                    })
-                    .setPositiveButton(android.R.string.ok, null)
+            builder.setTitle(R.string.not_found)
+                    .setMessage(message)
                     .create().show();
         } else {
             onCantConnect();
@@ -184,35 +132,42 @@ public abstract class Callback<M> {
             baseAppActivity.hideProgressDialog();
         }
         try {
-            if (hasMetaAndData && mClass != null) {
-                if (response.get(Response.DATA) instanceof JSONObject) {
-                    //Data is Object
+            String dataKey = Client.getConfig().getResponseDefinition().dataKey(response);
+            if (dataKey == null) {
+                //Data is not in a key in the response returned
+                // the response JSONObject is the dataKey and if model class is provided it will be parsed
+                if (mClass != null) {
                     M item = BaseUtils.getSafeGson().fromJson(response.getJSONObject(Response.DATA).toString(), mClass);
-                    onResponse(item, response.getJSONObject(Response.META));
+                    onResponse(item);
                 } else {
-                    //Data is Array
-                    JSONArray data = response.getJSONArray(Response.DATA);
-                    List<M> mList = new ArrayList<>();
-                    for (int i = 0; i < data.length(); i++) {
-                        M item = BaseUtils.getSafeGson().fromJson(data.getJSONObject(i).toString(), mClass);
-                        mList.add(item);
-                    }
-                    onResponse(mList, response.getJSONObject(Response.META));
+                    onResponse(response);
                 }
-            } else if (!hasMetaAndData && mClass != null) {
-                //Data is Object
-                M item = BaseUtils.getSafeGson().fromJson(response.getJSONObject(Response.DATA).toString(), mClass);
-                onResponse(item, null);
-            } else if (hasMetaAndData) {
-                if (response.get(Response.DATA) instanceof JSONObject) {
-                    //Data is Object
-                    onResponse(response.getJSONObject(Response.DATA), response.getJSONObject(Response.META));
-                } else {
-                    //Data is Array
-                    onResponse(response.getJSONArray(Response.DATA), response.getJSONObject(Response.META));
-                }
+
             } else {
-                onResponse(response, null);
+                // Data is in a key in the response JSONObject returned
+                // The dataKey could be a JSONArray or JSONObject
+                if (response.get(dataKey) instanceof JSONObject) {
+                    //Data is a JSONObject
+                    if (mClass != null) {
+                        M item = BaseUtils.getSafeGson().fromJson(response.getJSONObject(Response.DATA).toString(), mClass);
+                        onResponse(item);
+                    } else {
+                        onResponse(response.getJSONObject(dataKey));
+                    }
+                } else {
+                    //Data is a JSONArray
+                    if (mClass != null) {
+                        JSONArray data = response.getJSONArray(dataKey);
+                        List<M> mList = new ArrayList<>();
+                        for (int i = 0; i < data.length(); i++) {
+                            M item = BaseUtils.getSafeGson().fromJson(data.getJSONObject(i).toString(), mClass);
+                            mList.add(item);
+                        }
+                        onResponse(mList);
+                    } else {
+                        onResponse(response.getJSONArray(dataKey));
+                    }
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -232,9 +187,9 @@ public abstract class Callback<M> {
                     M item = BaseUtils.getSafeGson().fromJson(response.getJSONObject(i).toString(), mClass);
                     mList.add(item);
                 }
-                onResponse(mList, null);
+                onResponse(mList);
             } else {
-                onResponse(response, null);
+                onResponse(response);
             }
         } catch (JSONException e) {
             e.printStackTrace();

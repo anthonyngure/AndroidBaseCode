@@ -20,4 +20,5 @@
     <string name="error_application">An application error occurred</string>
     <string name="report">Report</string>
     <string name="retry">Retry</string>
+    <string name="not_found">Not Found (404)</string>
 </resources>

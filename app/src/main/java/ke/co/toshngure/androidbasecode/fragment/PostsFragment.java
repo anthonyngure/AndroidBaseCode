@@ -85,8 +85,8 @@ public class PostsFragment extends Fragment {
             }
 
             @Override
-            protected void onResponse(JSONObject data, @Nullable JSONObject meta) {
-                super.onResponse(data, meta);
+            protected void onResponse(JSONObject data) {
+                super.onResponse(data);
             }
         }));
     }

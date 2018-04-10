@@ -64,6 +64,10 @@ public class Client {
         return mInstance;
     }
 
+    public static Config getConfig() {
+        return mConfig;
+    }
+
     public static String absoluteUrl(String relativeUrl) {
         String url = mConfig.getBaseUrl() + relativeUrl;
         if (!TextUtils.isEmpty(mConfig.getToken())) {
@@ -256,6 +260,8 @@ public class Client {
         protected abstract String getBaseUrl();
 
         protected abstract String getToken();
+
+        protected abstract ResponseDefinition getResponseDefinition();
 
         protected boolean withLoggingEnabled() {
             return true;
