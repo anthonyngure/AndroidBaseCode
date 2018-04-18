@@ -237,11 +237,13 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
     @Override
     public void onRefresh() {
-        if (isLoadingMore) {
-            mSwipeRefreshLayout.setRefreshing(false);
-        } else {
+        if (!isLoadingMore
+                && mDataLoadingConfig.isRefreshEnabled()
+                && mDataLoadingConfig.isCursorsEnabled()) {
             mSwipeRefreshLayout.setRefreshing(true);
             connect();
+        } else {
+            mSwipeRefreshLayout.setRefreshing(false);
         }
     }
 
@@ -271,7 +273,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         void onSetUpRecyclerView(RecyclerView recyclerView);
 
-        void onSetUpAdapter(FastItemAdapter<M> itemAdapter);
+        void onSetUpAdapter(FastItemAdapter<M> fastItemAdapter);
     }
 
     private static final class CacheLoader<M extends AbstractItem<M, ?>> extends BaseLoader<M> {

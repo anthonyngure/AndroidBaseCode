@@ -122,7 +122,7 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
     }
 
     @Override
-    public void onSetUpAdapter(FastItemAdapter<M> itemAdapter) {
+    public void onSetUpAdapter(FastItemAdapter<M> fastItemAdapter) {
 
     }
 
