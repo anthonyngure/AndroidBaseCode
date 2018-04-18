@@ -95,14 +95,14 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mItemAdapter = new ItemAdapter<>();
-        FastAdapter mFastAdapter = FastAdapter.with(mItemAdapter);
-        mRecyclerView.setAdapter(mFastAdapter);
+        FastAdapter<M> fastAdapter = FastAdapter.with(mItemAdapter);
+        mRecyclerView.setAdapter(fastAdapter);
         mRecyclerView.addOnScrollListener(new ScrollListener());
 
 
         mListener.onSetUpRecyclerView(mRecyclerView);
         mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
-        mListener.onSetUpAdapters(mItemAdapter, mFastAdapter);
+        mListener.onSetUpAdapters(mItemAdapter, fastAdapter);
         mListener.setUpTopView(view.findViewById(R.id.topViewContainer));
         mListener.setUpBottomView(view.findViewById(R.id.bottomViewContainer));
         mListener.setUpBackground(view.findViewById(R.id.backgroundIV));
@@ -239,7 +239,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
     public void onRefresh() {
         if (isLoadingMore) {
             mSwipeRefreshLayout.setRefreshing(false);
-        } else if (!mSwipeRefreshLayout.isRefreshing()) {
+        } else {
             mSwipeRefreshLayout.setRefreshing(true);
             connect();
         }
@@ -271,7 +271,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         void onSetUpRecyclerView(RecyclerView recyclerView);
 
-        void onSetUpAdapters(ItemAdapter<M> itemAdapter, FastAdapter fastAdapter);
+        void onSetUpAdapters(ItemAdapter<M> itemAdapter, FastAdapter<M> fastAdapter);
     }
 
     private static final class CacheLoader<M extends AbstractItem<M, ?>> extends BaseLoader<M> {
@@ -294,10 +294,8 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         @Override
         public void onLoadMore(int currentPage) {
             log("onLoadMore, Page = " + currentPage);
-            if (hasMoreToBottom) {
+            if (hasMoreToBottom && !mSwipeRefreshLayout.isRefreshing()) {
                 connect();
-            } else {
-                this.disable();
             }
         }
     }

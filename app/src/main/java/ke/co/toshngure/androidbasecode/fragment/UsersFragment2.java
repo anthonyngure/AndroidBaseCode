@@ -12,10 +12,12 @@ package ke.co.toshngure.androidbasecode.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
+
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.User;
@@ -62,7 +64,7 @@ public class UsersFragment2 extends ModelListFragment<User> {
                 .withLoadingMoreEnabled()
                 .withDebugEnabled()
                 .withTopViewCollapsible()
-                .withPerPage(10);
+                .withPerPage(15);
     }
 
     @Override
@@ -80,16 +82,16 @@ public class UsersFragment2 extends ModelListFragment<User> {
     }
 
     @Override
-    public void onSetUpSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
-        super.onSetUpSwipeRefreshLayout(swipeRefreshLayout);
+    public void onSetUpAdapters(ItemAdapter<User> itemAdapter, FastAdapter<User> fastAdapter) {
+        super.onSetUpAdapters(itemAdapter, fastAdapter);
     }
 
-    /*@Override
+    @Override
     public void setUpBottomView(FrameLayout bottomViewContainer) {
         super.setUpBottomView(bottomViewContainer);
         LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, bottomViewContainer);
         NetworkImage topViewNI = bottomViewContainer.findViewById(R.id.topViewNI);
         topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
-    }*/
+    }
 
 }
