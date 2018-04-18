@@ -143,6 +143,8 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         mItemAdapter.clear();
 
+        mItemAdapter.add(0, data);
+
         mFreshLoadManager.onLoadFinished();
 
         //Auto refresh if refresh is enabled
