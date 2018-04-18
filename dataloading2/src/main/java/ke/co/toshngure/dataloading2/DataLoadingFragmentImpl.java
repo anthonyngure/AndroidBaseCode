@@ -82,6 +82,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         }
 
 
+        //Configure Swipe Refresh Layout
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeColors(
                 ContextCompat.getColor(mActivity, R.color.colorPrimary),
@@ -90,18 +91,19 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         );
         mSwipeRefreshLayout.setEnabled(mDataLoadingConfig.isRefreshEnabled());
         mSwipeRefreshLayout.setOnRefreshListener(this);
+        mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
 
+        //Configure adapter
+        mItemAdapter = new FastItemAdapter<>();
+        mListener.onSetUpAdapter(mItemAdapter);
 
+        //Configure recyclerView
         mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mItemAdapter = new FastItemAdapter<>();
         mRecyclerView.setAdapter(mItemAdapter);
         mRecyclerView.addOnScrollListener(new ScrollListener());
-
-
         mListener.onSetUpRecyclerView(mRecyclerView);
-        mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
-        mListener.onSetUpAdapter(mItemAdapter);
+
         mListener.setUpTopView(view.findViewById(R.id.topViewContainer));
         mListener.setUpBottomView(view.findViewById(R.id.bottomViewContainer));
         mListener.setUpBackground(view.findViewById(R.id.backgroundIV));
