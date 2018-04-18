@@ -296,7 +296,10 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         @Override
         public void onLoadMore(int currentPage) {
             log("onLoadMore, Page = " + currentPage);
-            if (hasMoreToBottom && !mSwipeRefreshLayout.isRefreshing()) {
+            if (hasMoreToBottom
+                    && !mSwipeRefreshLayout.isRefreshing()
+                    && mItemAdapter.getAdapterItemCount() > 0
+                    && mDataLoadingConfig.isLoadingMoreEnabled()) {
                 connect();
             }
         }
