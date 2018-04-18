@@ -1,0 +1,17 @@
+<!--
+  ~ Copyright (c) 2018.
+  ~
+  ~ Anthony Ngure
+  ~
+  ~ Email : anthonyngure25@gmail.com
+  -->
+
+<resources>
+    <string name="app_name">Data Loading</string>
+    <string name="message_no_more_data">Nothing more :( Tap to retry or pull down to refresh.</string>
+    <string name="message_empty_data">Oops! Nothing here yet :( Tap to refresh</string>
+    <string name="message_loading">Loading…</string>
+    <string name="message_connection_error">Seems like your connection to the server is taking too long :( Tap to retry or check your network status</string>
+    <string name="message_refreshing">Refreshing…</string>
+
+</resources>

@@ -21,6 +21,7 @@ import ke.co.toshngure.androidbasecode.floatingsearchview.SearchActivity;
 import ke.co.toshngure.androidbasecode.fragment.ImagePickerFragment;
 import ke.co.toshngure.androidbasecode.fragment.PostsFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragment;
+import ke.co.toshngure.androidbasecode.fragment.UsersFragment2;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheetFragment;
 import ke.co.toshngure.basecode.app.ReusableFragmentActivity;
 
@@ -66,6 +67,11 @@ public class MainActivity extends BaseActivity {
         //startActivity(new Intent(this, DataLoadingActivity.class));
         ReusableFragmentActivity.start(this, UsersFragment.newInstance(), getString(R.string.app_name));
         //startActivity(new Intent(this, TestActivity.class));
+    }
+
+    @OnClick(R.id.dataLoading2FullFragmentSLIV)
+    public void onDataLoading2FullFragmentSLIVClick() {
+        ReusableFragmentActivity.start(this, UsersFragment2.newInstance(), getString(R.string.app_name));
     }
 
     @OnClick(R.id.drawableUtilsSLIV)

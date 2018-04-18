@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="swipeRefreshLayout" type="id" />
+    <item name="recyclerView" type="id" />
+    <item name="appBarLayout" type="id" />
+    <item name="collapsingToolbarLayout" type="id" />
+    <item name="topViewContainer" type="id" />
+    <item name="backgroundIV" type="id" />
+    <item name="freshLoadContainer" type="id" />
+    <item name="moreLoadContainer" type="id" />
+    <item name="bottomViewContainer" type="id" />
+    <item name="loadingPB" type="id" />
+    <item name="messageTV" type="id" />
+    <item name="errorLL" type="id" />
+    <item name="loadingTV" type="id" />
+    <item name="loadingLL" type="id" />
+    <item name="errorTV" type="id" />
+</resources>

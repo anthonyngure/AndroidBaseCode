@@ -8,15 +8,15 @@ package in.srain.cube.views.ptr;
 
 public final class R {
     public static final class attr {
-        public static int ptr_content = 0x7f0400ef;
-        public static int ptr_duration_to_close = 0x7f0400f0;
-        public static int ptr_duration_to_close_header = 0x7f0400f1;
-        public static int ptr_header = 0x7f0400f2;
-        public static int ptr_keep_header_when_refresh = 0x7f0400f3;
-        public static int ptr_pull_to_fresh = 0x7f0400f4;
-        public static int ptr_ratio_of_header_height_to_refresh = 0x7f0400f5;
-        public static int ptr_resistance = 0x7f0400f6;
-        public static int ptr_rotate_ani_time = 0x7f0400f7;
+        public static int ptr_content = 0x7f0400f2;
+        public static int ptr_duration_to_close = 0x7f0400f3;
+        public static int ptr_duration_to_close_header = 0x7f0400f4;
+        public static int ptr_header = 0x7f0400f5;
+        public static int ptr_keep_header_when_refresh = 0x7f0400f6;
+        public static int ptr_pull_to_fresh = 0x7f0400f7;
+        public static int ptr_ratio_of_header_height_to_refresh = 0x7f0400f8;
+        public static int ptr_resistance = 0x7f0400f9;
+        public static int ptr_rotate_ani_time = 0x7f0400fa;
     }
     public static final class drawable {
         public static int ptr_rotate_arrow = 0x7f09006a;
@@ -29,8 +29,8 @@ public final class R {
         public static int ptr_classic_header_rotate_view_progressbar = 0x7f0c0068;
     }
     public static final class layout {
-        public static int cube_ptr_classic_default_header = 0x7f0f001b;
-        public static int cube_ptr_simple_loading = 0x7f0f001c;
+        public static int cube_ptr_classic_default_header = 0x7f0f001c;
+        public static int cube_ptr_simple_loading = 0x7f0f001d;
     }
     public static final class string {
         public static int cube_ptr_hours_ago = 0x7f150022;
@@ -44,9 +44,9 @@ public final class R {
         public static int cube_ptr_seconds_ago = 0x7f15002a;
     }
     public static final class styleable {
-        public static int[] PtrClassicHeader = { 0x7f0400f7 };
+        public static int[] PtrClassicHeader = { 0x7f0400fa };
         public static int PtrClassicHeader_ptr_rotate_ani_time = 0;
-        public static int[] PtrFrameLayout = { 0x7f0400ef, 0x7f0400f0, 0x7f0400f1, 0x7f0400f2, 0x7f0400f3, 0x7f0400f4, 0x7f0400f5, 0x7f0400f6 };
+        public static int[] PtrFrameLayout = { 0x7f0400f2, 0x7f0400f3, 0x7f0400f4, 0x7f0400f5, 0x7f0400f6, 0x7f0400f7, 0x7f0400f8, 0x7f0400f9 };
         public static int PtrFrameLayout_ptr_content = 0;
         public static int PtrFrameLayout_ptr_duration_to_close = 1;
         public static int PtrFrameLayout_ptr_duration_to_close_header = 2;

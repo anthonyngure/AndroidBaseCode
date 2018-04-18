@@ -88,6 +88,12 @@ dependencies {
     implementation project(':camera')
     implementation project(':chipcloud')
     implementation project(':dataloading')
+    implementation project(':dataloading2')
+
+    implementation 'com.mikepenz:fastadapter-commons:3.2.5'
+    implementation 'com.mikepenz:fastadapter-extensions:3.2.5'
+    implementation 'com.mikepenz:fastadapter-extensions-expandable:3.2.5'
+
     implementation project(':editor')
     implementation project(':filters')
     implementation project(':logging')

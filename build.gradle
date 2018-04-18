@@ -15,7 +15,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.1'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
         // NOTE: Do not place your application dependencies here; they belong
@@ -33,7 +33,7 @@ allprojects {
 
 ext {
     compileSdkVersion = 27
-    supportLibVersion = '27.0.2'
+    supportLibVersion = '27.1.1'
     minSdkVersion = 14
     targetSdkVersion = 27
 }

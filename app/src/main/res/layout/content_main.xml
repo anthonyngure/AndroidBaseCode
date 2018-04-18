@@ -29,6 +29,11 @@
             app:sliTitle="Full Fragment Data Loading" />
 
         <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/dataLoading2FullFragmentSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Full Fragment Data Loading 2" />
+
+        <ke.co.toshngure.views.SimpleListItemView
             android:id="@+id/dataLoadingBottomSheetSLIV"
             style="@style/TestSimpleListItemView"
             app:sliTitle="Bottom Sheet Data Loading" />

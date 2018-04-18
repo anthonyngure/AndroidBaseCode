@@ -6,9 +6,8 @@
   ~
   ~ Email : anthonyngure25@gmail.com
 -->
-<manifest
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ke.co.toshngure.dataloading"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:versionCode="1"
     android:versionName="1.0" >
 

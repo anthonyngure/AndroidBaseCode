@@ -15,6 +15,8 @@ INJECTED from E:\RealHustle\AndroidBaseCode\dataloading\src\main\AndroidManifest
 		INJECTED from E:\RealHustle\AndroidBaseCode\dataloading\src\main\AndroidManifest.xml
 		ADDED from E:\RealHustle\AndroidBaseCode\dataloading\src\main\AndroidManifest.xml:9:1-51
 		INJECTED from E:\RealHustle\AndroidBaseCode\dataloading\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\RealHustle\AndroidBaseCode\dataloading\src\main\AndroidManifest.xml:9:1-51
 	android:versionCode
 		INJECTED from E:\RealHustle\AndroidBaseCode\dataloading\src\main\AndroidManifest.xml
 		ADDED from E:\RealHustle\AndroidBaseCode\dataloading\src\main\AndroidManifest.xml:9:1-51

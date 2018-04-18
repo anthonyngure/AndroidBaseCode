@@ -9,6 +9,7 @@
 include ':app'
 include ':basecode'
 include ':dataloading'
+include ':dataloading2'
 include ':camera'
 include ':showcase'
 include ':filters'
