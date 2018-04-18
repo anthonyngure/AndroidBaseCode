@@ -44,6 +44,12 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
 
 
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
+    protected FastItemAdapter<M> mFastItemAdapter;
+    protected RecyclerView mRecyclerView;
+    protected FrameLayout mBottomViewContainer;
+    protected FrameLayout mTopViewContainer;
+    protected ImageView mBackgroundIV;
+    protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     public ModelListFragment() {
     }
@@ -74,17 +80,17 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
 
     @Override
     public void setUpTopView(FrameLayout topViewContainer) {
-
+        this.mTopViewContainer = topViewContainer;
     }
 
     @Override
     public void setUpBackground(ImageView backgroundIV) {
-
+        this.mBackgroundIV = backgroundIV;
     }
 
     @Override
     public void setUpBottomView(FrameLayout bottomViewContainer) {
-
+        this.mBottomViewContainer = bottomViewContainer;
     }
 
     @Override
@@ -113,17 +119,17 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
 
     @Override
     public void onSetUpSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout) {
-
+        this.mSwipeRefreshLayout = swipeRefreshLayout;
     }
 
     @Override
     public void onSetUpRecyclerView(RecyclerView recyclerView) {
-
+        this.mRecyclerView = recyclerView;
     }
 
     @Override
     public void onSetUpAdapter(FastItemAdapter<M> fastItemAdapter) {
-
+        this.mFastItemAdapter = fastItemAdapter;
     }
 
 

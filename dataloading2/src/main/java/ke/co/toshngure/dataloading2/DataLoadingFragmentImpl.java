@@ -88,6 +88,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
                 ContextCompat.getColor(mActivity, R.color.colorAccent),
                 ContextCompat.getColor(mActivity, R.color.colorPrimaryDark)
         );
+        mSwipeRefreshLayout.setEnabled(mDataLoadingConfig.isRefreshEnabled());
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
 
