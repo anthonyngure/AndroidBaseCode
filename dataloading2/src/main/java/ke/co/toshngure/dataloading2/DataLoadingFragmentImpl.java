@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
@@ -238,7 +239,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
     public void onRefresh() {
         if (isLoadingMore) {
             mSwipeRefreshLayout.setRefreshing(false);
-        } else {
+        } else if (!mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(true);
             connect();
         }
@@ -342,6 +343,10 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
             super.onFailure(statusCode, headers, responseString, throwable);
             mFreshLoadManager.onError(statusCode, headers, responseString, throwable);
             mMoreLoadManager.onError(statusCode, headers, responseString, throwable);
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                Snackbar.make(mSwipeRefreshLayout, R.string.unable_to_refresh, Snackbar.LENGTH_LONG);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
         }
 
         @Override
@@ -349,6 +354,10 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
             super.onFailure(statusCode, headers, throwable, errorResponse);
             mFreshLoadManager.onError(statusCode, headers, throwable, errorResponse);
             mMoreLoadManager.onError(statusCode, headers, throwable, errorResponse);
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                Snackbar.make(mSwipeRefreshLayout, R.string.unable_to_refresh, Snackbar.LENGTH_LONG);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
         }
 
         @Override
@@ -356,6 +365,10 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
             super.onFailure(statusCode, headers, throwable, errorResponse);
             mFreshLoadManager.onError(statusCode, headers, throwable, errorResponse);
             mMoreLoadManager.onError(statusCode, headers, throwable, errorResponse);
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                Snackbar.make(mSwipeRefreshLayout, R.string.unable_to_refresh, Snackbar.LENGTH_LONG);
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
         }
 
     }
