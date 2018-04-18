@@ -23,8 +23,7 @@ import android.widget.ImageView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
 
@@ -49,7 +48,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
     Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
-    ItemAdapter<M> mItemAdapter;
+    FastItemAdapter<M> mItemAdapter;
     boolean isLoadingMore;
     private RecyclerView mRecyclerView;
     private FragmentActivity mActivity;
@@ -94,15 +93,14 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mItemAdapter = new ItemAdapter<>();
-        FastAdapter<M> fastAdapter = FastAdapter.with(mItemAdapter);
-        mRecyclerView.setAdapter(fastAdapter);
+        mItemAdapter = new FastItemAdapter<>();
+        mRecyclerView.setAdapter(mItemAdapter);
         mRecyclerView.addOnScrollListener(new ScrollListener());
 
 
         mListener.onSetUpRecyclerView(mRecyclerView);
         mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
-        mListener.onSetUpAdapters(mItemAdapter, fastAdapter);
+        mListener.onSetUpAdapter(mItemAdapter);
         mListener.setUpTopView(view.findViewById(R.id.topViewContainer));
         mListener.setUpBottomView(view.findViewById(R.id.bottomViewContainer));
         mListener.setUpBackground(view.findViewById(R.id.backgroundIV));
@@ -273,7 +271,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         void onSetUpRecyclerView(RecyclerView recyclerView);
 
-        void onSetUpAdapters(ItemAdapter<M> itemAdapter, FastAdapter<M> fastAdapter);
+        void onSetUpAdapter(FastItemAdapter<M> itemAdapter);
     }
 
     private static final class CacheLoader<M extends AbstractItem<M, ?>> extends BaseLoader<M> {

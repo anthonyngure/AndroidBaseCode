@@ -82,8 +82,8 @@ public class UsersFragment2 extends ModelListFragment<User> {
     }
 
     @Override
-    public void onSetUpAdapters(ItemAdapter<User> itemAdapter, FastAdapter<User> fastAdapter) {
-        super.onSetUpAdapters(itemAdapter, fastAdapter);
+    public void onSetUpAdapter(ItemAdapter<User> itemAdapter, FastAdapter<User> fastAdapter) {
+        super.onSetUpAdapter(itemAdapter, fastAdapter);
     }
 
     @Override
