@@ -16,8 +16,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.mikepenz.fastadapter.FastAdapter;
-import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.User;
@@ -82,8 +81,8 @@ public class UsersFragment2 extends ModelListFragment<User> {
     }
 
     @Override
-    public void onSetUpAdapter(ItemAdapter<User> itemAdapter, FastAdapter<User> fastAdapter) {
-        super.onSetUpAdapter(itemAdapter, fastAdapter);
+    public void onSetUpAdapter(FastItemAdapter<User> itemAdapter) {
+        super.onSetUpAdapter(itemAdapter);
     }
 
     @Override
