@@ -34,7 +34,6 @@ public class DataLoadingConfig<M> {
     private String url;
     private boolean debugEnabled = false;
     private int perPage = 10;
-    private boolean cursorsEnabled = false;
     private CursorImpl cursorImpl;
     private AsyncHttpClient asyncHttpClient;
     private Class<M> modelClass;
@@ -73,18 +72,8 @@ public class DataLoadingConfig<M> {
         return refreshEnabled;
     }
 
-    public DataLoadingConfig<M> withRefreshEnabled() {
-        this.refreshEnabled = true;
-        return this;
-    }
-
     boolean isLoadingMoreEnabled() {
         return loadingMoreEnabled;
-    }
-
-    public DataLoadingConfig<M> withLoadingMoreEnabled() {
-        this.loadingMoreEnabled = true;
-        return this;
     }
 
     int getLoaderId() {
@@ -139,12 +128,9 @@ public class DataLoadingConfig<M> {
         return this;
     }
 
-    boolean isCursorsEnabled() {
-        return cursorsEnabled;
-    }
-
-    public DataLoadingConfig<M> withCursorsEnabled(CursorImpl cursorImpl) {
-        this.cursorsEnabled = true;
+    public DataLoadingConfig<M> withCursors(CursorImpl cursorImpl, boolean refreshEnabled, boolean loadingMoreEnabled) {
+        this.refreshEnabled = refreshEnabled;
+        this.loadingMoreEnabled = loadingMoreEnabled;
         this.cursorImpl = cursorImpl;
         return this;
     }

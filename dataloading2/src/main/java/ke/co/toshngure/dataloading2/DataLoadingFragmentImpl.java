@@ -164,7 +164,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         log("connect");
         RequestParams requestParams = mListener.getRequestParams();
 
-        if (mDataLoadingConfig.isCursorsEnabled()) {
+        if (mDataLoadingConfig.isRefreshEnabled() || mDataLoadingConfig.isLoadingMoreEnabled()) {
             ModelCursor modelCursor = getModelCursor();
             requestParams.put(mDataLoadingConfig.getCursorImpl().getAfterKey(), modelCursor.getAfter());
             requestParams.put(mDataLoadingConfig.getCursorImpl().getBeforeKey(), modelCursor.getBefore());
@@ -229,8 +229,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         }
 
         //In case of cursor problems
-        if (mItemAdapter.getAdapterItemCount() == 0 && mDataLoadingConfig.isCacheEnabled()
-                && mDataLoadingConfig.isCursorsEnabled()) {
+        if (mItemAdapter.getAdapterItemCount() == 0 && mDataLoadingConfig.isCacheEnabled()) {
             resetCursors();
         }
 
@@ -240,9 +239,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
     @Override
     public void onRefresh() {
-        if (!isLoadingMore
-                && mDataLoadingConfig.isRefreshEnabled()
-                && mDataLoadingConfig.isCursorsEnabled()) {
+        if (!isLoadingMore && mDataLoadingConfig.isRefreshEnabled()) {
             mSwipeRefreshLayout.setRefreshing(true);
             connect();
         } else {
