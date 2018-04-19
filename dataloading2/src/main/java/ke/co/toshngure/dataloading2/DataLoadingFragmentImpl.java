@@ -119,7 +119,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
                 mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
             } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
                 mTempModelCursors = new ModelCursor(0, 0);
-                onRefresh();
+                connect();
             }
         }
     }
@@ -150,7 +150,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         //Auto refresh if refresh is enabled
         if (mDataLoadingConfig.isAutoRefreshEnabled()) {
-            onRefresh();
+            connect();
         }
 
     }
