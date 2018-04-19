@@ -316,6 +316,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
                 if (mItemAdapter.getAdapterItemCount() == 0) {
                     mFreshLoadManager.onStartLoading();
                 } else {
+                    //This is when AutoRefresh is enabled and there is cache
                     mSwipeRefreshLayout.setRefreshing(true);
                 }
             }
