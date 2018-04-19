@@ -218,14 +218,14 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
     void onDataParsed(List<M> items) {
         log("onPostExecute");
         log("Data Size : " + items.size());
-        if (mSwipeRefreshLayout.isRefreshing()) {
-            mItemAdapter.add(0, items);
-            mRecyclerView.smoothScrollToPosition(0);
-            mSwipeRefreshLayout.setRefreshing(false);
-        } else {
+        if (isLoadingMore) {
             mItemAdapter.add(items);
             isLoadingMore = false;
             hasMoreToBottom = items.size() != 0;
+        } else {
+            mItemAdapter.add(0, items);
+            mRecyclerView.smoothScrollToPosition(0);
+            mSwipeRefreshLayout.setRefreshing(false);
         }
 
         //In case of cursor problems
@@ -300,6 +300,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
                     && !mSwipeRefreshLayout.isRefreshing()
                     && mItemAdapter.getAdapterItemCount() > 0
                     && mDataLoadingConfig.isLoadingMoreEnabled()) {
+                isLoadingMore = true;
                 connect();
             }
         }
@@ -309,10 +310,14 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         @Override
         public void onStart() {
             super.onStart();
-            if (mItemAdapter.getAdapterItemCount() == 0) {
-                mFreshLoadManager.onStartLoading();
-            } else if (!mSwipeRefreshLayout.isRefreshing()) {
+            if (isLoadingMore) {
                 mMoreLoadManager.onStartLoading();
+            } else {
+                if (mItemAdapter.getAdapterItemCount() == 0) {
+                    mFreshLoadManager.onStartLoading();
+                } else {
+                    mSwipeRefreshLayout.setRefreshing(true);
+                }
             }
         }
 

@@ -13,19 +13,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
-import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.User;
 import ke.co.toshngure.androidbasecode.network.Client;
 import ke.co.toshngure.dataloading2.DataLoadingConfig;
 import ke.co.toshngure.dataloading2.DefaultCursorImpl;
 import ke.co.toshngure.dataloading2.ModelListFragment;
 import ke.co.toshngure.dataloading2.decoration.HorizontalDividerItemDecoration;
-import ke.co.toshngure.views.NetworkImage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,21 +54,19 @@ public class UsersFragment2 extends ModelListFragment<User> {
         String url = "https://toshngure.co.ke/basecode/public/api/v1/users";
         return super.getDataLoadingConfig()
                 .withUrl(url, Client.getInstance().getClient(), User.class)
-                .withCursors(new DefaultCursorImpl())
-                .withRefreshEnabled()
-                .withLoadingMoreEnabled()
+                .withCursors(new DefaultCursorImpl(), false, true)
                 .withDebugEnabled()
                 .withTopViewCollapsible()
                 .withPerPage(15);
     }
 
-    @Override
+    /*@Override
     public void setUpTopView(FrameLayout topViewContainer) {
         super.setUpTopView(topViewContainer);
         LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, topViewContainer);
         NetworkImage topViewNI = topViewContainer.findViewById(R.id.topViewNI);
         topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
-    }
+    }*/
 
     @Override
     public void onSetUpRecyclerView(RecyclerView recyclerView) {
@@ -85,12 +79,12 @@ public class UsersFragment2 extends ModelListFragment<User> {
         super.onSetUpAdapter(itemAdapter);
     }
 
-    @Override
+    /*@Override
     public void setUpBottomView(FrameLayout bottomViewContainer) {
         super.setUpBottomView(bottomViewContainer);
         LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, bottomViewContainer);
         NetworkImage topViewNI = bottomViewContainer.findViewById(R.id.topViewNI);
         topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
-    }
+    }*/
 
 }

@@ -35,7 +35,8 @@ class DataParserTask<M extends AbstractItem<M, ?>> extends AsyncTask<Object, Voi
             //PARSE JSON OBJECT RESPONSE
             if (objects[0] instanceof JSONObject) {
                 JSONObject dataJSONObject = (JSONObject) objects[0];
-                if (mDataLoadingFragmentImpl.mDataLoadingConfig.isCursorsEnabled()) {
+                if (mDataLoadingFragmentImpl.mDataLoadingConfig.isRefreshEnabled() ||
+                        mDataLoadingFragmentImpl.mDataLoadingConfig.isLoadingMoreEnabled()) {
                     JSONObject cursors = dataJSONObject.getJSONObject(CURSORS);
                     long after = cursors.getLong(mDataLoadingFragmentImpl.mDataLoadingConfig.getCursorImpl().getAfterKey());
                     long before = cursors.getLong(mDataLoadingFragmentImpl.mDataLoadingConfig.getCursorImpl().getBeforeKey());
