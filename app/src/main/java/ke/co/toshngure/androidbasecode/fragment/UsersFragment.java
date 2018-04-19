@@ -13,19 +13,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.jaychang.srv.SimpleCell;
 
-import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.cell.UserCell;
 import ke.co.toshngure.androidbasecode.model.User;
 import ke.co.toshngure.androidbasecode.network.Client;
 import ke.co.toshngure.dataloading.DataLoadingConfig;
 import ke.co.toshngure.dataloading.ModelListFragment;
-import ke.co.toshngure.views.NetworkImage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,7 +79,7 @@ public class UsersFragment extends ModelListFragment<User, UserCell>
         return User.class;
     }
 
-    @Override
+    /*@Override
     public void setUpTopView(FrameLayout topViewContainer) {
         super.setUpTopView(topViewContainer);
         LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, topViewContainer);
@@ -103,7 +99,7 @@ public class UsersFragment extends ModelListFragment<User, UserCell>
     @Override
     public boolean hasCollapsibleTopView() {
         return true;
-    }
+    }*/
 
     @Override
     public void onCellClicked(@NonNull User user) {

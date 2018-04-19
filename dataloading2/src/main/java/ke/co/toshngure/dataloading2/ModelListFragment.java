@@ -22,7 +22,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.loopj.android.http.RequestParams;
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
 
 
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
-    protected FastItemAdapter<M> mFastItemAdapter;
+    protected ItemAdapter<M> mItemAdapter;
     protected RecyclerView mRecyclerView;
     protected FrameLayout mBottomViewContainer;
     protected FrameLayout mTopViewContainer;
@@ -128,8 +129,8 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
     }
 
     @Override
-    public void onSetUpAdapter(FastItemAdapter<M> fastItemAdapter) {
-        this.mFastItemAdapter = fastItemAdapter;
+    public void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter fastAdapter) {
+        this.mItemAdapter = itemAdapter;
     }
 
 

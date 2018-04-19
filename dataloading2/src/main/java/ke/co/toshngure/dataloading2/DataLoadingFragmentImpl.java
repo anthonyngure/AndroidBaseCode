@@ -23,7 +23,9 @@ import android.widget.ImageView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
 
@@ -48,7 +50,8 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
     Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
-    FastItemAdapter<M> mItemAdapter;
+    FastAdapter<IItem> mFastAdapter;
+    ItemAdapter<M> mItemAdapter;
     boolean isLoadingMore;
     private RecyclerView mRecyclerView;
     private FragmentActivity mActivity;
@@ -94,13 +97,14 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
 
         //Configure adapter
-        mItemAdapter = new FastItemAdapter<>();
-        mListener.onSetUpAdapter(mItemAdapter);
+        mItemAdapter = new ItemAdapter<>();
+        mFastAdapter = FastAdapter.with(mItemAdapter);
+        mListener.onSetUpAdapter(mItemAdapter, mFastAdapter);
 
         //Configure recyclerView
         mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRecyclerView.setAdapter(mItemAdapter);
+        mRecyclerView.setAdapter(mFastAdapter);
         mRecyclerView.addOnScrollListener(new ScrollListener());
         mListener.onSetUpRecyclerView(mRecyclerView);
 
@@ -122,6 +126,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
                 connect();
             }
         }
+
     }
 
     private void log(Object msg) {
@@ -145,6 +150,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         mItemAdapter.clear();
 
         mItemAdapter.add(0, data);
+
 
         mFreshLoadManager.onLoadFinished();
 
@@ -273,7 +279,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         void onSetUpRecyclerView(RecyclerView recyclerView);
 
-        void onSetUpAdapter(FastItemAdapter<M> fastItemAdapter);
+        void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter fastAdapter);
     }
 
     private static final class CacheLoader<M extends AbstractItem<M, ?>> extends BaseLoader<M> {
