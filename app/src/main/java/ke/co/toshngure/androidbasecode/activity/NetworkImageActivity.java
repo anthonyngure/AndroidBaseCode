@@ -17,16 +17,14 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.widget.TextView;
 
-import com.jaeger.library.StatusBarUtil;
-
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.basecode.utils.BaseUtils;
 import ke.co.toshngure.basecode.utils.DrawableUtils;
-import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.views.NetworkImage;
 
 public class NetworkImageActivity extends BaseActivity {
@@ -62,7 +60,6 @@ public class NetworkImageActivity extends BaseActivity {
             int primaryDark = BaseUtils.getColor(getThis(), R.attr.colorPrimaryDark);
             int primary = BaseUtils.getColor(getThis(), R.attr.colorPrimary);
             getToolbar().setBackgroundColor(palette.getMutedColor(primary));
-            StatusBarUtil.setColor(this, palette.getDarkMutedColor(primaryDark));
             supportStartPostponedEnterTransition();
         });
     }
@@ -94,7 +91,6 @@ public class NetworkImageActivity extends BaseActivity {
 
     private void resetThemeColors() {
         getToolbar().setBackgroundColor(BaseUtils.getColor(this, R.attr.colorPrimary));
-        StatusBarUtil.setColor(this, BaseUtils.getColor(this, R.attr.colorPrimaryDark), 1);
     }
 
 }
