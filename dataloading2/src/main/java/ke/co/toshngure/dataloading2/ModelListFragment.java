@@ -51,6 +51,7 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
     protected FrameLayout mTopViewContainer;
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
+    protected FastAdapter mFastAdapter;
 
     public ModelListFragment() {
     }
@@ -131,6 +132,7 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
     @Override
     public void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter fastAdapter) {
         this.mItemAdapter = itemAdapter;
+        this.mFastAdapter = fastAdapter;
     }
 
 
