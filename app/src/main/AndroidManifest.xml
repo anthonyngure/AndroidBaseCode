@@ -50,15 +50,6 @@
                 android:value="ke.co.toshngure.androidbasecode.activity.MainActivity" />
         </activity>
         <activity
-            android:name="ke.co.toshngure.basecode.app.ReusableFragmentActivity"
-            android:label="@string/app_name"
-            android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ke.co.toshngure.androidbasecode.activity.MainActivity" />
-        </activity>
-        <activity
             android:name="ke.co.toshngure.camera.CameraActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activity.MainActivity"

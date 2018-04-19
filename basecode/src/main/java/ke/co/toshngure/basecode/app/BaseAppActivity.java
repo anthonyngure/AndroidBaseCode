@@ -26,8 +26,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.jaeger.library.StatusBarUtil;
-
 import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.utils.BaseUtils;
 
@@ -92,7 +90,6 @@ public abstract class BaseAppActivity extends AppCompatActivity {
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         setupToolbar();
-        setUpStatusBarColor();
         setUpTitleFromLabel();
     }
 
@@ -108,10 +105,6 @@ public abstract class BaseAppActivity extends AppCompatActivity {
         if (getToolbar() != null && !TextUtils.isEmpty(label)) {
             getToolbar().setTitle(label);
         }
-    }
-
-    protected void setUpStatusBarColor() {
-        StatusBarUtil.setColor(this, BaseUtils.getColor(this, R.attr.colorPrimaryDark), 1);
     }
 
     @Override
