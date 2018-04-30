@@ -32,6 +32,7 @@ import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListene
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
@@ -50,7 +51,6 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
     Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
-    FastAdapter<IItem> mFastAdapter;
     ItemAdapter<M> mItemAdapter;
     boolean isLoadingMore;
     private RecyclerView mRecyclerView;
@@ -97,9 +97,15 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
 
         //Configure adapter
-        mItemAdapter = new ItemAdapter<>();
-        mFastAdapter = FastAdapter.with(mItemAdapter);
-        mListener.onSetUpAdapter(mItemAdapter, mFastAdapter);
+        mItemAdapter = new ItemAdapter<>(); //Will hold the items
+        ItemAdapter<IItem> mHeaderAdapter = mListener.getHeaderAdapter();
+        FastAdapter<IItem> mFastAdapter;
+        if (mHeaderAdapter != null) {
+            mFastAdapter = FastAdapter.with(Arrays.asList(mHeaderAdapter, mItemAdapter));
+        } else {
+            mFastAdapter = FastAdapter.with(mItemAdapter);
+        }
+        mListener.onSetUpAdapter(mHeaderAdapter, mItemAdapter, mFastAdapter);
 
         //Configure recyclerView
         mRecyclerView = view.findViewById(R.id.recyclerView);
@@ -229,7 +235,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
             isLoadingMore = false;
             hasMoreToBottom = items.size() != 0;
         } else {
-            mItemAdapter.add(0, items);
+            mItemAdapter.add(items);
             mRecyclerView.smoothScrollToPosition(0);
             mSwipeRefreshLayout.setRefreshing(false);
         }
@@ -279,7 +285,9 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
 
         void onSetUpRecyclerView(RecyclerView recyclerView);
 
-        void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter fastAdapter);
+        void onSetUpAdapter(ItemAdapter<IItem> headerAdapter, ItemAdapter<M> itemAdapter, FastAdapter<IItem> fastAdapter);
+
+        ItemAdapter<IItem> getHeaderAdapter();
     }
 
     private static final class CacheLoader<M extends AbstractItem<M, ?>> extends BaseLoader<M> {

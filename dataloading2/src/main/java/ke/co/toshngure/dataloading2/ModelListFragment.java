@@ -23,6 +23,7 @@ import android.widget.ImageView;
 
 import com.loopj.android.http.RequestParams;
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
@@ -45,13 +46,14 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
 
 
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
+    protected ItemAdapter<IItem> mHeaderAdapter;
     protected ItemAdapter<M> mItemAdapter;
+    protected FastAdapter<IItem> mFastAdapter;
     protected RecyclerView mRecyclerView;
     protected FrameLayout mBottomViewContainer;
     protected FrameLayout mTopViewContainer;
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
-    protected FastAdapter mFastAdapter;
 
     public ModelListFragment() {
     }
@@ -130,10 +132,17 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
     }
 
     @Override
-    public void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter fastAdapter) {
+    public void onSetUpAdapter(ItemAdapter<IItem> headerAdapter, ItemAdapter<M> itemAdapter, FastAdapter<IItem> fastAdapter) {
+        this.mHeaderAdapter = headerAdapter;
         this.mItemAdapter = itemAdapter;
         this.mFastAdapter = fastAdapter;
     }
+
+    @Override
+    public ItemAdapter<IItem> getHeaderAdapter() {
+        return null;
+    }
+
 
 
 }

@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 
 import ke.co.toshngure.androidbasecode.model.Post;
@@ -74,13 +75,18 @@ public class UsersFragment2 extends ModelListFragment<User> {
     public void onSetUpRecyclerView(RecyclerView recyclerView) {
         super.onSetUpRecyclerView(recyclerView);
         recyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(getActivity()).build());
+        mHeaderAdapter.add(new Post());
     }
 
     @Override
-    public void onSetUpAdapter(ItemAdapter<User> fastItemAdapter, FastAdapter fastAdapter) {
-        super.onSetUpAdapter(fastItemAdapter, fastAdapter);
-        ItemAdapter<Post> postItemAdapter = new ItemAdapter<>();
-        fastAdapter.addAdapter(0, postItemAdapter);
+    public ItemAdapter<IItem> getHeaderAdapter() {
+        return new ItemAdapter<>();
+    }
+
+    @Override
+    public void onSetUpAdapter(ItemAdapter<IItem> headerAdapter, ItemAdapter<User> itemAdapter, FastAdapter<IItem> fastAdapter) {
+        super.onSetUpAdapter(headerAdapter, itemAdapter, fastAdapter);
+        headerAdapter.add(new Post(), new Post());
     }
 
     /*@Override

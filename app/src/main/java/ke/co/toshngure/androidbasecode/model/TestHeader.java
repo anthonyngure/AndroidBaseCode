@@ -6,34 +6,29 @@ import android.view.View;
 
 import com.mikepenz.fastadapter.items.AbstractItem;
 
-import ke.co.toshngure.androidbasecode.R;
-import ke.co.toshngure.basecode.rest.annotations.Resource;
-
 /**
- * Created by Anthony Ngure on 09/03/2018.
+ * Created by Anthony Ngure on 30/04/2018.
  * Email : anthonyngure25@gmail.com.
  */
-
-@Resource(relativeUrl = "posts")
-public class Post extends AbstractItem<Post, Post.ViewHolder> {
+public class TestHeader extends AbstractItem<TestHeader, TestHeader.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder getViewHolder(View v) {
-        return new ViewHolder(v);
+        return null;
     }
 
     @Override
     public int getType() {
-        return R.id.item_post;
+        return 0;
     }
 
     @Override
     public int getLayoutRes() {
-        return R.layout.item_post;
+        return 0;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        ViewHolder(View itemView) {
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(View itemView) {
             super(itemView);
         }
     }
