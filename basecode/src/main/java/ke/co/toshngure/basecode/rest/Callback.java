@@ -2,6 +2,7 @@ package ke.co.toshngure.basecode.rest;
 
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 
 import com.loopj.android.http.RequestParams;
 
@@ -112,8 +113,11 @@ public abstract class Callback<M> {
                 .setNegativeButton(R.string.report, (dialog, which) -> {
                 })
                 .setPositiveButton(android.R.string.ok, null);
-
-        if (statusCode == 500) {
+        if (!TextUtils.isEmpty(message)) {
+            builder.setTitle(R.string.server_error)
+                    .setMessage(message)
+                    .create().show();
+        } else if (statusCode == 500) {
             builder.setTitle(R.string.server_error)
                     .setMessage(baseAppActivity.getString(R.string.error_application))
                     .create().show();
