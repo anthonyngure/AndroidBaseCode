@@ -23,7 +23,7 @@ public class DataLoadingConfig<M> {
     private int loaderId = 0;
 
     /*If should immediately load fresh data after loading cache*/
-    private boolean autoRefreshEnabled = true;
+    private boolean autoRefreshEnabled = false;
     /*If should load data when a user pulls down*/
     private boolean refreshEnabled = false;
     /*If should load data when a user reaches at the bottom*/
@@ -63,10 +63,6 @@ public class DataLoadingConfig<M> {
         return autoRefreshEnabled;
     }
 
-    public DataLoadingConfig<M> withAutoRefreshDisabled() {
-        this.autoRefreshEnabled = false;
-        return this;
-    }
 
     boolean isRefreshEnabled() {
         return refreshEnabled;
@@ -103,10 +99,11 @@ public class DataLoadingConfig<M> {
         return url;
     }
 
-    public DataLoadingConfig<M> withUrl(String url, AsyncHttpClient asyncHttpClient, Class<M> modelClass) {
+    public DataLoadingConfig<M> withUrl(String url, AsyncHttpClient asyncHttpClient, Class<M> modelClass, boolean autoRefreshEnabled) {
         this.url = url;
         this.asyncHttpClient = asyncHttpClient;
         this.modelClass = modelClass;
+        this.autoRefreshEnabled = autoRefreshEnabled;
         return this;
     }
 

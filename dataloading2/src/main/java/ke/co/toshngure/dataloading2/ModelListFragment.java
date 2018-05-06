@@ -95,6 +95,7 @@ public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
 
     @Override
     public List<M> onLoadCaches() {
+
         return new ArrayList<>();
     }
 

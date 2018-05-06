@@ -225,7 +225,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
             isLoadingMore = false;
             hasMoreToBottom = items.size() != 0;
         } else {
-            mFastItemAdapter.add(items);
+            mFastItemAdapter.add(0, items);
             mRecyclerView.smoothScrollToPosition(0);
             mSwipeRefreshLayout.setRefreshing(false);
         }
