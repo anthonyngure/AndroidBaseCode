@@ -114,8 +114,7 @@ public abstract class Callback<M> {
                 })
                 .setPositiveButton(android.R.string.ok, null);
         if (!TextUtils.isEmpty(message)) {
-            builder.setTitle(R.string.server_error)
-                    .setMessage(message)
+            builder.setMessage(message)
                     .create().show();
         } else if (statusCode == 500) {
             builder.setTitle(R.string.server_error)
