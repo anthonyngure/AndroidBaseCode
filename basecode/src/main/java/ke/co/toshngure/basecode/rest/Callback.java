@@ -24,10 +24,15 @@ import ke.co.toshngure.basecode.utils.BaseUtils;
 
 public abstract class Callback<M> {
 
+    @Nullable
     BaseAppActivity baseAppActivity;
     private boolean showDialog;
     @Nullable
     private Class<M> mClass;
+
+    public Callback() {
+        this(null);
+    }
 
     public Callback(BaseAppActivity baseAppActivity) {
         this(baseAppActivity, null);
@@ -74,27 +79,29 @@ public abstract class Callback<M> {
 
     protected void onConnectionStarted() {
         Logger.log("onConnectionStarted");
-        if (showDialog) {
+        if (showDialog && baseAppActivity != null) {
             baseAppActivity.showProgressDialog();
         }
     }
 
     protected void onCantConnect() {
         Logger.log("onCantConnect");
-        if (showDialog) {
-            baseAppActivity.hideProgressDialog();
+        if (baseAppActivity != null) {
+            if (showDialog) {
+                baseAppActivity.hideProgressDialog();
+            }
+            new AlertDialog.Builder(baseAppActivity)
+                    .setTitle(R.string.connection_timed_out)
+                    .setMessage(R.string.error_connection)
+                    .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> onCancel())
+                    .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
+                    .create().show();
         }
-        new AlertDialog.Builder(baseAppActivity)
-                .setTitle(R.string.connection_timed_out)
-                .setMessage(R.string.error_connection)
-                .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> onCancel())
-                .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
-                .create().show();
     }
 
     protected void onFailure(int statusCode, JSONArray response) {
         Logger.log("Connection failed! " + statusCode + ", " + String.valueOf(response));
-        if (showDialog) {
+        if (showDialog && baseAppActivity != null) {
             baseAppActivity.hideProgressDialog();
         }
         showErrorAlertDialog(String.valueOf(response));
@@ -102,36 +109,37 @@ public abstract class Callback<M> {
 
     protected void onFailure(int statusCode, JSONObject response) {
         Logger.log("Connection failed! " + statusCode + ", " + String.valueOf(response));
-        if (showDialog) {
-            baseAppActivity.hideProgressDialog();
-        }
+        if (baseAppActivity != null) {
+            if (showDialog) {
+                baseAppActivity.hideProgressDialog();
+            }
+            String message = Client.getConfig().getResponseDefinition().message(statusCode, response);
 
-        String message = Client.getConfig().getResponseDefinition().message(statusCode, response);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(baseAppActivity)
-                .setCancelable(true)
-                .setNegativeButton(R.string.report, (dialog, which) -> {
-                })
-                .setPositiveButton(android.R.string.ok, null);
-        if (!TextUtils.isEmpty(message)) {
-            builder.setMessage(message)
-                    .create().show();
-        } else if (statusCode == 500) {
-            builder.setTitle(R.string.server_error)
-                    .setMessage(baseAppActivity.getString(R.string.error_application))
-                    .create().show();
-        } else if (statusCode == 404) {
-            builder.setTitle(R.string.not_found)
-                    .setMessage(message)
-                    .create().show();
-        } else {
-            onCantConnect();
+            AlertDialog.Builder builder = new AlertDialog.Builder(baseAppActivity)
+                    .setCancelable(true)
+                    .setNegativeButton(R.string.report, (dialog, which) -> {
+                    })
+                    .setPositiveButton(android.R.string.ok, null);
+            if (!TextUtils.isEmpty(message)) {
+                builder.setMessage(message)
+                        .create().show();
+            } else if (statusCode == 500) {
+                builder.setTitle(R.string.server_error)
+                        .setMessage(baseAppActivity.getString(R.string.error_application))
+                        .create().show();
+            } else if (statusCode == 404) {
+                builder.setTitle(R.string.not_found)
+                        .setMessage(message)
+                        .create().show();
+            } else {
+                onCantConnect();
+            }
         }
     }
 
     void onSuccess(JSONObject response) {
         Logger.log("onSuccess, Response = " + String.valueOf(response));
-        if (showDialog) {
+        if (showDialog && baseAppActivity != null) {
             baseAppActivity.hideProgressDialog();
         }
         try {
@@ -179,7 +187,7 @@ public abstract class Callback<M> {
 
     void onSuccess(JSONArray response) {
         Logger.log("onSuccess, Response = " + String.valueOf(response));
-        if (showDialog) {
+        if (showDialog && baseAppActivity != null) {
             baseAppActivity.hideProgressDialog();
         }
         //Data is Array
@@ -200,17 +208,21 @@ public abstract class Callback<M> {
     }
 
     protected void onProgress(int progress) {
-        String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(progress);
-        baseAppActivity.updateProgressDialogMessage(newMessage);
+        if (baseAppActivity != null) {
+            String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(progress);
+            baseAppActivity.updateProgressDialogMessage(newMessage);
+        }
     }
 
     protected void showErrorAlertDialog(String message) {
-        new AlertDialog.Builder(baseAppActivity)
-                .setCancelable(true)
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, null)
-                .create()
-                .show();
+        if (baseAppActivity != null) {
+            new AlertDialog.Builder(baseAppActivity)
+                    .setCancelable(true)
+                    .setMessage(message)
+                    .setPositiveButton(android.R.string.ok, null)
+                    .create()
+                    .show();
+        }
     }
 
     protected RequestParams getRequestParams() {
