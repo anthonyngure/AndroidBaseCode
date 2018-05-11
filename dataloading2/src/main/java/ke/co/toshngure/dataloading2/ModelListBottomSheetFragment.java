@@ -39,6 +39,8 @@ import java.util.List;
  *
  * @param <M>>
  */
+
+
 public class ModelListBottomSheetFragment<M extends AbstractItem<M, ?>> extends BottomSheetDialogFragment
         implements DataLoadingFragmentImpl.Listener<M> {
 
