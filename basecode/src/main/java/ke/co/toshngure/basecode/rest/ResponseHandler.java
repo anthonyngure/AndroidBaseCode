@@ -25,7 +25,7 @@ public class ResponseHandler extends JsonHttpResponseHandler {
 
     public void onStart() {
         super.onStart();
-        if (BaseUtils.canConnect(mCallback.baseAppActivity)) {
+        if (BaseUtils.canConnect(Client.getConfig().getContext())) {
             mCallback.onConnectionStarted();
         } else {
             mCallback.onCantConnect();

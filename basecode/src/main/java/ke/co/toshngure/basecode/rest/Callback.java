@@ -25,15 +25,11 @@ import ke.co.toshngure.basecode.utils.BaseUtils;
 public abstract class Callback<M> {
 
     @Nullable
+    private
     BaseAppActivity baseAppActivity;
     private boolean showDialog;
     @Nullable
     private Class<M> mClass;
-
-
-    public Callback(BaseAppActivity baseAppActivity) {
-        this(baseAppActivity, null);
-    }
 
 
     public Callback(@Nullable BaseAppActivity baseAppActivity, @Nullable Class<M> mClass) {
