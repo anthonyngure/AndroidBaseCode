@@ -30,20 +30,17 @@ public abstract class Callback<M> {
     @Nullable
     private Class<M> mClass;
 
-    public Callback() {
-        this(null);
-    }
 
     public Callback(BaseAppActivity baseAppActivity) {
         this(baseAppActivity, null);
     }
 
 
-    public Callback(BaseAppActivity baseAppActivity, @Nullable Class<M> mClass) {
+    public Callback(@Nullable BaseAppActivity baseAppActivity, @Nullable Class<M> mClass) {
         this(baseAppActivity, mClass, true);
     }
 
-    public Callback(BaseAppActivity baseAppActivity, @Nullable Class<M> mClass, boolean showDialog) {
+    public Callback(@Nullable BaseAppActivity baseAppActivity, @Nullable Class<M> mClass, boolean showDialog) {
         this.baseAppActivity = baseAppActivity;
         this.showDialog = showDialog;
         this.mClass = mClass;
