@@ -31,6 +31,9 @@ public abstract class Callback<M> {
     @Nullable
     private Class<M> mClass;
 
+    public Callback(@Nullable BaseAppActivity baseAppActivity) {
+        this(baseAppActivity, null);
+    }
 
     public Callback(@Nullable BaseAppActivity baseAppActivity, @Nullable Class<M> mClass) {
         this(baseAppActivity, mClass, true);
