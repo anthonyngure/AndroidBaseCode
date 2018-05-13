@@ -53,7 +53,7 @@ public class UsersFragment2 extends ModelListFragment<User> {
     public DataLoadingConfig<User> getDataLoadingConfig() {
         String url = "https://toshngure.co.ke/basecode/public/api/v1/users";
         return super.getDataLoadingConfig()
-                .withUrl(url, Client.getInstance().getClient(), User.class)
+                .withUrl(url, Client.getInstance().getClient(), User.class, false)
                 .withCursors(new DefaultCursorImpl(), true, true)
                 .withDebugEnabled()
                 .withTopViewCollapsible()

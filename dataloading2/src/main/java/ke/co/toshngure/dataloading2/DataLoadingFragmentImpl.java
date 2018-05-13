@@ -23,8 +23,8 @@ import android.widget.ImageView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
-import com.mikepenz.fastadapter.items.AbstractItem;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
 
 import org.json.JSONArray;
@@ -39,7 +39,7 @@ import cz.msebera.android.httpclient.Header;
  * Email : anthonyngure25@gmail.com.
  */
 
-class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
+class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         LoaderManager.LoaderCallbacks<List<M>>, SwipeRefreshLayout.OnRefreshListener {
 
 
@@ -249,7 +249,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         }
     }
 
-    interface Listener<M extends AbstractItem<M, ?>> {
+    interface Listener<M extends IItem<M, ?>> {
 
         DataLoadingConfig<M> getDataLoadingConfig();
 
@@ -278,7 +278,7 @@ class DataLoadingFragmentImpl<M extends AbstractItem<M, ?>> implements
         void onSetUpAdapter(FastItemAdapter<M> itemAdapter);
     }
 
-    private static final class CacheLoader<M extends AbstractItem<M, ?>> extends BaseLoader<M> {
+    private static final class CacheLoader<M extends IItem<M, ?>> extends BaseLoader<M> {
 
         private Listener<M> mListener;
 

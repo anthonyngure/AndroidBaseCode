@@ -22,8 +22,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.loopj.android.http.RequestParams;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
-import com.mikepenz.fastadapter.items.AbstractItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ import java.util.List;
  */
 
 
-public class ModelListBottomSheetFragment<M extends AbstractItem<M, ?>> extends BottomSheetDialogFragment
+public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomSheetDialogFragment
         implements DataLoadingFragmentImpl.Listener<M> {
 
 

@@ -22,8 +22,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.loopj.android.http.RequestParams;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
-import com.mikepenz.fastadapter.items.AbstractItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ import java.util.List;
  *
  * @param <M>>
  */
-public class ModelListFragment<M extends AbstractItem<M, ?>> extends Fragment
+public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
         implements DataLoadingFragmentImpl.Listener<M> {
 
 

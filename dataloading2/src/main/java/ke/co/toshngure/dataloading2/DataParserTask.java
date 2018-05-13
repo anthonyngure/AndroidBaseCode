@@ -2,7 +2,7 @@ package ke.co.toshngure.dataloading2;
 
 import android.os.AsyncTask;
 
-import com.mikepenz.fastadapter.items.AbstractItem;
+import com.mikepenz.fastadapter.IItem;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Anthony Ngure on 25/01/2018.
  * Email : anthonyngure25@gmail.com.
  */
-class DataParserTask<M extends AbstractItem<M, ?>> extends AsyncTask<Object, Void, List<M>> {
+class DataParserTask<M extends IItem<M, ?>> extends AsyncTask<Object, Void, List<M>> {
 
     private static final String DATA = "data";
     private static final String CURSORS = "cursors";

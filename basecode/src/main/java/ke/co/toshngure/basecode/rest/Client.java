@@ -92,7 +92,7 @@ public class Client {
 
     public SyncHttpClient getSyncHttpClient() {
         if (mSyncHttpClient == null) {
-            mSyncHttpClient = new SyncHttpClient();
+            mSyncHttpClient = new SyncHttpClient(true, 80, 443);
             setUpClient(mSyncHttpClient);
         }
         return mSyncHttpClient;
