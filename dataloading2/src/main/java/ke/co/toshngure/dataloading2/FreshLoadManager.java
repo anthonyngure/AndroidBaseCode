@@ -109,14 +109,12 @@ class FreshLoadManager {
         this.freshLoadContainer.setVisibility(View.GONE);
 
         this.loadingLL = view.findViewById(R.id.loadingLL);
-        this.loadingLL.setGravity(mDataLoadingFragmentImpl.mListener.getFreshLoadGravity());
         this.loadingTV = view.findViewById(R.id.loadingTV);
         this.loadingTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getLoadingMessage());
         this.loadingTV.setTextColor(ContextCompat.getColor(loadingTV.getContext(),
                 mDataLoadingFragmentImpl.mDataLoadingConfig.getLoadingMessageColor()));
 
         this.errorLL = view.findViewById(R.id.errorLL);
-        this.errorLL.setGravity(mDataLoadingFragmentImpl.mListener.getFreshLoadGravity());
         this.errorTV = view.findViewById(R.id.errorTV);
 
     }
