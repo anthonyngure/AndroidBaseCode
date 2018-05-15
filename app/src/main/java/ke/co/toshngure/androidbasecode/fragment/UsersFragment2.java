@@ -31,6 +31,7 @@ public class UsersFragment2 extends ModelListFragment<User> {
 
     private int requestsCount;
 
+
     public UsersFragment2() {
         // Required empty public constructor
     }

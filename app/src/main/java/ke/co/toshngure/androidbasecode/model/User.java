@@ -76,6 +76,7 @@ public class User extends AbstractItem<User, User.ViewHolder> {
         return R.layout.cell_user;
     }
 
+
     static class ViewHolder extends FastAdapter.ViewHolder<User> {
 
         @BindView(R.id.avatarNI)

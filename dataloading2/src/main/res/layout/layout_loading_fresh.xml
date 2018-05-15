@@ -8,7 +8,8 @@
         android:id="@id/loadingLL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/loader_feedback_views_padding"
         android:orientation="vertical">
 
         <ProgressBar
@@ -30,15 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?attr/selectableItemBackground"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="@dimen/activity_vertical_margin"
-        android:visibility="gone">
+        android:paddingTop="@dimen/loader_feedback_views_padding">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:contentDescription="@string/app_name"
             android:src="@drawable/ic_info_black_24dp"
             android:tint="@android:color/holo_red_light" />
@@ -49,8 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingLeft="@dimen/list_row_padding"
-            android:paddingRight="@dimen/list_row_padding"
+            android:padding="?attr/actionBarSize"
             android:text="@string/message_connection_error"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
