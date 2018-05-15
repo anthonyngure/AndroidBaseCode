@@ -52,12 +52,13 @@ public class UsersFragment2 extends ModelListFragment<User> {
 
     @Override
     public DataLoadingConfig<User> getDataLoadingConfig() {
-        String url = "https://toshngure.co.ke/basecode/public/api/v1/users";
+        String url = "https://toshngure.co.ke/basecode/public/api/v1/users525";
         return super.getDataLoadingConfig()
                 .withUrl(url, Client.getInstance().getClient(), User.class, false)
                 .withCursors(new DefaultCursorImpl(), true, true)
                 .withDebugEnabled()
                 .withTopViewCollapsible()
+                .withCacheEnabled(1)
                 .withPerPage(15);
     }
 

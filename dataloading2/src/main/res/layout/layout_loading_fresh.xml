@@ -48,7 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="?attr/actionBarSize"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:paddingLeft="?attr/actionBarSize"
+            android:paddingRight="?attr/actionBarSize"
             android:text="@string/message_connection_error"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 

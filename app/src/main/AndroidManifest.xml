@@ -32,24 +32,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.BasicActivity"
-            android:label="@string/title_activity_basic"
-            android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ke.co.toshngure.androidbasecode.activity.MainActivity" />
-        </activity>
-        <activity
-            android:name=".activity.DataLoadingActivity"
-            android:label="@string/title_activity_data_loading"
-            android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ke.co.toshngure.androidbasecode.activity.MainActivity" />
-        </activity>
-        <activity
             android:name="ke.co.toshngure.camera.CameraActivity"
             android:label="@string/app_name"
             android:parentActivityName=".activity.MainActivity"
@@ -86,10 +68,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ke.co.toshngure.androidbasecode.activity.MainActivity" />
         </activity>
-        <activity
-            android:name=".activity.TestActivity"
-            android:label="@string/title_activity_test"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".floatingsearchview.SearchActivity"
             android:label="@string/app_name"
