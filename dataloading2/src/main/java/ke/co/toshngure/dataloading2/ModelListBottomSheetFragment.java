@@ -14,7 +14,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,11 +108,6 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     @Override
     public void onSaveItem(M item) {
 
-    }
-
-    @Override
-    public int getFreshLoadGravity() {
-        return Gravity.TOP | Gravity.CENTER;
     }
 
     public int addUniqueCacheKey() {

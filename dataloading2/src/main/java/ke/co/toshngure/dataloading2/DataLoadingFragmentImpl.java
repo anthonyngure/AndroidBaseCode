@@ -267,8 +267,6 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         //Called in the background after the item has be parsed
         void onSaveItem(M item);
 
-        int getFreshLoadGravity();
-
         int addUniqueCacheKey();
 
         void onSetUpSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout);
