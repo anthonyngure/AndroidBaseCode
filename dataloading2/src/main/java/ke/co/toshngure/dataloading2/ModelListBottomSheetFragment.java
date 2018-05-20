@@ -129,5 +129,10 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
         this.mFastItemAdapter = fastItemAdapter;
     }
 
+    @Override
+    public void refresh() {
+        mDataLoadingFragmentImpl.refresh();
+    }
+
 
 }

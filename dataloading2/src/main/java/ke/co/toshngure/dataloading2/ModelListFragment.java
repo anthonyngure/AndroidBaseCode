@@ -127,7 +127,10 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
         this.mFastItemAdapter = fastItemAdapter;
     }
 
-
+    @Override
+    public void refresh() {
+        mDataLoadingFragmentImpl.refresh();
+    }
 
 
 }

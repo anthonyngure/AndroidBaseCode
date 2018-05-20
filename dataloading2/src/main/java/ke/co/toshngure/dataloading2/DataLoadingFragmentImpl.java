@@ -249,6 +249,17 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         }
     }
 
+    public void refresh() {
+        //Load cache data
+        if (mDataLoadingConfig.isCacheEnabled()) {
+            mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
+        } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
+            mTempModelCursors = new ModelCursor(0, 0);
+            mFastItemAdapter.clear();
+            connect();
+        }
+    }
+
     interface Listener<M extends IItem<M, ?>> {
 
         DataLoadingConfig<M> getDataLoadingConfig();
@@ -274,6 +285,8 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         void onSetUpRecyclerView(RecyclerView recyclerView);
 
         void onSetUpAdapter(FastItemAdapter<M> itemAdapter);
+
+        void refresh();
     }
 
     private static final class CacheLoader<M extends IItem<M, ?>> extends BaseLoader<M> {
