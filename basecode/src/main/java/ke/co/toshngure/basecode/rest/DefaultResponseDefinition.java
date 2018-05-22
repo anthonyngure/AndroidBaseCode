@@ -22,7 +22,7 @@ public class DefaultResponseDefinition implements ResponseDefinition {
     public String message(int statusCode, JSONObject response) {
         if (response != null) {
             try {
-                if (statusCode == 422 && response.getJSONObject(Response.DATA) != null) {
+                if (statusCode == 422 && response.get(Response.DATA) instanceof JSONObject) {
                     JSONObject data = response.getJSONObject(Response.DATA);
                     StringBuilder sb = new StringBuilder();
                     Iterator<String> iterator = data.keys();
