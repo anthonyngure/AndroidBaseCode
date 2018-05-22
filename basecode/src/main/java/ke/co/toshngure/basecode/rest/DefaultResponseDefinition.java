@@ -6,6 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+
 import ke.co.toshngure.basecode.R;
 
 /**
@@ -18,18 +20,37 @@ public class DefaultResponseDefinition implements ResponseDefinition {
     @Nullable
     @Override
     public String message(int statusCode, JSONObject response) {
-        String message = null;
         if (response != null) {
             try {
-                JSONObject meta = response.getJSONObject(Response.META);
-                message = meta.getString(Response.MESSAGE);
+                JSONObject data = response.getJSONObject(Response.DATA);
+                if (statusCode == 422) {
+                    StringBuilder sb = new StringBuilder();
+                    Iterator<String> iterator = data.keys();
+                    while (iterator != null && iterator.hasNext()) {
+                        String name = iterator.next();
+                        try {
+                            JSONArray valueErrors = data.getJSONArray(name);
+                            sb.append(name.toUpperCase()).append("\n");
+                            for (int i = 0; i < valueErrors.length(); i++) {
+                                sb.append(valueErrors.get(i)).append("\n");
+                            }
+                        } catch (JSONException e) {
+                            return String.valueOf(response);
+                        }
+                    }
+
+                    return sb.toString();
+
+                } else {
+                    JSONObject meta = response.getJSONObject(Response.META);
+                    return meta.getString(Response.MESSAGE);
+
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        } else {
-            message = Client.getConfig().getContext().getString(R.string.connection_timed_out);
         }
-        return message;
+        return Client.getConfig().getContext().getString(R.string.connection_timed_out);
     }
 
     @Nullable
