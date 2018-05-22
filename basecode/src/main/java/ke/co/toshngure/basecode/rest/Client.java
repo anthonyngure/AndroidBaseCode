@@ -20,6 +20,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.loopj.android.http.SyncHttpClient;
 
+import org.json.JSONObject;
+
 import java.util.List;
 
 import cz.msebera.android.httpclient.entity.ContentType;
@@ -279,6 +281,8 @@ public class Client {
             return 2;
         }
 
+        protected void onReportError(JSONObject response) {
 
+        }
     }
 }

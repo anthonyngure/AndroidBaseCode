@@ -251,11 +251,11 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
     public void refresh() {
         //Load cache data
+        mFastItemAdapter.clear();
         if (mDataLoadingConfig.isCacheEnabled()) {
             mActivity.getSupportLoaderManager().restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
             mTempModelCursors = new ModelCursor(0, 0);
-            mFastItemAdapter.clear();
             connect();
         }
     }

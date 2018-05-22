@@ -109,23 +109,27 @@ public abstract class Callback<M> {
             if (showDialog) {
                 baseAppActivity.hideProgressDialog();
             }
+
             String message = Client.getConfig().getResponseDefinition().message(statusCode, response);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(baseAppActivity)
-                    .setCancelable(true)
-                    .setNegativeButton(R.string.report, (dialog, which) -> {
-                    })
-                    .setPositiveButton(android.R.string.ok, null);
+                    .setCancelable(true);
             if (!TextUtils.isEmpty(message)) {
                 builder.setMessage(message)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
                         .create().show();
             } else if (statusCode == 500) {
                 builder.setTitle(R.string.server_error)
                         .setMessage(baseAppActivity.getString(R.string.error_application))
+                        .setNegativeButton(R.string.report, (dialog, which) -> Client.getConfig().onReportError(response))
+                        .setNegativeButton(android.R.string.ok, null)
                         .create().show();
             } else if (statusCode == 404) {
                 builder.setTitle(R.string.not_found)
                         .setMessage(message)
+                        .setNegativeButton(R.string.report, (dialog, which) -> Client.getConfig().onReportError(response))
+                        .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
                         .create().show();
             } else {
                 onCantConnect();
