@@ -22,8 +22,8 @@ public class DefaultResponseDefinition implements ResponseDefinition {
     public String message(int statusCode, JSONObject response) {
         if (response != null) {
             try {
-                JSONObject data = response.getJSONObject(Response.DATA);
                 if (statusCode == 422) {
+                    JSONObject data = response.getJSONObject(Response.DATA);
                     StringBuilder sb = new StringBuilder();
                     Iterator<String> iterator = data.keys();
                     while (iterator != null && iterator.hasNext()) {
