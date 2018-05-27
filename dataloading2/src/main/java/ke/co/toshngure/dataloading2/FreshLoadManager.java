@@ -8,7 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Iterator;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -39,29 +42,60 @@ class FreshLoadManager {
     }
 
     void onError(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-        onError(statusCode, responseString);
+        onError(statusCode, String.valueOf(responseString));
     }
 
-    void onError(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-        onError(statusCode, errorResponse);
+    void onError(int statusCode, Header[] headers, Throwable throwable, JSONObject response) {
+        String message = loadingTV.getContext().getString(R.string.message_connection_error);
+        if (response != null) {
+            try {
+                if (statusCode == 422 && response.get(DataParserTask.DATA) instanceof JSONObject) {
+                    JSONObject data = response.getJSONObject(DataParserTask.DATA);
+                    StringBuilder sb = new StringBuilder();
+                    Iterator<String> iterator = data.keys();
+                    while (iterator != null && iterator.hasNext()) {
+                        String name = iterator.next();
+                        try {
+                            JSONArray valueErrors = data.getJSONArray(name);
+                            sb.append(name.toUpperCase()).append("\n");
+                            for (int i = 0; i < valueErrors.length(); i++) {
+                                sb.append(valueErrors.get(i)).append("\n");
+                            }
+                        } catch (JSONException e) {
+                            message = String.valueOf(response);
+                        }
+                    }
+
+                    message = sb.toString();
+
+                } else {
+                    JSONObject meta = response.getJSONObject(DataParserTask.META);
+                    message = meta.getString(DataParserTask.MESSAGE);
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        onError(statusCode, String.valueOf(message));
     }
 
     void onError(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
-        onError(statusCode, errorResponse);
+        onError(statusCode, String.valueOf(errorResponse));
     }
 
     void onRetry(int retryNo) {
         Log.i(TAG, "onRetry = " + retryNo);
     }
 
-    private void onError(int statusCode, Object error) {
+    private void onError(int statusCode, String error) {
         if (mDataLoadingFragmentImpl.mFastItemAdapter.getAdapterItemCount() == 0) {
             mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
             errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.connect());
             loadingLL.setVisibility(View.GONE);
-            errorTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessage());
+            errorTV.setText(error);
             errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
                     mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessageColor()));
             Log.e(TAG, String.valueOf("StatusCode = " + statusCode + ", ERROR: " + error));

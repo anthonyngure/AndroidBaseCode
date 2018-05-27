@@ -17,8 +17,10 @@ import java.util.List;
  */
 class DataParserTask<M extends IItem<M, ?>> extends AsyncTask<Object, Void, List<M>> {
 
-    private static final String DATA = "data";
+    public static final String META = "meta";
     private static final String CURSORS = "cursors";
+    public static final String MESSAGE = "message";
+    static final String DATA = "data";
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
 
     DataParserTask(DataLoadingFragmentImpl<M> dataLoadingFragment) {
