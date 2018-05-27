@@ -72,8 +72,8 @@ public class DatesHelper {
     }
 
     public static String formatToSqlTimestamp(long timestamp) {
-        Timestamp ts = new Timestamp(timestamp);
-        return ts.toString();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        return simpleDateFormat.format(new Date(timestamp));
     }
 
     public static String formatSqlTimestampForDisplay(String string) {
