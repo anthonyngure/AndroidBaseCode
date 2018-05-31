@@ -122,6 +122,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         if (mFastItemAdapter.getAdapterItemCount() == 0) {
             //Load cache data
             if (mDataLoadingConfig.isCacheEnabled()) {
+
                 mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
             } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
                 mTempModelCursors = new ModelCursor(0, 0);
