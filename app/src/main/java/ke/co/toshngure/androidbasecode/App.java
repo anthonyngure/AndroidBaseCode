@@ -8,8 +8,10 @@
 
 package ke.co.toshngure.androidbasecode;
 
-import android.app.Application;
+import com.loopj.android.http.AsyncHttpClient;
 
+import ke.co.toshngure.androidbasecode.network.Client;
+import ke.co.toshngure.camera2.Camera2App;
 import ke.co.toshngure.logging.BeeLog;
 
 
@@ -18,7 +20,7 @@ import ke.co.toshngure.logging.BeeLog;
  * Email : anthonyngure25@gmail.com.
  */
 
-public class App extends Application {
+public class App extends Camera2App {
 
     private static App mInstance;
 
@@ -52,5 +54,10 @@ public class App extends Application {
             }
         });*/
         mInstance = this;
+    }
+
+    @Override
+    protected AsyncHttpClient getClient() {
+        return Client.getInstance().getClient();
     }
 }

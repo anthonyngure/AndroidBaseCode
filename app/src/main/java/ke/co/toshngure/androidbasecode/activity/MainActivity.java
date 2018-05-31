@@ -17,7 +17,6 @@ import android.view.View;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
-import ke.co.toshngure.androidbasecode.floatingsearchview.SearchActivity;
 import ke.co.toshngure.androidbasecode.fragment.ImagePickerFragment;
 import ke.co.toshngure.androidbasecode.fragment.PostsFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragment;
@@ -104,11 +103,6 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.imagePickerSLIV)
     public void onImagePickerSLIVSLIV() {
         ReusableFragmentActivity.start(this, ImagePickerFragment.newInstance(), "Image Picker Test");
-    }
-
-    @OnClick(R.id.floatingSearchViewSLIV)
-    public void onFloatingSearchViewSLIV() {
-        startActivity(new Intent(this, SearchActivity.class));
     }
 
     @OnClick(R.id.connectionHandlerSLIV)

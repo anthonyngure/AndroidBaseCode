@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/basecode/basecode.iml" filepath="$PROJECT_DIR$/basecode/basecode.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/camera2/camera2.iml" filepath="$PROJECT_DIR$/camera2/camera2.iml" />
       <module fileurl="file://$PROJECT_DIR$/chipcloud/chipcloud.iml" filepath="$PROJECT_DIR$/chipcloud/chipcloud.iml" />
       <module fileurl="file://$PROJECT_DIR$/dataloading/dataloading.iml" filepath="$PROJECT_DIR$/dataloading/dataloading.iml" />
       <module fileurl="file://$PROJECT_DIR$/dataloading2/dataloading2.iml" filepath="$PROJECT_DIR$/dataloading2/dataloading2.iml" />

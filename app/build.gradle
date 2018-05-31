@@ -98,7 +98,7 @@ dependencies {
     implementation project(':logging')
     implementation project(':showcase')
     implementation project(':views')
-    implementation project(':floatingsearchview')
+    implementation project(':camera2')
 }
 
 configurations.all {

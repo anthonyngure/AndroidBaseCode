@@ -38,6 +38,7 @@ public class DataLoadingConfig<M> {
     private AsyncHttpClient asyncHttpClient;
     private Class<M> modelClass;
     private boolean topViewCollapsible = false;
+    private boolean horizontalDividerEnabled = true;
 
     @StringRes
     private int loadingMessage = R.string.message_loading;
@@ -207,5 +208,14 @@ public class DataLoadingConfig<M> {
     public DataLoadingConfig<M> withTopViewCollapsible() {
         this.topViewCollapsible = true;
         return this;
+    }
+
+    public DataLoadingConfig<M> withHorizontalDividerDisabled() {
+        this.horizontalDividerEnabled = false;
+        return this;
+    }
+
+    public boolean isHorizontalDividerEnabled() {
+        return horizontalDividerEnabled;
     }
 }

@@ -12,6 +12,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import cz.msebera.android.httpclient.Header;
+import ke.co.toshngure.dataloading2.decoration.HorizontalDividerItemDecoration;
 
 /**
  * Created by Anthony Ngure on 25/01/2018.
@@ -102,6 +104,10 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.setAdapter(mFastItemAdapter);
         mRecyclerView.addOnScrollListener(new ScrollListener());
+        if (mDataLoadingConfig.isHorizontalDividerEnabled()){
+            mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(mActivity).build());
+            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        }
         mListener.onSetUpRecyclerView(mRecyclerView);
 
         mListener.setUpTopView(view.findViewById(R.id.topViewContainer));
