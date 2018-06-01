@@ -186,7 +186,6 @@ public class ModelFragment<M> extends Fragment implements LoaderManager.LoaderCa
         if (mDataLoadingConfig != null && mDataLoadingConfig.isDebugEnabled()) {
             Log.d(TAG, String.valueOf(msg));
         }
-        Toast.makeText(getActivity(), String.valueOf(msg), Toast.LENGTH_SHORT).show();
     }
 
     private static class CacheLoader<M> extends ModelLoader<M> {
