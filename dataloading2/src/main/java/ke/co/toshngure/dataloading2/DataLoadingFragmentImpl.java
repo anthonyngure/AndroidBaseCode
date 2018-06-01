@@ -298,7 +298,8 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         void refresh();
     }
 
-    private static final class CacheLoader<M extends IItem<M, ?>> extends BaseLoader<M> {
+
+    private static final class CacheLoader<M extends IItem<M, ?>> extends ModelListLoader<M> {
 
         private Listener<M> mListener;
 
@@ -306,6 +307,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
             super(context);
             this.mListener = listener;
         }
+
 
         @Override
         public List<M> onLoad() {
@@ -334,6 +336,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
             super.onStart();
             if (isLoadingMore) {
                 mMoreLoadManager.onStartLoading();
+
             } else {
                 if (mFastItemAdapter.getAdapterItemCount() == 0) {
                     mFreshLoadManager.onStartLoading();

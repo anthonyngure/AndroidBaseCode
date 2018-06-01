@@ -38,7 +38,7 @@ public class UserCell extends SimpleCell<User, UserCell.UserViewHolder> {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.cell_user;
+        return R.layout.item_user;
     }
 
     @NonNull

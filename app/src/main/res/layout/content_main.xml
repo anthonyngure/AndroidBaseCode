@@ -38,6 +38,12 @@
             style="@style/TestSimpleListItemView"
             app:sliTitle="Bottom Sheet Data Loading" />
 
+
+        <ke.co.toshngure.views.SimpleListItemView
+            android:id="@+id/modelDataLoadingFragmentSLIV"
+            style="@style/TestSimpleListItemView"
+            app:sliTitle="Model Data Loading" />
+
         <ke.co.toshngure.views.SimpleListItemView
             android:id="@+id/networkImageSLIV"
             style="@style/TestSimpleListItemView"
@@ -68,10 +74,6 @@
             style="@style/TestSimpleListItemView"
             app:sliTitle="Image Picker Test" />
 
-        <ke.co.toshngure.views.SimpleListItemView
-            android:id="@+id/floatingSearchViewSLIV"
-            style="@style/TestSimpleListItemView"
-            app:sliTitle="Floating View Search Test" />
 
         <ke.co.toshngure.views.SimpleListItemView
             android:id="@+id/connectionHandlerSLIV"

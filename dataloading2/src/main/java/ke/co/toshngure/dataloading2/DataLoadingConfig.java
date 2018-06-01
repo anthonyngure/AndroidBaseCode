@@ -39,6 +39,7 @@ public class DataLoadingConfig<M> {
     private Class<M> modelClass;
     private boolean topViewCollapsible = false;
     private boolean horizontalDividerEnabled = true;
+    private boolean singleItemMode = false;
 
     @StringRes
     private int loadingMessage = R.string.message_loading;
@@ -210,6 +211,11 @@ public class DataLoadingConfig<M> {
         return this;
     }
 
+    public DataLoadingConfig<M> withRefreshEnabled() {
+        this.refreshEnabled = true;
+        return this;
+    }
+
     public DataLoadingConfig<M> withHorizontalDividerDisabled() {
         this.horizontalDividerEnabled = false;
         return this;
@@ -217,5 +223,14 @@ public class DataLoadingConfig<M> {
 
     public boolean isHorizontalDividerEnabled() {
         return horizontalDividerEnabled;
+    }
+
+    public DataLoadingConfig<M> withSingleItemModeEnable() {
+        this.singleItemMode = true;
+        return this;
+    }
+
+    public boolean isSingleItemMode() {
+        return singleItemMode;
     }
 }

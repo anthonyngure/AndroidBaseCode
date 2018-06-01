@@ -73,7 +73,7 @@ public class User extends AbstractItem<User, User.ViewHolder> {
 
     @Override
     public int getLayoutRes() {
-        return R.layout.cell_user;
+        return R.layout.item_user;
     }
 
 

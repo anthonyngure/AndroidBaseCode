@@ -70,6 +70,15 @@ public class UsersFragment2 extends ModelListFragment<User> {
         topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
     }*/
 
+
+    /*@Override
+    public void setUpBottomView(FrameLayout bottomViewContainer) {
+        super.setUpBottomView(bottomViewContainer);
+        LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, bottomViewContainer);
+        NetworkImage topViewNI = bottomViewContainer.findViewById(R.id.topViewNI);
+        topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
+    }*/
+
     @Override
     public void onSetUpRecyclerView(RecyclerView recyclerView) {
         super.onSetUpRecyclerView(recyclerView);
@@ -82,12 +91,5 @@ public class UsersFragment2 extends ModelListFragment<User> {
         super.onSetUpAdapter(itemAdapter);
     }
 
-    /*@Override
-    public void setUpBottomView(FrameLayout bottomViewContainer) {
-        super.setUpBottomView(bottomViewContainer);
-        LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, bottomViewContainer);
-        NetworkImage topViewNI = bottomViewContainer.findViewById(R.id.topViewNI);
-        topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
-    }*/
 
 }

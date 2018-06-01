@@ -18,14 +18,14 @@ import java.util.List;
  * Email : anthonyngure25@gmail.com.
  * Company : Laysan Incorporation
  */
-abstract class BaseLoader<T> extends AsyncTaskLoader<List<T>> {
+public abstract class ModelListLoader<T> extends AsyncTaskLoader<List<T>> {
 
-    private static final String TAG = BaseLoader.class.getSimpleName();
+    private static final String TAG = ModelListLoader.class.getSimpleName();
 
     private List<T> mData;
 
 
-    BaseLoader(Context context) {
+    ModelListLoader(Context context) {
         super(context);
     }
 

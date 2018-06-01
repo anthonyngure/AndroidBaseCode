@@ -17,9 +17,9 @@ import java.util.List;
  */
 class DataParserTask<M extends IItem<M, ?>> extends AsyncTask<Object, Void, List<M>> {
 
-    public static final String META = "meta";
+    static final String META = "meta";
     private static final String CURSORS = "cursors";
-    public static final String MESSAGE = "message";
+    static final String MESSAGE = "message";
     static final String DATA = "data";
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
 
@@ -29,7 +29,7 @@ class DataParserTask<M extends IItem<M, ?>> extends AsyncTask<Object, Void, List
 
     @Override
     protected List<M> doInBackground(Object... objects) {
-        List<M> items = new ArrayList<M>();
+        List<M> items = new ArrayList<>();
         try {
 
             JSONArray itemsJSONArray;

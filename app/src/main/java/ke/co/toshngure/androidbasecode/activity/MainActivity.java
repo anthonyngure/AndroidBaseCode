@@ -19,6 +19,7 @@ import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.fragment.ImagePickerFragment;
 import ke.co.toshngure.androidbasecode.fragment.PostsFragment;
+import ke.co.toshngure.androidbasecode.fragment.UserFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragment;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragment2;
 import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheetFragment;
@@ -66,6 +67,11 @@ public class MainActivity extends BaseActivity {
         //startActivity(new Intent(this, DataLoadingActivity.class));
         ReusableFragmentActivity.start(this, UsersFragment.newInstance(), getString(R.string.app_name));
         //startActivity(new Intent(this, TestActivity.class));
+    }
+
+    @OnClick(R.id.modelDataLoadingFragmentSLIV)
+    public void onModelDataLoadingFragmentSLIVClick() {
+        ReusableFragmentActivity.start(this, UserFragment.newInstance(), "Model Data Loading");
     }
 
     @OnClick(R.id.dataLoading2FullFragmentSLIV)
