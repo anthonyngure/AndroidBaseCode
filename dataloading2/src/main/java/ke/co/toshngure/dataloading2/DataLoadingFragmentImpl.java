@@ -105,7 +105,9 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         mRecyclerView.setAdapter(mFastItemAdapter);
         mRecyclerView.addOnScrollListener(new ScrollListener());
         if (mDataLoadingConfig.isHorizontalDividerEnabled()){
-            mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(mActivity).build());
+            mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(mActivity)
+                    .showLastDivider()
+                    .build());
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         }
         mListener.onSetUpRecyclerView(mRecyclerView);
