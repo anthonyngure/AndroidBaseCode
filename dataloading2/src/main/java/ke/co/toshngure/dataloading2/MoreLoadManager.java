@@ -40,7 +40,7 @@ class MoreLoadManager {
         messageTV.setOnClickListener(view1 -> {
             mDataLoadingFragmentImpl.isLoadingMore = true;
             loadingPB.setVisibility(View.VISIBLE);
-            messageTV.setVisibility(View.GONE);
+            messageTV.setText(R.string.message_loading);
             mDataLoadingFragmentImpl.connect();
         });
     }
@@ -62,7 +62,6 @@ class MoreLoadManager {
     }
 
     private void onError(int statusCode, Object error) {
-        messageTV.setVisibility(View.VISIBLE);
         loadingPB.setVisibility(View.GONE);
         messageTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessage());
         messageTV.setTextColor(ContextCompat.getColor(messageTV.getContext(),
@@ -72,7 +71,7 @@ class MoreLoadManager {
 
 
     void onStartLoading() {
-        messageTV.setVisibility(View.GONE);
+        messageTV.setText(R.string.message_loading);
         loadingPB.setVisibility(View.VISIBLE);
         moreLoadContainer.setVisibility(View.VISIBLE);
     }
