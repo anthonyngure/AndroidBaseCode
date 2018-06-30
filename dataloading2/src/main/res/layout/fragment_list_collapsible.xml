@@ -23,7 +23,6 @@
             android:id="@id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
             app:contentScrim="@android:color/transparent"
             app:expandedTitleTextAppearance="@style/TransparentText"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
