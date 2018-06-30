@@ -9,7 +9,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="ke.co.toshngure.basecode.app.ReusableFragmentActivity">
 
     <include layout="@layout/layout_appbar" />

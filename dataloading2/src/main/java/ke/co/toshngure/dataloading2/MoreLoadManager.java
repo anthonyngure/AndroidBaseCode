@@ -58,7 +58,7 @@ class MoreLoadManager {
     }
 
     void onRetry(int retryNo) {
-
+        Log.i(TAG, "onRetry = " + retryNo);
     }
 
     private void onError(int statusCode, Object error) {
