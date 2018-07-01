@@ -64,6 +64,8 @@ public class ImagePickerFragment extends Fragment {
         photoIP.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
