@@ -86,12 +86,14 @@ public abstract class Callback<M> {
             if (showDialog) {
                 baseAppActivity.hideProgressDialog();
             }
-            new AlertDialog.Builder(baseAppActivity)
-                    .setTitle(R.string.connection_timed_out)
-                    .setMessage(R.string.error_connection)
-                    .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> onCancel())
-                    .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
-                    .create().show();
+            if (showDialog){
+                new AlertDialog.Builder(baseAppActivity)
+                        .setTitle(R.string.connection_timed_out)
+                        .setMessage(R.string.error_connection)
+                        .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> onCancel())
+                        .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
+                        .create().show();
+            }
         }
     }
 
@@ -114,7 +116,7 @@ public abstract class Callback<M> {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(baseAppActivity)
                     .setCancelable(true);
-            if (!TextUtils.isEmpty(message)) {
+            if (!TextUtils.isEmpty(message) && showDialog) {
                 builder.setMessage(message)
                         .setNegativeButton(android.R.string.ok, null)
                         .setPositiveButton(R.string.retry, (dialog, which) -> onRetry())
