@@ -7,12 +7,16 @@ package ke.co.toshngure.camera;/*
  */
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
+
+import java.util.Objects;
 
 
 /**
@@ -44,9 +48,11 @@ public class ImagePickerUtils {
         try {
             fragment.startActivityForResult(getImagePicker(), requestCode);
         } catch (ActivityNotFoundException e) {
-            showImagePickerError(fragment.getContext());
+            showImagePickerError(Objects.requireNonNull(fragment.getContext()));
         }
     }
+
+
 
 
     private static Intent getImagePicker() {

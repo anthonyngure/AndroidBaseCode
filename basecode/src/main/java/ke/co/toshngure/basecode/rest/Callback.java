@@ -215,7 +215,7 @@ public abstract class Callback<M> {
     }
 
     protected void showErrorAlertDialog(String message) {
-        if (baseAppActivity != null) {
+        if (baseAppActivity != null && showDialog) {
             new AlertDialog.Builder(baseAppActivity)
                     .setCancelable(true)
                     .setMessage(message)

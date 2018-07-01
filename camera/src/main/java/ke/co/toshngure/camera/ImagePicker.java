@@ -1,11 +1,14 @@
 package ke.co.toshngure.camera;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,6 +26,9 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Anthony Ngure on 31/12/2017.
@@ -38,7 +44,9 @@ public class ImagePicker extends FrameLayout {
     LinearLayout addPhotoLL;
     FrameLayout photoFL;
     FrameLayout loaderFL;
+    FrameLayout permissionsFL;
     TextView textTV;
+    TextView permissionTV;
     private File file;
 
     private Context mContext;
@@ -60,11 +68,16 @@ public class ImagePicker extends FrameLayout {
         photoIV = findViewById(R.id.photoIV);
         photoFL = findViewById(R.id.photoFL);
         loaderFL = findViewById(R.id.loaderFL);
+        permissionsFL = findViewById(R.id.permissionsFL);
+        permissionsFL.setOnClickListener(this::onPermissionFLClicked);
         textTV = findViewById(R.id.textTV);
         deleteIV = findViewById(R.id.deleteIV);
         findViewById(R.id.deleteIV).setOnClickListener(this::onDeleteIVClicked);
         addPhotoLL = findViewById(R.id.addPhotoLL);
         findViewById(R.id.addPhotoLL).setOnClickListener(this::onAddPhotoLLClicked);
+        permissionTV = findViewById(R.id.permissionsTV);
+        permissionTV.setText(R.string.error_camera_storage_permissions);
+
     }
 
     public void setActivity(AppCompatActivity activity, int requestCode, boolean required) {
@@ -74,6 +87,7 @@ public class ImagePicker extends FrameLayout {
         if (required) {
             textTV.setText(Html.fromHtml(mActivity.getString(R.string.add_a_photo_required)));
         }
+        updatePermissionsUI();
     }
 
     public void setFragment(Fragment fragment, int requestCode, boolean required) {
@@ -81,12 +95,17 @@ public class ImagePicker extends FrameLayout {
         this.mContext = fragment.getActivity();
         this.mRequestCode = requestCode;
         if (required) {
-            textTV.setText(Html.fromHtml(mContext.getString(R.string.add_a_photo_required)));
+            textTV.setText(Html.fromHtml(Objects.requireNonNull(mContext).getString(R.string.add_a_photo_required)));
         }
+        updatePermissionsUI();
     }
 
     public void setText(String text) {
         textTV.setText(text);
+    }
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        updatePermissionsUI();
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -180,5 +199,58 @@ public class ImagePicker extends FrameLayout {
         addPhotoLL.setVisibility(GONE);
         loaderFL.setVisibility(GONE);
         photoFL.setVisibility(VISIBLE);
+    }
+
+    private void setPermissionsMessage(String message){
+        permissionTV.setText(message);
+    }
+
+    private void updatePermissionsUI() {
+        if (getMissingPermissions().size() > 0) {
+            addPhotoLL.setVisibility(GONE);
+            photoFL.setVisibility(View.GONE);
+            loaderFL.setVisibility(View.GONE);
+            permissionsFL.setVisibility(View.VISIBLE);
+        } else {
+            addPhotoLL.setVisibility(VISIBLE);
+            photoFL.setVisibility(View.GONE);
+            loaderFL.setVisibility(View.GONE);
+            permissionsFL.setVisibility(View.GONE);
+        }
+    }
+
+    public void onPermissionFLClicked(View v) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            List<String> permissions = getMissingPermissions();
+            if (mActivity != null){
+                mActivity.requestPermissions(permissions.toArray(new String[permissions.size()]), 0);
+            } else {
+                mFragment.requestPermissions(permissions.toArray(new String[permissions.size()]), 0);
+            }
+
+        }
+    }
+
+    private List<String> getMissingPermissions() {
+        ArrayList<String> permissions = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            AppCompatActivity appCompatActivity = mActivity;
+            if (appCompatActivity == null){
+                appCompatActivity = (AppCompatActivity) mContext;
+            }
+
+            if (appCompatActivity.checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.CAMERA);
+            }
+
+            if (appCompatActivity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+
+            if (appCompatActivity.checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+            }
+        }
+        return permissions;
     }
 }

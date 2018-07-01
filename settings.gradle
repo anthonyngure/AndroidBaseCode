@@ -6,7 +6,7 @@
  * Email : anthonyngure25@gmail.com
  */
 
-include ':app', ':camera2'
+include ':app'
 include ':basecode'
 include ':dataloading'
 include ':dataloading2'
@@ -17,4 +17,5 @@ include ':logging'
 include ':chipcloud'
 include ':editor'
 include ':views'
+include ':camera2'
 include ':floatingsearchview'
