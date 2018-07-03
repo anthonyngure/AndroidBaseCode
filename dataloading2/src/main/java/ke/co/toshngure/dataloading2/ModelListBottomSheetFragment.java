@@ -21,7 +21,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.loopj.android.http.RequestParams;
+import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import java.util.ArrayList;
@@ -44,13 +46,14 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
         implements DataLoadingFragmentImpl.Listener<M> {
 
 
-    protected FastItemAdapter<M> mFastItemAdapter;
+    protected ItemAdapter<M> mItemAdapter;
     protected RecyclerView mRecyclerView;
     protected FrameLayout mBottomViewContainer;
     protected FrameLayout mTopViewContainer;
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
+    private FastAdapter<M> mFastAdapter;
 
     public ModelListBottomSheetFragment() {
     }
@@ -125,8 +128,9 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     }
 
     @Override
-    public void onSetUpAdapter(FastItemAdapter<M> fastItemAdapter) {
-        this.mFastItemAdapter = fastItemAdapter;
+    public void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter<M> fastAdapter) {
+        this.mItemAdapter = itemAdapter;
+        this.mFastAdapter = fastAdapter;
     }
 
     @Override

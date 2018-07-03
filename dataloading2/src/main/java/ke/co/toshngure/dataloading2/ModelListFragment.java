@@ -13,7 +13,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,13 +21,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.loopj.android.http.RequestParams;
+import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import ke.co.toshngure.dataloading2.decoration.HorizontalDividerItemDecoration;
 
 /**
  * Created by Anthony Ngure on 04/06/2017.
@@ -46,12 +45,13 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
 
 
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
-    protected FastItemAdapter<M> mFastItemAdapter;
+    protected ItemAdapter<M> mItemAdapter;
     protected RecyclerView mRecyclerView;
     protected FrameLayout mBottomViewContainer;
     protected FrameLayout mTopViewContainer;
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
+    private FastAdapter<M> mFastAdapter;
 
     public ModelListFragment() {
     }
@@ -126,8 +126,9 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     }
 
     @Override
-    public void onSetUpAdapter(FastItemAdapter<M> fastItemAdapter) {
-        this.mFastItemAdapter = fastItemAdapter;
+    public void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter<M> fastAdapter) {
+        this.mItemAdapter = itemAdapter;
+        this.mFastAdapter = fastAdapter;
     }
 
     @Override

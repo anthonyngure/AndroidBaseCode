@@ -13,8 +13,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IAdapter;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
+import com.mikepenz.fastadapter.listeners.OnClickListener;
 
 import ke.co.toshngure.androidbasecode.model.User;
 import ke.co.toshngure.androidbasecode.network.Client;
@@ -87,9 +93,14 @@ public class UsersFragment2 extends ModelListFragment<User> {
 
 
     @Override
-    public void onSetUpAdapter(FastItemAdapter<User> itemAdapter) {
-        super.onSetUpAdapter(itemAdapter);
+    public void onSetUpAdapter(ItemAdapter<User> itemAdapter, FastAdapter<User> fastAdapter) {
+        super.onSetUpAdapter(itemAdapter, fastAdapter);
+        fastAdapter.withOnClickListener(new OnClickListener<User>() {
+            @Override
+            public boolean onClick(View v, IAdapter<User> adapter, User item, int position) {
+                Toast.makeText(getActivity(), "On Click", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
-
-
 }

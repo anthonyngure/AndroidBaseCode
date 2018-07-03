@@ -89,7 +89,7 @@ class FreshLoadManager {
     }
 
     private void onError(int statusCode, String error) {
-        if (mDataLoadingFragmentImpl.mFastItemAdapter.getAdapterItemCount() == 0) {
+        if (mDataLoadingFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
             mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
@@ -103,7 +103,7 @@ class FreshLoadManager {
     }
 
     void onStartLoading() {
-        if (mDataLoadingFragmentImpl.mFastItemAdapter.getAdapterItemCount() == 0) {
+        if (mDataLoadingFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
             mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.GONE);
@@ -112,7 +112,7 @@ class FreshLoadManager {
     }
 
     void onDataParsed() {
-        if (mDataLoadingFragmentImpl.mFastItemAdapter.getAdapterItemCount() == 0) {
+        if (mDataLoadingFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
             mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);

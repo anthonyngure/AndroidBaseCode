@@ -24,7 +24,9 @@ import android.widget.ImageView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
 
@@ -50,7 +52,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
-    FastItemAdapter<M> mFastItemAdapter;
+    ItemAdapter<M> mItemAdapter;
     boolean isLoadingMore;
     private RecyclerView mRecyclerView;
     private FragmentActivity mActivity;
@@ -96,13 +98,14 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
 
         //Configure adapter
-        mFastItemAdapter = new FastItemAdapter<>(); //Will hold the items
-        mListener.onSetUpAdapter(mFastItemAdapter);
+        mItemAdapter = new ItemAdapter<>(); //Will hold the items
+        FastAdapter<M> fastAdapter = FastAdapter.with(mItemAdapter);
+        mListener.onSetUpAdapter(mItemAdapter, fastAdapter);
 
         //Configure recyclerView
         mRecyclerView = view.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
-        mRecyclerView.setAdapter(mFastItemAdapter);
+        mRecyclerView.setAdapter(fastAdapter);
         mRecyclerView.addOnScrollListener(new ScrollListener());
         if (mDataLoadingConfig.isHorizontalDividerEnabled()){
             mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(mActivity)
@@ -121,7 +124,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     }
 
     void onStart() {
-        if (mFastItemAdapter.getAdapterItemCount() == 0) {
+        if (mItemAdapter.getAdapterItemCount() == 0) {
             //Load cache data
             if (mDataLoadingConfig.isCacheEnabled()) {
 
@@ -152,9 +155,9 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         log("onLoadFinished");
         log("Data Size = " + data.size());
 
-        mFastItemAdapter.clear();
+        mItemAdapter.clear();
 
-        mFastItemAdapter.add(0, data);
+        mItemAdapter.add(0, data);
 
 
         mFreshLoadManager.onLoadFinished();
@@ -230,17 +233,17 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         log("onPostExecute");
         log("Data Size : " + items.size());
         if (isLoadingMore) {
-            mFastItemAdapter.add(items);
+            mItemAdapter.add(items);
             isLoadingMore = false;
             hasMoreToBottom = items.size() != 0;
         } else {
-            mFastItemAdapter.add(0, items);
+            mItemAdapter.add(0, items);
             mRecyclerView.smoothScrollToPosition(0);
             mSwipeRefreshLayout.setRefreshing(false);
         }
 
         //In case of cursor problems
-        if (mFastItemAdapter.getAdapterItemCount() == 0 && mDataLoadingConfig.isCacheEnabled()) {
+        if (mItemAdapter.getAdapterItemCount() == 0 && mDataLoadingConfig.isCacheEnabled()) {
             resetCursors();
         }
 
@@ -260,7 +263,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
     public void refresh() {
         //Load cache data
-        mFastItemAdapter.clear();
+        mItemAdapter.clear();
         if (mDataLoadingConfig.isCacheEnabled()) {
             mActivity.getSupportLoaderManager().restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
@@ -293,7 +296,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
         void onSetUpRecyclerView(RecyclerView recyclerView);
 
-        void onSetUpAdapter(FastItemAdapter<M> itemAdapter);
+        void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter<M> fastAdapter);
 
         void refresh();
     }
@@ -322,7 +325,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
             log("onLoadMore, Page = " + currentPage);
             if (hasMoreToBottom
                     && !mSwipeRefreshLayout.isRefreshing()
-                    && mFastItemAdapter.getAdapterItemCount() > 0
+                    && mItemAdapter.getAdapterItemCount() > 0
                     && mDataLoadingConfig.isLoadingMoreEnabled()) {
                 isLoadingMore = true;
                 connect();
@@ -338,7 +341,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
                 mMoreLoadManager.onStartLoading();
 
             } else {
-                if (mFastItemAdapter.getAdapterItemCount() == 0) {
+                if (mItemAdapter.getAdapterItemCount() == 0) {
                     mFreshLoadManager.onStartLoading();
                 } else {
                     //This is when AutoRefresh is enabled and there is cache
