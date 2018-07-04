@@ -138,6 +138,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     }
 
     void refreshCache(){
+        log("refreshCache");
         //Load cache data
         if (mDataLoadingConfig.isCacheEnabled()) {
             mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
@@ -263,6 +264,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
     @Override
     public void onRefresh() {
+        log("onRefresh");
         if (!isLoadingMore && mDataLoadingConfig.isRefreshEnabled()) {
             mSwipeRefreshLayout.setRefreshing(true);
             connect();

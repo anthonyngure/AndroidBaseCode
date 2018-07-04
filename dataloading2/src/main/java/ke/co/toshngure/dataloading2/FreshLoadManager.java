@@ -93,7 +93,8 @@ class FreshLoadManager {
             mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
-            errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.connect());
+
+            errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.onStart());
             loadingLL.setVisibility(View.GONE);
             errorTV.setText(error);
             errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
