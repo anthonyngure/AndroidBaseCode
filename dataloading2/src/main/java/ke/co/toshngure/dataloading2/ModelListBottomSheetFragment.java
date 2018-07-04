@@ -53,7 +53,7 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
-    private FastAdapter<M> mFastAdapter;
+    protected FastAdapter<M> mFastAdapter;
 
     public ModelListBottomSheetFragment() {
     }
@@ -135,6 +135,11 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
 
     @Override
     public void refresh() {
+        mDataLoadingFragmentImpl.refresh();
+    }
+
+    @Override
+    public void refreshCache() {
         mDataLoadingFragmentImpl.refresh();
     }
 

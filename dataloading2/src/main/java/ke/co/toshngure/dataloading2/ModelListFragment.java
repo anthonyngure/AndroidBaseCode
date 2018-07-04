@@ -51,7 +51,7 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     protected FrameLayout mTopViewContainer;
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
-    private FastAdapter<M> mFastAdapter;
+    protected FastAdapter<M> mFastAdapter;
 
     public ModelListFragment() {
     }
@@ -134,6 +134,11 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     @Override
     public void refresh() {
         mDataLoadingFragmentImpl.refresh();
+    }
+
+    @Override
+    public void refreshCache() {
+        mDataLoadingFragmentImpl.refreshCache();
     }
 
 
