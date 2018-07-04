@@ -137,6 +137,10 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
     }
 
+    /**
+     * Restarts the loader if cache is enable
+     * Connects if cache is not enable
+     */
     void refreshCache(){
         log("refreshCache");
         //Load cache data
