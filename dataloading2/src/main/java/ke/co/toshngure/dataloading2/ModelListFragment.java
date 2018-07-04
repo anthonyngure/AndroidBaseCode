@@ -136,10 +136,6 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
         mDataLoadingFragmentImpl.refresh();
     }
 
-    @Override
-    public void refreshCache() {
-        mDataLoadingFragmentImpl.refreshCache();
-    }
 
 
 }

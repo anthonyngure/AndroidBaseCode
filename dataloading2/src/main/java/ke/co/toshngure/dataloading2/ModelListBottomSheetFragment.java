@@ -138,10 +138,6 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
         mDataLoadingFragmentImpl.refresh();
     }
 
-    @Override
-    public void refreshCache() {
-        mDataLoadingFragmentImpl.refresh();
-    }
 
 
 }
