@@ -137,20 +137,6 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
     }
 
-    /**
-     * Restarts the loader if cache is enable
-     * Connects if cache is not enable
-     */
-    void refreshCache(){
-        log("refreshCache");
-        //Load cache data
-        if (mDataLoadingConfig.isCacheEnabled()) {
-            mActivity.getSupportLoaderManager().restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
-        } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
-            mTempModelCursors = new ModelCursor(0, 0);
-            connect();
-        }
-    }
 
     private void log(Object msg) {
         if (mDataLoadingConfig != null && mDataLoadingConfig.isDebugEnabled()) {
@@ -277,6 +263,10 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         }
     }
 
+    /**
+     * Restarts the loader if cache is enable
+     * Connects if cache is not enable
+     */
     public void refresh() {
         //Load cache data
         mItemAdapter.clear();
@@ -315,8 +305,6 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter<M> fastAdapter);
 
         void refresh();
-
-        void refreshCache();
     }
 
 
