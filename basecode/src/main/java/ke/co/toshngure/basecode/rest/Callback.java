@@ -107,10 +107,8 @@ public abstract class Callback<M> {
 
     protected void onFailure(int statusCode, JSONObject response) {
         Logger.log("Connection failed! " + statusCode + ", " + String.valueOf(response));
-        if (baseAppActivity != null) {
-            if (showDialog) {
-                baseAppActivity.hideProgressDialog();
-            }
+        if (baseAppActivity != null && showDialog) {
+            baseAppActivity.hideProgressDialog();
 
             String message = Client.getConfig().getResponseDefinition().message(statusCode, response);
 
