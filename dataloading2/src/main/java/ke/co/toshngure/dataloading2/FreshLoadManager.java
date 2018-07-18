@@ -125,6 +125,7 @@ class FreshLoadManager {
                 }
             });
             loadingLL.setVisibility(View.GONE);
+            errorIV.setVisibility(mDataLoadingFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
             errorTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessage());
             errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
                     mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessageColor()));
@@ -158,6 +159,7 @@ class FreshLoadManager {
         this.errorLL = view.findViewById(R.id.errorLL);
         this.errorTV = view.findViewById(R.id.errorTV);
         this.errorIV = view.findViewById(R.id.errorIV);
+        this.errorIV.setVisibility(mDataLoadingFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
 
     }
 
