@@ -4,6 +4,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ class FreshLoadManager {
      */
     private LinearLayout loadingLL;
     private TextView loadingTV;
+    private ImageView errorIV;
 
     /**
      * Error View
@@ -93,10 +95,10 @@ class FreshLoadManager {
             mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
-
             errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.onStart());
             loadingLL.setVisibility(View.GONE);
             errorTV.setText(error);
+            errorIV.setVisibility(mDataLoadingFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
             errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
                     mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessageColor()));
             Log.e(TAG, String.valueOf("StatusCode = " + statusCode + ", ERROR: " + error));
@@ -155,6 +157,7 @@ class FreshLoadManager {
 
         this.errorLL = view.findViewById(R.id.errorLL);
         this.errorTV = view.findViewById(R.id.errorTV);
+        this.errorIV = view.findViewById(R.id.errorIV);
 
     }
 

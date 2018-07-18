@@ -10,6 +10,7 @@ package ke.co.toshngure.dataloading2;
 
 import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
+import android.view.View;
 
 import com.loopj.android.http.AsyncHttpClient;
 
@@ -57,6 +58,8 @@ public class DataLoadingConfig<M> {
     private int noMoreDataMessage = R.string.message_no_more_data;
     @ColorRes
     private int noMoreDataMessageColor = android.R.color.black;
+
+    private int messageIconVisibility = View.VISIBLE;
 
     public DataLoadingConfig() {
     }
@@ -148,6 +151,11 @@ public class DataLoadingConfig<M> {
         return this;
     }
 
+    public DataLoadingConfig<M> withLoadingMessage(@StringRes int loadingMessage) {
+        this.loadingMessage = loadingMessage;
+        return this;
+    }
+
     int getErrorMessage() {
         return errorMessage;
     }
@@ -155,6 +163,11 @@ public class DataLoadingConfig<M> {
     public DataLoadingConfig<M> withErrorMessage(@StringRes int errorMessage, @ColorRes int errorMessageColor) {
         this.errorMessage = errorMessage;
         this.errorMessageColor = errorMessageColor;
+        return this;
+    }
+
+    public DataLoadingConfig<M> withErrorMessage(@StringRes int errorMessage) {
+        this.errorMessage = errorMessage;
         return this;
     }
 
@@ -168,6 +181,11 @@ public class DataLoadingConfig<M> {
         return this;
     }
 
+    public DataLoadingConfig<M> withEmptyDataMessage(@StringRes int emptyDataMessage) {
+        this.emptyDataMessage = emptyDataMessage;
+        return this;
+    }
+
     int getNoMoreDataMessage() {
         return noMoreDataMessage;
     }
@@ -175,6 +193,11 @@ public class DataLoadingConfig<M> {
     public DataLoadingConfig<M> withNoMoreDataMessage(@StringRes int noMoreDataMessage, @ColorRes int noMoreDataMessageColor) {
         this.noMoreDataMessage = noMoreDataMessage;
         this.noMoreDataMessageColor = noMoreDataMessageColor;
+        return this;
+    }
+
+    public DataLoadingConfig<M> withNoMoreDataMessage(@StringRes int noMoreDataMessage) {
+        this.noMoreDataMessage = noMoreDataMessage;
         return this;
     }
 
@@ -209,6 +232,15 @@ public class DataLoadingConfig<M> {
     public DataLoadingConfig<M> withTopViewCollapsible() {
         this.topViewCollapsible = true;
         return this;
+    }
+
+    public DataLoadingConfig<M> withMessageIconHidden() {
+        this.messageIconVisibility = View.GONE;
+        return this;
+    }
+
+    public int getMessageIconVisibility() {
+        return messageIconVisibility;
     }
 
     public DataLoadingConfig<M> withRefreshEnabled() {

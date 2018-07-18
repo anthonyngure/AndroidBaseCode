@@ -36,6 +36,7 @@
         android:paddingTop="@dimen/loader_feedback_views_padding">
 
         <ImageView
+            android:id="@+id/errorIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/app_name"
