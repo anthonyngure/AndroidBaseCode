@@ -102,7 +102,7 @@ public class Client {
 
     private void setUpClient(AsyncHttpClient client) {
         client.setUserAgent(mConfig.getContext().getPackageName());
-        client.setEnableRedirects(false, false);
+        client.setEnableRedirects(mConfig.enableRedirects(), mConfig.enableRelativeRedirects());
         client.setLoggingEnabled(mConfig.withLoggingEnabled());
         client.addHeader("Accept-Encoding", "gzip");
         client.addHeader("Accept", "application/json");
@@ -283,6 +283,14 @@ public class Client {
 
         protected void onReportError(JSONObject response) {
 
+        }
+
+        public boolean enableRedirects() {
+            return false;
+        }
+
+        public boolean enableRelativeRedirects() {
+            return true;
         }
     }
 }
