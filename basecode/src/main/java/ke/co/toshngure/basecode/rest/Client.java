@@ -102,7 +102,7 @@ public class Client {
 
     private void setUpClient(AsyncHttpClient client) {
         client.setUserAgent(mConfig.getContext().getPackageName());
-        client.setEnableRedirects(false, true);
+        client.setEnableRedirects(false, false);
         client.setLoggingEnabled(mConfig.withLoggingEnabled());
         client.addHeader("Accept-Encoding", "gzip");
         client.addHeader("Accept", "application/json");
