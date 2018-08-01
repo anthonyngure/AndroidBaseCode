@@ -27,7 +27,6 @@ import com.loopj.android.http.RequestParams;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
-import com.mikepenz.fastadapter.commons.adapters.FastItemAdapter;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
 
 import org.json.JSONArray;
@@ -308,7 +307,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     }
 
 
-    private static final class CacheLoader<M extends IItem<M, ?>> extends ModelListLoader<M> {
+    private static final class CacheLoader<M extends IItem<M, ?>> extends DataLoader<List<M>> {
 
         private Listener<M> mListener;
 

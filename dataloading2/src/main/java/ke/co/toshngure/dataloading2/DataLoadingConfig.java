@@ -9,6 +9,7 @@
 package ke.co.toshngure.dataloading2;
 
 import android.support.annotation.ColorRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
 
@@ -41,6 +42,7 @@ public class DataLoadingConfig<M> {
     private boolean topViewCollapsible = false;
     private boolean horizontalDividerEnabled = true;
     private boolean singleItemMode = false;
+    private String dataKey = "data";
 
     @StringRes
     private int loadingMessage = R.string.message_loading;
@@ -90,6 +92,22 @@ public class DataLoadingConfig<M> {
         this.loaderId = loaderId;
         return this;
     }
+
+    /**
+     * Set null data key when the direct response resolves to the model
+     * @param dataKey
+     * @return this config
+     */
+    public DataLoadingConfig<M> withDataKey(@Nullable String dataKey){
+        this.dataKey = dataKey;
+        return this;
+    }
+
+    @Nullable
+    public String getDataKey() {
+        return dataKey;
+    }
+
 
     int getLoadMoreThreshold() {
         return loadMoreThreshold;

@@ -11,30 +11,28 @@ package ke.co.toshngure.dataloading2;
 import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
-import java.util.List;
-
 /**
  * Created by Anthony Ngure on 8/26/2016.
  * Email : anthonyngure25@gmail.com.
  * Company : Laysan Incorporation
  */
-public abstract class ModelListLoader<T> extends AsyncTaskLoader<List<T>> {
+public abstract class DataLoader<T> extends AsyncTaskLoader<T> {
 
-    private static final String TAG = ModelListLoader.class.getSimpleName();
+    private static final String TAG = DataLoader.class.getSimpleName();
 
-    private List<T> mData;
+    private T mData;
 
 
-    ModelListLoader(Context context) {
+    DataLoader(Context context) {
         super(context);
     }
 
     @Override
-    public List<T> loadInBackground() {
+    public T loadInBackground() {
         return onLoad();
     }
 
-    public abstract List<T> onLoad();
+    public abstract T onLoad();
 
     @Override
     protected void onStartLoading() {
@@ -65,19 +63,19 @@ public abstract class ModelListLoader<T> extends AsyncTaskLoader<List<T>> {
     }
 
     @Override
-    public void onCanceled(List<T> data) {
+    public void onCanceled(T data) {
         super.onCanceled(data);
         releaseResources(mData);
     }
 
     @Override
-    public void deliverResult(List<T> data) {
+    public void deliverResult(T data) {
         if (isReset()) {
             releaseResources(data);
             return;
         }
 
-        List<T> oldData = mData;
+        T oldData = mData;
         mData = data;
         if (isStarted()) {
             super.deliverResult(data);
@@ -88,7 +86,7 @@ public abstract class ModelListLoader<T> extends AsyncTaskLoader<List<T>> {
         }
     }
 
-    private void releaseResources(List<T> data) {
+    private void releaseResources(T data) {
 
     }
 }
