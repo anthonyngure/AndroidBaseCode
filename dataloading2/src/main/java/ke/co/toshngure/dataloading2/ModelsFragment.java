@@ -53,6 +53,8 @@ public class ModelsFragment<M> extends Fragment implements LoaderManager.LoaderC
     private FrameLayout freshLoadContainer;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private boolean isLoading = false;
+    protected FrameLayout mBottomViewContainer;
+    protected FrameLayout mTopViewContainer;
     private List<M> mItems;
 
 
@@ -158,10 +160,11 @@ public class ModelsFragment<M> extends Fragment implements LoaderManager.LoaderC
     }
 
     protected void setUpBottomView(FrameLayout bottomViewContainer) {
-
+        this.mBottomViewContainer = bottomViewContainer;
     }
 
     protected void setUpTopView(FrameLayout topViewContainer) {
+        this.mTopViewContainer = topViewContainer;
 
     }
 
