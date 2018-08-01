@@ -58,6 +58,7 @@ abstract class AbstractItemsFragment<M> extends Fragment
     protected FrameLayout mTopViewContainer;
     private M mData;
     private List<M> mDataList = null;
+    private View errorIV;
 
 
     protected DataLoadingConfig<M> getDataLoadingConfig() {
@@ -97,6 +98,7 @@ abstract class AbstractItemsFragment<M> extends Fragment
             errorLL.setVisibility(View.VISIBLE);
             errorLL.setOnClickListener(view1 -> connect());
             loadingLL.setVisibility(View.GONE);
+            errorIV.setVisibility(mDataLoadingConfig.getMessageIconVisibility());
             errorTV.setText(mDataLoadingConfig.getEmptyDataMessage());
             errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
                     mDataLoadingConfig.getEmptyDataMessageColor()));
@@ -163,6 +165,7 @@ abstract class AbstractItemsFragment<M> extends Fragment
 
         this.errorLL = view.findViewById(R.id.errorLL);
         this.errorTV = view.findViewById(R.id.errorTV);
+        this.errorIV = view.findViewById(R.id.errorIV);
 
         return view;
     }
