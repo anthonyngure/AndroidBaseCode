@@ -136,6 +136,16 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
         mDataLoadingFragmentImpl.refresh();
     }
 
+    @Override
+    public int getCollapsibleLayoutRes() {
+        return R.layout.fragment_list_collapsible;
+    }
+
+    @Override
+    public int getNotCollapsibleLayoutRes() {
+        return R.layout.fragment_list_not_collapsible;
+    }
+
 
 
 }
