@@ -53,9 +53,6 @@ public class ToshTextView extends AppCompatTextView {
     public static final int MENTION = 0;
     public static final int HASHTAG = 1;
     public static final int WEB = 2;
-    private static final int DEFAULT_EMOJI_SIZE = 28;
-    private static final int TEXT_START = 0;
-    private static final int TEXT_LENGTH = -1;
     private static final long INITIAL_UPDATE_INTERVAL = DateUtils.MINUTE_IN_MILLIS;
 
     private long mReferenceTime;
@@ -66,6 +63,7 @@ public class ToshTextView extends AppCompatTextView {
     private ColorStateList mTint;
     @ColorRes
     private int mLinkColor;
+    private String mPrefix;
 
     public ToshTextView(Context context) {
         this(context, null);
@@ -200,11 +198,13 @@ public class ToshTextView extends AppCompatTextView {
      *
      * @param referenceTime The timestamp (in milliseconds since epoch) that will be the reference point for this view.
      */
-    public void setReferenceTime(long referenceTime) {
+    public void setReferenceTime(long referenceTime, String prefix) {
 
         this.isUsingReferenceTime = true;
 
         this.mReferenceTime = referenceTime;
+
+        this.mPrefix = prefix;
 
         /*
          * Note that this method could be called when a row in a ListView is recycled.
@@ -228,13 +228,18 @@ public class ToshTextView extends AppCompatTextView {
         updateTextDisplay();
     }
 
+    public void setReferenceTime(long referenceTime){
+        setReferenceTime(referenceTime, "");
+    }
+
+
+
     private void updateTextDisplay() {
         /*
          * TODO: Validation, Better handling of negative cases
          */
-        if (this.mReferenceTime == -1L)
-            return;
-        setText(getRelativeTimeDisplayString());
+        if (this.mReferenceTime == -1L) return;
+        setText(new StringBuilder(mPrefix).append(getRelativeTimeDisplayString()));
     }
 
     private CharSequence getRelativeTimeDisplayString() {

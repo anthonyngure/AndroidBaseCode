@@ -82,6 +82,10 @@ public class BaseUtils {
         }
     }
 
+    public static long uuidToLong(String id) {
+        return (31 * 2) + ((id != null) ? id.hashCode() : 0);
+    }
+
 
     public static void sendSms(Context context, String msg) {
         Intent intent = new Intent(Intent.ACTION_SEND);
