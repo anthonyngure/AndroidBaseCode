@@ -148,7 +148,7 @@ public abstract class Callback<M> {
                 //Data is not in a key in the response returned
                 // the response JSONObject is the dataKey and if model class is provided it will be parsed
                 if (mClass != null) {
-                    M item = BaseUtils.getSafeGson().fromJson(response.getJSONObject(Response.DATA).toString(), mClass);
+                    M item = BaseUtils.getSafeGson().fromJson(response.toString(), mClass);
                     onResponse(item);
                 } else {
                     onResponse(response);
