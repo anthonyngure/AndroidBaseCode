@@ -34,7 +34,7 @@ public class App extends Camera2App {
     @Override
     public void onCreate() {
         super.onCreate();
-        BeeLog.init(true, null);
+        BeeLog.init(true, Camera2App.class.getSimpleName());
         Client.init(new Client.Config() {
             @Override
             protected Application getContext() {

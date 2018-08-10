@@ -8,6 +8,7 @@
 
 package ke.co.toshngure.basecode.logging;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
@@ -18,16 +19,14 @@ import android.util.Log;
 public final class BeeLog {
 
     public static boolean DEBUG = false;
-    private static String tag = "ToshNgure";
+    private static String tag;
 
     private BeeLog() {
         // no instance
     }
 
-    public static void init(boolean debug, @Nullable String logTag) {
-        if (logTag != null) {
-            tag = logTag;
-        }
+    public static void init(boolean debug, @NonNull String logTag) {
+        tag = logTag;
         DEBUG = debug;
     }
 
