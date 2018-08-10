@@ -26,12 +26,14 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -86,6 +88,12 @@ public class BaseUtils {
         menuFastAdapterBottomSheetDialog.getRecyclerView()
                 .addItemDecoration(new HorizontalDividerItemDecoration.Builder(context).build());
         menuFastAdapterBottomSheetDialog.show();
+    }
+
+    public static void showErrorSnack(View view, String msg) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_INDEFINITE)
+                .setAction(android.R.string.ok, v -> {
+                }).show();
     }
 
 

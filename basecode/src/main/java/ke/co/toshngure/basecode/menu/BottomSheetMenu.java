@@ -62,6 +62,8 @@ public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMe
 
         ViewHolder(View itemView) {
             super(itemView);
+            iconIV = itemView.findViewById(R.id.iconIV);
+            titleTV = itemView.findViewById(R.id.titleTV);
         }
 
         @Override
