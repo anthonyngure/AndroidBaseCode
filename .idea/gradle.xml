@@ -13,12 +13,8 @@
             <option value="$PROJECT_DIR$/camera" />
             <option value="$PROJECT_DIR$/camera2" />
             <option value="$PROJECT_DIR$/chipcloud" />
-            <option value="$PROJECT_DIR$/dataloading" />
-            <option value="$PROJECT_DIR$/dataloading2" />
             <option value="$PROJECT_DIR$/editor" />
             <option value="$PROJECT_DIR$/filters" />
-            <option value="$PROJECT_DIR$/floatingsearchview" />
-            <option value="$PROJECT_DIR$/logging" />
             <option value="$PROJECT_DIR$/showcase" />
             <option value="$PROJECT_DIR$/views" />
           </set>

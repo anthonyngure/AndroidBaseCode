@@ -19,7 +19,7 @@ import java.util.Random;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import ke.co.toshngure.basecode.utils.DrawableUtils;
+import ke.co.toshngure.basecode.util.DrawableUtils;
 import ke.co.toshngure.androidbasecode.R;
 
 public class DrawableUtilsActivity extends BaseActivity {

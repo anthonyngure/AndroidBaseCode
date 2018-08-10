@@ -11,14 +11,12 @@ import com.mikepenz.fastadapter.ISubItem;
 import com.mikepenz.fastadapter.items.AbstractItem;
 
 import ke.co.toshngure.androidbasecode.R;
-import ke.co.toshngure.basecode.rest.annotations.Resource;
 
 /**
  * Created by Anthony Ngure on 09/03/2018.
  * Email : anthonyngure25@gmail.com.
  */
 
-@Resource(relativeUrl = "posts")
 public class Post<Parent extends IItem & IExpandable & ISubItem & IClickable>
         extends AbstractItem<Post<Parent>, Post.ViewHolder> implements ISubItem<Post, Parent> {
     @NonNull

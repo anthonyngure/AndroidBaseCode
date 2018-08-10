@@ -23,8 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
-import ke.co.toshngure.basecode.utils.BaseUtils;
-import ke.co.toshngure.basecode.utils.DrawableUtils;
+import ke.co.toshngure.basecode.util.BaseUtils;
+import ke.co.toshngure.basecode.util.DrawableUtils;
 import ke.co.toshngure.views.NetworkImage;
 
 public class NetworkImageActivity extends BaseActivity {

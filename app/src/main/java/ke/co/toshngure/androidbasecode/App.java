@@ -8,11 +8,14 @@
 
 package ke.co.toshngure.androidbasecode;
 
+import android.app.Application;
+
 import com.loopj.android.http.AsyncHttpClient;
 
-import ke.co.toshngure.androidbasecode.network.Client;
+import ke.co.toshngure.basecode.logging.BeeLog;
+import ke.co.toshngure.basecode.rest.Client;
+import ke.co.toshngure.basecode.rest.ResponseDefinition;
 import ke.co.toshngure.camera2.Camera2App;
-import ke.co.toshngure.logging.BeeLog;
 
 
 /**
@@ -32,7 +35,7 @@ public class App extends Camera2App {
     public void onCreate() {
         super.onCreate();
         BeeLog.init(true, null);
-        /*Client.init(new Client.Config() {
+        Client.init(new Client.Config() {
             @Override
             protected Application getContext() {
                 return App.this;
@@ -49,10 +52,11 @@ public class App extends Camera2App {
             }
 
             @Override
-            protected boolean withLoggingEnabled() {
-                return BuildConfig.DEBUG;
+            protected ResponseDefinition getResponseDefinition() {
+                return null;
             }
-        });*/
+
+        });
         mInstance = this;
     }
 

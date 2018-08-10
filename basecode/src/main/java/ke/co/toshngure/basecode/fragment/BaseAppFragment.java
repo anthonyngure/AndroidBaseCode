@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 
 import ke.co.toshngure.basecode.app.BaseAppActivity;
-import ke.co.toshngure.basecode.utils.BaseUtils;
+import ke.co.toshngure.basecode.util.BaseUtils;
 
 /**
  * Created by Anthony Ngure on 11/06/2017.

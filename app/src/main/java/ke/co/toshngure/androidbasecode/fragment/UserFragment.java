@@ -5,13 +5,13 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
+import java.util.List;
 import java.util.Random;
 
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.User;
-import ke.co.toshngure.androidbasecode.network.Client;
-import ke.co.toshngure.dataloading2.DataLoadingConfig;
-import ke.co.toshngure.dataloading2.ModelFragment;
+import ke.co.toshngure.basecode.dataloading.DataLoadingConfig;
+import ke.co.toshngure.basecode.dataloading.ModelFragment;
 import ke.co.toshngure.views.NetworkImage;
 
 public class UserFragment extends ModelFragment<User> {
@@ -27,17 +27,16 @@ public class UserFragment extends ModelFragment<User> {
 
     @Override
     protected DataLoadingConfig<User> getDataLoadingConfig() {
-        String url = "https://toshngure.co.ke/basecode/public/api/v1/users/"+new Random().nextInt(20);
         return super.getDataLoadingConfig()
-                .withUrl(url, Client.getInstance().getClient(), User.class, true)
+                .withRelativeUrl("/users/"+new Random().nextInt(20), User.class, true)
                 .withRefreshEnabled()
                 .withDebugEnabled()
                 .withTopViewCollapsible();
     }
 
     @Override
-    protected void onItemReady(User item) {
-        super.onItemReady(item);
+    protected void onDataReady(List<User> data) {
+        super.onDataReady(data);
         Snackbar.make(getView(), "Item is ready", Snackbar.LENGTH_INDEFINITE).show();
     }
 

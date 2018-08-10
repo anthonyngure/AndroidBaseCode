@@ -11,7 +11,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import ke.co.toshngure.androidbasecode.App;
-import ke.co.toshngure.basecode.utils.PrefUtilsImpl;
+import ke.co.toshngure.basecode.util.PrefUtilsImpl;
 
 
 /**

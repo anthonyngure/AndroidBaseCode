@@ -18,11 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.fragment.ImagePickerFragment;
-import ke.co.toshngure.androidbasecode.fragment.PostsFragment;
 import ke.co.toshngure.androidbasecode.fragment.UserFragment;
-import ke.co.toshngure.androidbasecode.fragment.UsersFragment;
-import ke.co.toshngure.androidbasecode.fragment.UsersFragment2;
-import ke.co.toshngure.androidbasecode.fragment.UsersFragmentBottomSheetFragment;
 import ke.co.toshngure.basecode.app.ReusableFragmentActivity;
 
 public class MainActivity extends BaseActivity {
@@ -59,13 +55,11 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.dataLoadingBottomSheetSLIV)
     public void onDataLoadingBottomSheetSLIVClick() {
-        UsersFragmentBottomSheetFragment.newInstance().show(getSupportFragmentManager(), "IIIIIIIIIIII");
     }
 
     @OnClick(R.id.dataLoadingFullFragmentSLIV)
     public void onDataLoadingFullFragmentSLIVClick() {
         //startActivity(new Intent(this, DataLoadingActivity.class));
-        ReusableFragmentActivity.start(this, UsersFragment.newInstance(), getString(R.string.app_name));
         //startActivity(new Intent(this, TestActivity.class));
     }
 
@@ -76,7 +70,6 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.dataLoading2FullFragmentSLIV)
     public void onDataLoading2FullFragmentSLIVClick() {
-        ReusableFragmentActivity.start(this, UsersFragment2.newInstance(), getString(R.string.app_name));
     }
 
     @OnClick(R.id.drawableUtilsSLIV)
@@ -113,7 +106,6 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.connectionHandlerSLIV)
     public void onConnectionHandlerSLIV() {
-        ReusableFragmentActivity.start(this, PostsFragment.newInstance(), "Connection Handler Test");
     }
 
 
