@@ -76,7 +76,7 @@ public class BaseUtils {
         imageView.setColorFilter(color);
     }
 
-    public static void showBottomSheetDialog(Context context, OnClickListener<BottomSheetMenu> menuOnClickListener, BottomSheetMenu... bottomSheetMenus) {
+    public static void showBottomSheetMenu(Context context, OnClickListener<BottomSheetMenu> menuOnClickListener, BottomSheetMenu... bottomSheetMenus) {
         FastAdapterBottomSheetDialog<BottomSheetMenu> menuFastAdapterBottomSheetDialog = new FastAdapterBottomSheetDialog<>(context);
         ItemAdapter<BottomSheetMenu> menuItemAdapter = new ItemAdapter<>();
         FastAdapter<BottomSheetMenu> menuFastItemAdapter = FastAdapter.with(menuItemAdapter);
