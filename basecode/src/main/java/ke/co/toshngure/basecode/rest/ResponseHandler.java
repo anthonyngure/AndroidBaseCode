@@ -224,6 +224,9 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
             default:
                 Client.getConfig().onError(statusCode);
         }
+        if (showDialog){
+            baseAppActivity.hideProgressDialog();
+        }
         onError(message);
     }
 

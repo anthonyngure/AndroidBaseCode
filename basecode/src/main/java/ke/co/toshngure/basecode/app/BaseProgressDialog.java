@@ -68,10 +68,4 @@ public class BaseProgressDialog {
             mBottomSheetDialog.dismiss();
         }
     }
-
-    public void hide() {
-        if (mBottomSheetDialog != null) {
-            mBottomSheetDialog.hide();
-        }
-    }
 }
