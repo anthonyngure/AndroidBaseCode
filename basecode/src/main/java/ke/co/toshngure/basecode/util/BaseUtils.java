@@ -42,9 +42,15 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.fastadapter.listeners.OnClickListener;
+import com.mikepenz.fastadapter_extensions.dialog.FastAdapterBottomSheetDialog;
 import com.rengwuxian.materialedittext.validation.METValidator;
 
 import ke.co.toshngure.basecode.annotations.GsonAvoid;
+import ke.co.toshngure.basecode.decoration.HorizontalDividerItemDecoration;
+import ke.co.toshngure.basecode.menu.BottomSheetMenu;
 
 
 /**
@@ -68,6 +74,18 @@ public class BaseUtils {
 
     public static void tintImageView(ImageView imageView, @ColorInt int color) {
         imageView.setColorFilter(color);
+    }
+
+    public static void showBottomSheetDialog(Context context, OnClickListener<BottomSheetMenu> menuOnClickListener, BottomSheetMenu... bottomSheetMenus) {
+        FastAdapterBottomSheetDialog<BottomSheetMenu> menuFastAdapterBottomSheetDialog = new FastAdapterBottomSheetDialog<>(context);
+        ItemAdapter<BottomSheetMenu> menuItemAdapter = new ItemAdapter<>();
+        FastAdapter<BottomSheetMenu> menuFastItemAdapter = FastAdapter.with(menuItemAdapter);
+        menuFastAdapterBottomSheetDialog.withFastItemAdapter(menuFastItemAdapter, menuItemAdapter);
+        menuFastAdapterBottomSheetDialog.withOnClickListener(menuOnClickListener);
+        menuFastAdapterBottomSheetDialog.withItems(bottomSheetMenus);
+        menuFastAdapterBottomSheetDialog.getRecyclerView()
+                .addItemDecoration(new HorizontalDividerItemDecoration.Builder(context).build());
+        menuFastAdapterBottomSheetDialog.show();
     }
 
 
