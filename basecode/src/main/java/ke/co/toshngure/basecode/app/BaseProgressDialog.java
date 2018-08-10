@@ -10,7 +10,7 @@ package ke.co.toshngure.basecode.app;
 
 import android.content.Context;
 import android.support.annotation.StringRes;
-import android.support.v7.app.AlertDialog;
+import android.support.design.widget.BottomSheetDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -26,14 +26,13 @@ import ke.co.toshngure.basecode.R;
 
 public class BaseProgressDialog {
 
-    private AlertDialog mAlertDialog;
-    private AlertDialog.Builder mBuilder;
+    private BottomSheetDialog mBottomSheetDialog;
     private Context mContext;
     private View mView;
     private TextView mMessageTV;
 
     public BaseProgressDialog(Context context) {
-        this.mBuilder = new AlertDialog.Builder(context);
+        this.mBottomSheetDialog = new BottomSheetDialog(context);
         this.mContext = context;
         this.mView = LayoutInflater.from(context).inflate(R.layout.view_progress_dialog, null);
         this.mMessageTV = mView.findViewById(R.id.messageTV);
@@ -51,31 +50,28 @@ public class BaseProgressDialog {
     }
 
     public BaseProgressDialog setCancelable(boolean cancellable) {
-        mBuilder.setCancelable(cancellable);
+        mBottomSheetDialog.setCancelable(cancellable);
         return this;
     }
 
     public boolean isShowing() {
-        return ((mAlertDialog != null) && mAlertDialog.isShowing());
+        return ((mBottomSheetDialog != null) && mBottomSheetDialog.isShowing());
     }
 
     public void show() {
-        mAlertDialog = mBuilder
-                .setView(mView)
-                .create();
-        mAlertDialog.show();
+        mBottomSheetDialog.setContentView(mView);
+        mBottomSheetDialog.show();
     }
 
     public void dismiss() {
-        if (mAlertDialog != null) {
-            mAlertDialog.dismiss();
+        if (mBottomSheetDialog != null) {
+            mBottomSheetDialog.dismiss();
         }
     }
 
-
     public void hide() {
-        if (mAlertDialog != null) {
-            mAlertDialog.hide();
+        if (mBottomSheetDialog != null) {
+            mBottomSheetDialog.hide();
         }
     }
 }
