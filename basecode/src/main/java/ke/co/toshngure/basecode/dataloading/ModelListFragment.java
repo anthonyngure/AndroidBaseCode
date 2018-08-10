@@ -108,7 +108,7 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     }
 
     @Override
-    public void onSaveItem(M item) {
+    public void onDataReady(List<M> items) {
 
     }
 

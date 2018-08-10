@@ -16,30 +16,24 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter_extensions.scroll.EndlessRecyclerOnScrollListener;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.List;
 
-import cz.msebera.android.httpclient.Header;
 import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
 import ke.co.toshngure.basecode.database.BaseAsyncTaskLoader;
-import ke.co.toshngure.basecode.dataloading.decoration.HorizontalDividerItemDecoration;
+import ke.co.toshngure.basecode.decoration.HorizontalDividerItemDecoration;
 import ke.co.toshngure.basecode.logging.BeeLog;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
@@ -273,8 +267,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
         RequestParams getRequestParams();
 
-        //Called in the background after the item has be parsed
-        void onSaveItem(M item);
+        void onDataReady(List<M> items);
 
         int addUniqueCacheKey();
 
@@ -375,6 +368,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
             }
             mFreshLoadManager.onDataParsed();
             mMoreLoadManager.onDataParsed();
+            mListener.onDataReady(items);
         }
 
 

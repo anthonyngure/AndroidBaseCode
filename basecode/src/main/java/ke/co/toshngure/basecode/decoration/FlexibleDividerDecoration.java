@@ -4,7 +4,7 @@
  * Tel +254723203475/+254706356815
  */
 
-package ke.co.toshngure.basecode.dataloading.decoration;
+package ke.co.toshngure.basecode.decoration;
 
 import android.content.Context;
 import android.content.res.Resources;

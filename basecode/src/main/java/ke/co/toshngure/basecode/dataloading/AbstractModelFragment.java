@@ -21,9 +21,6 @@ import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.List;
 
 import ke.co.toshngure.basecode.R;
@@ -32,7 +29,7 @@ import ke.co.toshngure.basecode.database.BaseAsyncTaskLoader;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
 
-abstract class AbstractModelsFragment<M> extends Fragment
+abstract class AbstractModelFragment<M> extends Fragment
         implements LoaderManager.LoaderCallbacks<List<M>>,
         SwipeRefreshLayout.OnRefreshListener {
 
@@ -261,9 +258,9 @@ abstract class AbstractModelsFragment<M> extends Fragment
 
     private static class CacheLoader<M> extends BaseAsyncTaskLoader<List<M>> {
 
-        private final AbstractModelsFragment<M> modelFragment;
+        private final AbstractModelFragment<M> modelFragment;
 
-        CacheLoader(Context context, AbstractModelsFragment<M> modelFragment) {
+        CacheLoader(Context context, AbstractModelFragment<M> modelFragment) {
             super(context);
             this.modelFragment = modelFragment;
         }

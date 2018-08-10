@@ -1,6 +1,6 @@
 package ke.co.toshngure.basecode.dataloading;
 
-public class ModelsFragment<M> extends AbstractModelsFragment<M> {
+public class ModelsFragment<M> extends AbstractModelFragment<M> {
 
     private static final String TAG = "ModelFragment";
 

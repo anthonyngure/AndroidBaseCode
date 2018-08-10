@@ -109,11 +109,6 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
         return new RequestParams();
     }
 
-    @Override
-    public void onSaveItem(M item) {
-
-    }
-
     public int addUniqueCacheKey() {
         return 0;
     }
@@ -126,6 +121,11 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     @Override
     public void onSetUpRecyclerView(RecyclerView recyclerView) {
         this.mRecyclerView = recyclerView;
+    }
+
+    @Override
+    public void onDataReady(List<M> items) {
+
     }
 
     @Override
