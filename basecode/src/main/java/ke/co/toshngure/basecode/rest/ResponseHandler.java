@@ -110,7 +110,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
             }*/
             double progress = (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1;
             if (baseAppActivity != null) {
-                String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(progress);
+                String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(((int) progress)) + "%";
                 baseAppActivity.updateProgressDialogMessage(newMessage);
             }
         } catch (Exception e) {
@@ -224,7 +224,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
             default:
                 Client.getConfig().onError(statusCode);
         }
-        if (showDialog){
+        if (showDialog) {
             baseAppActivity.hideProgressDialog();
         }
         onError(message);
