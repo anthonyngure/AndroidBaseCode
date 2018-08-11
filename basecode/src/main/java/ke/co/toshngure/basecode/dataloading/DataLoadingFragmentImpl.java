@@ -238,8 +238,8 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     }
 
     /**
-     * Restarts the loader if cache is enable
-     * Connects if cache is not enable
+     * Restarts the loader if cache is enabled
+     * Connects if cache is not enabled
      */
     public void refresh() {
         //Load cache data
@@ -250,6 +250,11 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
             mTempModelCursors = new ModelCursor(0, 0);
             connect();
         }
+    }
+
+    public void refresh(DataLoadingConfig<M> dataLoadingConfig){
+        this.mDataLoadingConfig = dataLoadingConfig;
+        refresh();
     }
 
     interface Listener<M extends IItem<M, ?>> {
