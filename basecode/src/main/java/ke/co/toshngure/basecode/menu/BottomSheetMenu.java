@@ -1,5 +1,7 @@
 package ke.co.toshngure.basecode.menu;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -15,7 +17,7 @@ import java.util.List;
 
 import ke.co.toshngure.basecode.R;
 
-public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMenu.ViewHolder> {
+public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMenu.ViewHolder> implements Parcelable {
 
     @DrawableRes
     private int idRes;
@@ -37,6 +39,26 @@ public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMe
 
     public int getIdRes() {
         return idRes;
+    }
+
+    public void setIdRes(int idRes) {
+        this.idRes = idRes;
+    }
+
+    public int getIconRes() {
+        return iconRes;
+    }
+
+    public void setIconRes(int iconRes) {
+        this.iconRes = iconRes;
+    }
+
+    public int getTitleRes() {
+        return titleRes;
+    }
+
+    public void setTitleRes(int titleRes) {
+        this.titleRes = titleRes;
     }
 
     @NonNull
@@ -85,4 +107,35 @@ public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMe
 
 
     }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.idRes);
+        dest.writeInt(this.iconRes);
+        dest.writeInt(this.titleRes);
+    }
+
+    protected BottomSheetMenu(Parcel in) {
+        this.idRes = in.readInt();
+        this.iconRes = in.readInt();
+        this.titleRes = in.readInt();
+    }
+
+    public static final Parcelable.Creator<BottomSheetMenu> CREATOR = new Parcelable.Creator<BottomSheetMenu>() {
+        @Override
+        public BottomSheetMenu createFromParcel(Parcel source) {
+            return new BottomSheetMenu(source);
+        }
+
+        @Override
+        public BottomSheetMenu[] newArray(int size) {
+            return new BottomSheetMenu[size];
+        }
+    };
 }

@@ -8,4 +8,5 @@ public class ModelFragment<M> extends AbstractModelFragment<M> {
     boolean loadsSingleItem() {
         return true;
     }
+
 }
