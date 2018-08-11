@@ -251,7 +251,7 @@ abstract class AbstractModelFragment<M> extends Fragment
 
 
     private void log(Object msg) {
-        if (mDataLoadingConfig != null && mDataLoadingConfig.isDebugEnabled()) {
+        if (mDataLoadingConfig != null) {
             Log.d(TAG, String.valueOf(msg));
         }
     }

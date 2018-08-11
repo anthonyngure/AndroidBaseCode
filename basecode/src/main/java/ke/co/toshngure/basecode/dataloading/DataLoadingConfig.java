@@ -33,7 +33,6 @@ public class DataLoadingConfig<M> {
     private boolean cacheEnabled = false;
     private int loadMoreThreshold = 0;
     private String relativeUrl;
-    private boolean debugEnabled = false;
     private int perPage = 10;
     private CursorImpl cursorImpl;
     private Class<M> modelClass;
@@ -111,14 +110,6 @@ public class DataLoadingConfig<M> {
         return this;
     }
 
-    boolean isDebugEnabled() {
-        return debugEnabled;
-    }
-
-    public DataLoadingConfig<M> withDebugEnabled() {
-        this.debugEnabled = true;
-        return this;
-    }
 
     int getPerPage() {
         return perPage;

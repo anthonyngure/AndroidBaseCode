@@ -49,10 +49,10 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
     private static final String TAG = "DataLoadingFragmentImpl";
     private static final String SHARED_PREFS_NAME = "data_loading2_prefs";
-    Listener<M> mListener;
+    private Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
-    ItemAdapter<M> mItemAdapter;
+    ItemAdapter<M>mItemAdapter;
     boolean isLoadingMore;
     private RecyclerView mRecyclerView;
     private FragmentActivity mActivity;
