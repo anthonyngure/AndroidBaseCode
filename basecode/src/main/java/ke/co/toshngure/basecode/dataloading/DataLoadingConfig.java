@@ -242,13 +242,4 @@ public class DataLoadingConfig<M> {
     public boolean isHorizontalDividerEnabled() {
         return horizontalDividerEnabled;
     }
-
-    public DataLoadingConfig<M> withSingleItemModeEnable() {
-        this.singleItemMode = true;
-        return this;
-    }
-
-    public boolean isSingleItemMode() {
-        return singleItemMode;
-    }
 }
