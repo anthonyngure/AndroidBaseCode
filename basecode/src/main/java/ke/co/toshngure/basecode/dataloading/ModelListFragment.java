@@ -138,6 +138,11 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     }
 
     @Override
+    public void refresh(DataLoadingConfig<M> dataLoadingConfig) {
+        mDataLoadingFragmentImpl.refresh(dataLoadingConfig);
+    }
+
+    @Override
     public int getCollapsibleLayoutRes() {
         return R.layout.fragment_list_collapsible;
     }

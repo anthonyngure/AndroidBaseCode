@@ -52,7 +52,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     private Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
-    ItemAdapter<M>mItemAdapter;
+    ItemAdapter<M> mItemAdapter;
     boolean isLoadingMore;
     private RecyclerView mRecyclerView;
     private FragmentActivity mActivity;
@@ -136,7 +136,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         }
 
     }
-    
+
 
     @NonNull
     @Override
@@ -252,7 +252,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         }
     }
 
-    public void refresh(DataLoadingConfig<M> dataLoadingConfig){
+    public void refresh(DataLoadingConfig<M> dataLoadingConfig) {
         this.mDataLoadingConfig = dataLoadingConfig;
         refresh();
     }
@@ -283,6 +283,8 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         void onSetUpAdapter(ItemAdapter<M> itemAdapter, FastAdapter<M> fastAdapter);
 
         void refresh();
+
+        void refresh(DataLoadingConfig<M> dataLoadingConfig);
 
         @LayoutRes
         int getCollapsibleLayoutRes();

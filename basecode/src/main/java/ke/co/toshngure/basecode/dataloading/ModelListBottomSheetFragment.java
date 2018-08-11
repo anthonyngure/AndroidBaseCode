@@ -140,6 +140,11 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     }
 
     @Override
+    public void refresh(DataLoadingConfig<M> dataLoadingConfig) {
+        mDataLoadingFragmentImpl.refresh(dataLoadingConfig);
+    }
+
+    @Override
     public int getCollapsibleLayoutRes() {
         return R.layout.fragment_bottom_sheet_list_collapsible;
     }
