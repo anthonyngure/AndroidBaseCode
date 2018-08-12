@@ -75,7 +75,7 @@ class FreshLoadManager {
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
             errorLL.setOnClickListener(view1 -> {
-                mDataLoadingFragmentImpl.connect();
+                mDataLoadingFragmentImpl.refresh();
             });
             loadingLL.setVisibility(View.GONE);
             errorIV.setVisibility(mDataLoadingFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
