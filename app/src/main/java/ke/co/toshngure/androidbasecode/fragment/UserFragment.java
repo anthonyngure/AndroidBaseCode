@@ -30,14 +30,13 @@ public class UserFragment extends ModelFragment<User> {
         return super.getDataLoadingConfig()
                 .withRelativeUrl("/users/"+new Random().nextInt(20), User.class, true)
                 .withRefreshEnabled()
-                .withDebugEnabled()
                 .withTopViewCollapsible();
     }
 
     @Override
     protected void onDataReady(List<User> data) {
         super.onDataReady(data);
-        Snackbar.make(getView(), "Item is ready", Snackbar.LENGTH_INDEFINITE).show();
+        //Snackbar.make(getView(), "Item is ready", Snackbar.LENGTH_INDEFINITE).show();
     }
 
     @Override

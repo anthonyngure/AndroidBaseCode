@@ -80,12 +80,11 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view;
         if (mDataLoadingConfig.isTopViewCollapsible()) {
-            view = inflater.inflate(mListener.getCollapsibleLayoutRes(), container, false);
+            view = inflater.inflate(R.layout.fragment_list_collapsible, container, false);
         } else {
-            view = inflater.inflate(mListener.getNotCollapsibleLayoutRes(), container, false);
+            view = inflater.inflate(R.layout.fragment_list_not_collapsible, container, false);
         }
-
-
+        
         //Configure Swipe Refresh Layout
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeColors(
@@ -286,11 +285,6 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
 
         void refresh(DataLoadingConfig<M> dataLoadingConfig);
 
-        @LayoutRes
-        int getCollapsibleLayoutRes();
-
-        @LayoutRes
-        int getNotCollapsibleLayoutRes();
     }
 
 

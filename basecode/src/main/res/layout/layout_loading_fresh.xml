@@ -3,13 +3,14 @@
     android:id="@id/freshLoadContainer"
     android:layout_width="match_parent"
     android:layout_gravity="center"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@id/loadingLL"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
@@ -30,11 +31,11 @@
     <LinearLayout
         android:id="@id/errorLL"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="?attr/selectableItemBackground"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingTop="@dimen/loader_feedback_views_padding">
+        android:gravity="center_horizontal|center"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/errorIV"
