@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 import com.loopj.android.http.RequestParams;
 
 import java.util.List;
+import java.util.Objects;
 
 import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
@@ -50,12 +52,12 @@ abstract class AbstractModelFragment<M> extends Fragment
     private TextView errorTV;
     private FrameLayout freshLoadContainer;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private boolean isLoading = false;
     protected FrameLayout mBottomViewContainer;
     protected FrameLayout mTopViewContainer;
     private M mData;
     private List<M> mDataList = null;
     private View errorIV;
+    private FloatingActionButton mFloatingActionButton;
 
 
     protected DataLoadingConfig<M> getDataLoadingConfig() {
@@ -130,10 +132,17 @@ abstract class AbstractModelFragment<M> extends Fragment
             view = inflater.inflate(R.layout.fragment_item_not_collapsible, container, false);
         }
 
+        //Configure fab
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(v -> onFabClicked(fab));
+        fab.setSize(mDataLoadingConfig.getFabSize());
+        fab.setImageResource(mDataLoadingConfig.getFabIcon());
+        fab.setVisibility(mDataLoadingConfig.isFabShown() ? View.VISIBLE : View.GONE);
+
         //Configure Swipe Refresh Layout
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(getActivity(), R.color.colorPrimary),
+                ContextCompat.getColor(Objects.requireNonNull(getActivity()), R.color.colorPrimary),
                 ContextCompat.getColor(getActivity(), R.color.colorAccent),
                 ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)
         );
@@ -165,6 +174,10 @@ abstract class AbstractModelFragment<M> extends Fragment
         this.errorIV = view.findViewById(R.id.errorIV);
 
         return view;
+    }
+
+    protected void onFabClicked(FloatingActionButton fab) {
+        this.mFloatingActionButton = fab;
     }
 
     protected void setUpBackground(ImageView backgroundIV) {

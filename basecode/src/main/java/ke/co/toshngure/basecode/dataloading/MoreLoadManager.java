@@ -1,15 +1,10 @@
 package ke.co.toshngure.basecode.dataloading;
 
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import cz.msebera.android.httpclient.Header;
 import ke.co.toshngure.basecode.R;
 
 /**
@@ -25,11 +20,11 @@ class MoreLoadManager {
     private ProgressBar loadingPB;
     private TextView messageTV;
     private View moreLoadContainer;
-    private DataLoadingFragmentImpl mDataLoadingFragmentImpl;
+    private ModelListFragmentImpl mModelListFragmentImpl;
 
 
-    MoreLoadManager(DataLoadingFragmentImpl dataLoadingFragmentImpl) {
-        this.mDataLoadingFragmentImpl = dataLoadingFragmentImpl;
+    MoreLoadManager(ModelListFragmentImpl modelListFragmentImpl) {
+        this.mModelListFragmentImpl = modelListFragmentImpl;
     }
 
     void onCreateView(View view) {
@@ -39,18 +34,18 @@ class MoreLoadManager {
         loadingPB = view.findViewById(R.id.loadingPB);
         messageTV = view.findViewById(R.id.messageTV);
         messageTV.setOnClickListener(view1 -> {
-            mDataLoadingFragmentImpl.isLoadingMore = true;
+            mModelListFragmentImpl.isLoadingMore = true;
             loadingPB.setVisibility(View.VISIBLE);
             messageTV.setText(R.string.message_loading);
-            mDataLoadingFragmentImpl.connect();
+            mModelListFragmentImpl.connect();
         });
     }
 
     void onError(Object error) {
         loadingPB.setVisibility(View.GONE);
-        messageTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessage());
+        messageTV.setText(mModelListFragmentImpl.mDataLoadingConfig.getErrorMessage());
         messageTV.setTextColor(ContextCompat.getColor(messageTV.getContext(),
-                mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessageColor()));
+                mModelListFragmentImpl.mDataLoadingConfig.getErrorMessageColor()));
     }
 
 

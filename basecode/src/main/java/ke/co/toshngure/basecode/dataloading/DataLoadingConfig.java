@@ -9,7 +9,9 @@
 package ke.co.toshngure.basecode.dataloading;
 
 import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import ke.co.toshngure.basecode.R;
@@ -38,7 +40,6 @@ public class DataLoadingConfig<M> {
     private Class<M> modelClass;
     private boolean topViewCollapsible = false;
     private boolean horizontalDividerEnabled = true;
-    private boolean singleItemMode = false;
 
     @StringRes
     private int loadingMessage = R.string.message_loading;
@@ -58,8 +59,36 @@ public class DataLoadingConfig<M> {
     private int noMoreDataMessageColor = android.R.color.black;
 
     private int messageIconVisibility = View.VISIBLE;
+    @FloatingActionButton.Size
+    private int fabSize = FloatingActionButton.SIZE_NORMAL;
+    private boolean fabShown = false;
+    @DrawableRes
+    private int fabIcon = R.drawable.ic_add_black_24dp;
 
     public DataLoadingConfig() {
+    }
+
+
+    private DataLoadingConfig withFab(@DrawableRes int fabIcon, @FloatingActionButton.Size int fabSize) {
+        this.fabSize = fabSize;
+        this.fabIcon = fabIcon;
+        this.fabShown = true;
+        return this;
+    }
+
+
+    boolean isFabShown() {
+        return fabShown;
+    }
+
+    @FloatingActionButton.Size
+    int getFabSize() {
+        return fabSize;
+    }
+
+    @DrawableRes
+    int getFabIcon() {
+        return fabIcon;
     }
 
     boolean isAutoRefreshEnabled() {

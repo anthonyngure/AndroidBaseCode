@@ -11,6 +11,7 @@ package ke.co.toshngure.basecode.dataloading;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -28,8 +29,6 @@ import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import ke.co.toshngure.basecode.R;
-
 /**
  * Created by Anthony Ngure on 04/06/2017.
  * Email : anthonyngure25@gmail.com.
@@ -42,10 +41,10 @@ import ke.co.toshngure.basecode.R;
  * @param <M>>
  */
 public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
-        implements DataLoadingFragmentImpl.Listener<M> {
+        implements ModelListFragmentImpl.Listener<M> {
 
 
-    private DataLoadingFragmentImpl<M> mDataLoadingFragmentImpl;
+    private ModelListFragmentImpl<M> mModelListFragmentImpl;
     protected ItemAdapter<M> mItemAdapter;
     protected RecyclerView mRecyclerView;
     protected FrameLayout mBottomViewContainer;
@@ -53,6 +52,7 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected FastAdapter<M> mFastAdapter;
+    private FloatingActionButton mFloatingActionButton;
 
     public ModelListFragment() {
     }
@@ -60,19 +60,19 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDataLoadingFragmentImpl = new DataLoadingFragmentImpl<>(this);
+        mModelListFragmentImpl = new ModelListFragmentImpl<>(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return mDataLoadingFragmentImpl.onCreateView(inflater, container, savedInstanceState);
+        return mModelListFragmentImpl.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mDataLoadingFragmentImpl.onStart();
+        mModelListFragmentImpl.onStart();
     }
 
     @Override
@@ -134,15 +134,16 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
 
     @Override
     public void refresh() {
-        mDataLoadingFragmentImpl.refresh();
+        this.mModelListFragmentImpl.refresh();
     }
 
     @Override
     public void refresh(DataLoadingConfig<M> dataLoadingConfig) {
-        mDataLoadingFragmentImpl.refresh(dataLoadingConfig);
+        this.mModelListFragmentImpl.refresh(dataLoadingConfig);
     }
 
-
-
-
+    @Override
+    public void onFabClicked(FloatingActionButton fab) {
+        this.mFloatingActionButton = fab;
+    }
 }

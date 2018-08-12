@@ -8,13 +8,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Iterator;
-
-import cz.msebera.android.httpclient.Header;
 import ke.co.toshngure.basecode.R;
 
 /**
@@ -37,32 +30,32 @@ class FreshLoadManager {
     private LinearLayout errorLL;
     private TextView errorTV;
 
-    private DataLoadingFragmentImpl mDataLoadingFragmentImpl;
+    private ModelListFragmentImpl mModelListFragmentImpl;
     private FrameLayout freshLoadContainer;
 
-    FreshLoadManager(DataLoadingFragmentImpl dataLoadingFragmentImpl) {
-        this.mDataLoadingFragmentImpl = dataLoadingFragmentImpl;
+    FreshLoadManager(ModelListFragmentImpl modelListFragmentImpl) {
+        this.mModelListFragmentImpl = modelListFragmentImpl;
     }
 
 
 
     void onError(String error) {
-        if (mDataLoadingFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
-            mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
+        if (mModelListFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
+            mModelListFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
-            errorLL.setOnClickListener(view1 -> mDataLoadingFragmentImpl.onStart());
+            errorLL.setOnClickListener(view1 -> mModelListFragmentImpl.onStart());
             loadingLL.setVisibility(View.GONE);
             errorTV.setText(error);
-            errorIV.setVisibility(mDataLoadingFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
+            errorIV.setVisibility(mModelListFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
             errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
-                    mDataLoadingFragmentImpl.mDataLoadingConfig.getErrorMessageColor()));
+                    mModelListFragmentImpl.mDataLoadingConfig.getErrorMessageColor()));
         }
     }
 
     void onStartLoading() {
-        if (mDataLoadingFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
-            mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
+        if (mModelListFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
+            mModelListFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.GONE);
             loadingLL.setVisibility(View.VISIBLE);
@@ -70,20 +63,20 @@ class FreshLoadManager {
     }
 
     void onDataParsed() {
-        if (mDataLoadingFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
-            mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
+        if (mModelListFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
+            mModelListFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
             errorLL.setOnClickListener(view1 -> {
-                mDataLoadingFragmentImpl.refresh();
+                mModelListFragmentImpl.refresh();
             });
             loadingLL.setVisibility(View.GONE);
-            errorIV.setVisibility(mDataLoadingFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
-            errorTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessage());
+            errorIV.setVisibility(mModelListFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
+            errorTV.setText(mModelListFragmentImpl.mDataLoadingConfig.getEmptyDataMessage());
             errorTV.setTextColor(ContextCompat.getColor(errorTV.getContext(),
-                    mDataLoadingFragmentImpl.mDataLoadingConfig.getEmptyDataMessageColor()));
+                    mModelListFragmentImpl.mDataLoadingConfig.getEmptyDataMessageColor()));
         } else {
-            mDataLoadingFragmentImpl.mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+            mModelListFragmentImpl.mSwipeRefreshLayout.setVisibility(View.VISIBLE);
             freshLoadContainer.setVisibility(View.GONE);
         }
     }
@@ -105,14 +98,14 @@ class FreshLoadManager {
 
         this.loadingLL = view.findViewById(R.id.loadingLL);
         this.loadingTV = view.findViewById(R.id.loadingTV);
-        this.loadingTV.setText(mDataLoadingFragmentImpl.mDataLoadingConfig.getLoadingMessage());
+        this.loadingTV.setText(mModelListFragmentImpl.mDataLoadingConfig.getLoadingMessage());
         this.loadingTV.setTextColor(ContextCompat.getColor(loadingTV.getContext(),
-                mDataLoadingFragmentImpl.mDataLoadingConfig.getLoadingMessageColor()));
+                mModelListFragmentImpl.mDataLoadingConfig.getLoadingMessageColor()));
 
         this.errorLL = view.findViewById(R.id.errorLL);
         this.errorTV = view.findViewById(R.id.errorTV);
         this.errorIV = view.findViewById(R.id.errorIV);
-        this.errorIV.setVisibility(mDataLoadingFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
+        this.errorIV.setVisibility(mModelListFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
 
     }
 

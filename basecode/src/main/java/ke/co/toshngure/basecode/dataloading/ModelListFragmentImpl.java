@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -43,11 +44,11 @@ import ke.co.toshngure.basecode.rest.ResponseHandler;
  * Email : anthonyngure25@gmail.com.
  */
 
-class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
+class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         LoaderManager.LoaderCallbacks<List<M>>, SwipeRefreshLayout.OnRefreshListener {
 
 
-    private static final String TAG = "DataLoadingFragmentImpl";
+    private static final String TAG = "ModelListFragmentImpl";
     private static final String SHARED_PREFS_NAME = "data_loading2_prefs";
     private Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -61,7 +62,7 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     private FreshLoadManager mFreshLoadManager;
     private MoreLoadManager mMoreLoadManager;
 
-    DataLoadingFragmentImpl(Listener<M> listener) {
+    ModelListFragmentImpl(Listener<M> listener) {
         if (listener instanceof Fragment) {
             this.mListener = listener;
             this.mDataLoadingConfig = listener.getDataLoadingConfig();
@@ -84,7 +85,14 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
         } else {
             view = inflater.inflate(R.layout.fragment_list_not_collapsible, container, false);
         }
-        
+
+        //Configure fab
+        FloatingActionButton fab = view.findViewById(R.id.fab);
+        fab.setOnClickListener(v -> mListener.onFabClicked(fab));
+        fab.setSize(mDataLoadingConfig.getFabSize());
+        fab.setImageResource(mDataLoadingConfig.getFabIcon());
+        fab.setVisibility(mDataLoadingConfig.isFabShown() ? View.VISIBLE : View.GONE);
+
         //Configure Swipe Refresh Layout
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
         mSwipeRefreshLayout.setColorSchemeColors(
@@ -259,6 +267,8 @@ class DataLoadingFragmentImpl<M extends IItem<M, ?>> implements
     interface Listener<M extends IItem<M, ?>> {
 
         DataLoadingConfig<M> getDataLoadingConfig();
+
+        void onFabClicked(FloatingActionButton fab);
 
         void setUpTopView(FrameLayout topViewContainer);
 

@@ -9,6 +9,7 @@
 <resources>
     <item name="sectioning_adapter_tag_key_view_viewholder" type="id" />
     <item name="toolbar" type="id" />
+    <item name="fab" type="id" />
     <item name="swipeRefreshLayout" type="id" />
     <item name="contentView" type="id" />
     <item name="recyclerView" type="id" />

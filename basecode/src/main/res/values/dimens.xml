@@ -11,4 +11,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="list_row_padding">8dp</dimen>
     <dimen name="loader_feedback_views_padding">108dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
