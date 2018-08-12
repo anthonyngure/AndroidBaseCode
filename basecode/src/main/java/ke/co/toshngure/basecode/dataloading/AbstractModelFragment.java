@@ -1,6 +1,9 @@
 package ke.co.toshngure.basecode.dataloading;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -30,6 +33,7 @@ import ke.co.toshngure.basecode.app.BaseAppActivity;
 import ke.co.toshngure.basecode.database.BaseAsyncTaskLoader;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
+import ke.co.toshngure.basecode.util.DrawableUtils;
 
 abstract class AbstractModelFragment<M> extends Fragment
         implements LoaderManager.LoaderCallbacks<List<M>>,
@@ -134,19 +138,13 @@ abstract class AbstractModelFragment<M> extends Fragment
 
         //Configure fab
         FloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(v -> onFabClicked(fab));
-        fab.setSize(mDataLoadingConfig.getFabSize());
-        fab.setImageResource(mDataLoadingConfig.getFabIcon());
-        fab.setVisibility(mDataLoadingConfig.isFabShown() ? View.VISIBLE : View.GONE);
+        Utils.configureFab(fab, mDataLoadingConfig);
+        fab.setOnClickListener(v -> onFabClicked());
+        onSetUpFab(fab);
 
         //Configure Swipe Refresh Layout
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(Objects.requireNonNull(getActivity()), R.color.colorPrimary),
-                ContextCompat.getColor(getActivity(), R.color.colorAccent),
-                ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark)
-        );
-        mSwipeRefreshLayout.setEnabled(mDataLoadingConfig.isRefreshEnabled());
+        Utils.configureSwipeRefreshLayout(mSwipeRefreshLayout, mDataLoadingConfig);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
 
@@ -176,8 +174,12 @@ abstract class AbstractModelFragment<M> extends Fragment
         return view;
     }
 
-    protected void onFabClicked(FloatingActionButton fab) {
+    protected void onSetUpFab(FloatingActionButton fab) {
         this.mFloatingActionButton = fab;
+    }
+
+    protected void onFabClicked() {
+
     }
 
     protected void setUpBackground(ImageView backgroundIV) {

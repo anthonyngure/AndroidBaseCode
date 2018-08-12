@@ -9,8 +9,12 @@
 package ke.co.toshngure.androidbasecode;
 
 import android.app.Application;
+import android.support.annotation.Nullable;
 
 import com.loopj.android.http.AsyncHttpClient;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import ke.co.toshngure.basecode.logging.BeeLog;
 import ke.co.toshngure.basecode.rest.Client;
@@ -53,7 +57,31 @@ public class App extends Camera2App {
 
             @Override
             protected ResponseDefinition getResponseDefinition() {
-                return null;
+                return new ResponseDefinition() {
+                    @Nullable
+                    @Override
+                    public String message(int statusCode, JSONObject response) {
+                        return null;
+                    }
+
+                    @Nullable
+                    @Override
+                    public String dataKey(JSONObject response) {
+                        return null;
+                    }
+
+                    @Nullable
+                    @Override
+                    public String message(int statusCode, JSONArray response) {
+                        return null;
+                    }
+
+                    @Nullable
+                    @Override
+                    public String dataKey(JSONArray response) {
+                        return null;
+                    }
+                };
             }
 
         });

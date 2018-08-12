@@ -80,6 +80,11 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
         return new DataLoadingConfig<>();
     }
 
+    @Override
+    public void onFabClicked() {
+
+    }
+
 
     @Override
     public void setUpTopView(FrameLayout topViewContainer) {
@@ -143,7 +148,8 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     }
 
     @Override
-    public void onFabClicked(FloatingActionButton fab) {
+    public void onSetUpFab(FloatingActionButton fab) {
         this.mFloatingActionButton = fab;
     }
+
 }

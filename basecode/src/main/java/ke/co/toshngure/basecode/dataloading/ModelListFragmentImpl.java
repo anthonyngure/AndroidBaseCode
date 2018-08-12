@@ -2,6 +2,8 @@ package ke.co.toshngure.basecode.dataloading;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -38,6 +40,7 @@ import ke.co.toshngure.basecode.decoration.HorizontalDividerItemDecoration;
 import ke.co.toshngure.basecode.logging.BeeLog;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
+import ke.co.toshngure.basecode.util.DrawableUtils;
 
 /**
  * Created by Anthony Ngure on 25/01/2018.
@@ -88,19 +91,13 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
 
         //Configure fab
         FloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(v -> mListener.onFabClicked(fab));
-        fab.setSize(mDataLoadingConfig.getFabSize());
-        fab.setImageResource(mDataLoadingConfig.getFabIcon());
-        fab.setVisibility(mDataLoadingConfig.isFabShown() ? View.VISIBLE : View.GONE);
+        Utils.configureFab(fab, mDataLoadingConfig);
+        fab.setOnClickListener(v -> mListener.onFabClicked());
+        mListener.onSetUpFab(fab);
 
         //Configure Swipe Refresh Layout
         mSwipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
-        mSwipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(mActivity, R.color.colorPrimary),
-                ContextCompat.getColor(mActivity, R.color.colorAccent),
-                ContextCompat.getColor(mActivity, R.color.colorPrimaryDark)
-        );
-        mSwipeRefreshLayout.setEnabled(mDataLoadingConfig.isRefreshEnabled());
+        Utils.configureSwipeRefreshLayout(mSwipeRefreshLayout, mDataLoadingConfig);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         mListener.onSetUpSwipeRefreshLayout(mSwipeRefreshLayout);
 
@@ -195,7 +192,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         Client.getInstance().getClient().get(mActivity, url, requestParams, new ModelsResponseHandler());
     }
 
-    void updateModelCursor(ModelCursor modelCursor) {
+    private void updateModelCursor(ModelCursor modelCursor) {
         BeeLog.i(TAG, "updateModelCursor");
         if (mDataLoadingConfig.isCacheEnabled()) {
             getSharedPreferences().edit()
@@ -207,7 +204,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         }
     }
 
-    public String getCursorKeyPrefix() {
+    private String getCursorKeyPrefix() {
         return mDataLoadingConfig.getModelClass().getSimpleName().toLowerCase() + "_" + mListener.addUniqueCacheKey();
     }
 
@@ -269,7 +266,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
 
         DataLoadingConfig<M> getDataLoadingConfig();
 
-        void onFabClicked(FloatingActionButton fab);
+        void onFabClicked();
 
         void setUpTopView(FrameLayout topViewContainer);
 
@@ -296,6 +293,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
 
         void refresh(DataLoadingConfig<M> dataLoadingConfig);
 
+        void onSetUpFab(FloatingActionButton fab);
     }
 
 

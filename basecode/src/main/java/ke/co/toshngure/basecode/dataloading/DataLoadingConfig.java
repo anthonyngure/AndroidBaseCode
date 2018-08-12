@@ -60,10 +60,14 @@ public class DataLoadingConfig<M> {
 
     private int messageIconVisibility = View.VISIBLE;
     @FloatingActionButton.Size
-    private int fabSize = FloatingActionButton.SIZE_NORMAL;
+    private int fabSize;
     private boolean fabShown = false;
     @DrawableRes
-    private int fabIcon = R.drawable.ic_add_black_24dp;
+    private int fabIcon;
+    @ColorRes
+    private int fabIconTint;
+    @ColorRes
+    private int fabBackgroundTint;
 
     public DataLoadingConfig() {
     }
@@ -104,9 +108,39 @@ public class DataLoadingConfig<M> {
         return cacheEnabled;
     }
 
-    public DataLoadingConfig<M> withFab(@DrawableRes int fabIcon, @FloatingActionButton.Size int fabSize) {
+    @ColorRes
+    public int getFabIconTint() {
+        return fabIconTint;
+    }
+
+    @ColorRes
+    public int getFabBackgroundTint() {
+        return fabBackgroundTint;
+    }
+
+    public DataLoadingConfig<M> withFab(@DrawableRes int fabIcon) {
+        return this.withFab(fabIcon, FloatingActionButton.SIZE_NORMAL, android.R.color.white, R.color.colorAccent);
+    }
+
+    public DataLoadingConfig<M> withFab(@DrawableRes int fabIcon,
+                                        @FloatingActionButton.Size int fabSize) {
+        return this.withFab(fabIcon, fabSize, android.R.color.white, R.color.colorAccent);
+    }
+
+    public DataLoadingConfig<M> withFab(@DrawableRes int fabIcon,
+                                        @FloatingActionButton.Size int fabSize,
+                                        @ColorRes int fabIconTint) {
+        return this.withFab(fabIcon, fabSize, fabIconTint, R.color.colorAccent);
+    }
+
+    public DataLoadingConfig<M> withFab(@DrawableRes int fabIcon,
+                                        @FloatingActionButton.Size int fabSize,
+                                        @ColorRes int fabIconTint,
+                                        @ColorRes int fabBackgroundTint) {
         this.fabSize = fabSize;
         this.fabIcon = fabIcon;
+        this.fabIconTint = fabIconTint;
+        this.fabBackgroundTint = fabBackgroundTint;
         this.fabShown = true;
         return this;
     }

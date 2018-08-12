@@ -1,6 +1,7 @@
 package ke.co.toshngure.androidbasecode.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
@@ -28,6 +29,8 @@ public class UserFragment extends ModelFragment<User> {
     @Override
     protected DataLoadingConfig<User> getDataLoadingConfig() {
         return super.getDataLoadingConfig()
+                .withFab(R.drawable.ic_android_black_24dp, FloatingActionButton.SIZE_NORMAL,
+                        android.R.color.holo_red_dark, android.R.color.holo_orange_dark)
                 .withRelativeUrl("/users/"+new Random().nextInt(20), User.class, true)
                 .withRefreshEnabled()
                 .withTopViewCollapsible();

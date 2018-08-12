@@ -82,6 +82,11 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
         return new DataLoadingConfig<>();
     }
 
+    @Override
+    public void onFabClicked() {
+
+    }
+
 
     @Override
     public void setUpTopView(FrameLayout topViewContainer) {
@@ -144,7 +149,7 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     }
 
     @Override
-    public void onFabClicked(FloatingActionButton fab) {
+    public void onSetUpFab(FloatingActionButton fab) {
         this.mFloatingActionButton = fab;
     }
 }
