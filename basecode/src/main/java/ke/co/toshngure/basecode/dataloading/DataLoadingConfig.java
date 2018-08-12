@@ -69,14 +69,6 @@ public class DataLoadingConfig<M> {
     }
 
 
-    public DataLoadingConfig withFab(@DrawableRes int fabIcon, @FloatingActionButton.Size int fabSize) {
-        this.fabSize = fabSize;
-        this.fabIcon = fabIcon;
-        this.fabShown = true;
-        return this;
-    }
-
-
     boolean isFabShown() {
         return fabShown;
     }
@@ -110,6 +102,13 @@ public class DataLoadingConfig<M> {
 
     boolean isCacheEnabled() {
         return cacheEnabled;
+    }
+
+    public DataLoadingConfig<M> withFab(@DrawableRes int fabIcon, @FloatingActionButton.Size int fabSize) {
+        this.fabSize = fabSize;
+        this.fabIcon = fabIcon;
+        this.fabShown = true;
+        return this;
     }
 
     public DataLoadingConfig<M> withCacheEnabled(int loaderId) {
