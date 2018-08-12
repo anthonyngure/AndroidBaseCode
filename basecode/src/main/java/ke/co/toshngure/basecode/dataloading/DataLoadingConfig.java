@@ -69,7 +69,7 @@ public class DataLoadingConfig<M> {
     }
 
 
-    private DataLoadingConfig withFab(@DrawableRes int fabIcon, @FloatingActionButton.Size int fabSize) {
+    public DataLoadingConfig withFab(@DrawableRes int fabIcon, @FloatingActionButton.Size int fabSize) {
         this.fabSize = fabSize;
         this.fabIcon = fabIcon;
         this.fabShown = true;
