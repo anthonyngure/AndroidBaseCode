@@ -58,7 +58,7 @@ abstract class AbstractModelFragment<M> extends Fragment
     private SwipeRefreshLayout mSwipeRefreshLayout;
     protected FrameLayout mBottomViewContainer;
     protected FrameLayout mTopViewContainer;
-    private M mData;
+    private M mData = null;
     private List<M> mDataList = null;
     private View errorIV;
     protected FloatingActionButton mFloatingActionButton;
@@ -98,7 +98,7 @@ abstract class AbstractModelFragment<M> extends Fragment
             mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
-            errorLL.setOnClickListener(view1 -> connect());
+            errorLL.setOnClickListener(view1 -> refresh());
             loadingLL.setVisibility(View.GONE);
             errorIV.setVisibility(mDataLoadingConfig.getMessageIconVisibility());
             errorTV.setText(mDataLoadingConfig.getEmptyDataMessage());
@@ -118,8 +118,13 @@ abstract class AbstractModelFragment<M> extends Fragment
     protected void refresh() {
         //Load cache data
         if (mDataLoadingConfig.isCacheEnabled()) {
+            mSwipeRefreshLayout.setVisibility(View.GONE);
+            freshLoadContainer.setVisibility(View.VISIBLE);
+            errorLL.setVisibility(View.GONE);
+            loadingLL.setVisibility(View.VISIBLE);
             Objects.requireNonNull(getActivity()).getSupportLoaderManager()
-                    .restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
+                    .initLoader(mDataLoadingConfig.getLoaderId(),
+                            null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
             connect();
         }
@@ -134,13 +139,8 @@ abstract class AbstractModelFragment<M> extends Fragment
     @Override
     public void onStart() {
         super.onStart();
-        //Load cache data
-        if (mDataLoadingConfig.isCacheEnabled()) {
-            Objects.requireNonNull(getActivity()).getSupportLoaderManager()
-                    .initLoader(mDataLoadingConfig.getLoaderId(),
-                    null, this);
-        } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
-            connect();
+        if (mData == null || mDataList == null){
+            refresh();
         }
     }
 

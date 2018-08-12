@@ -1,6 +1,7 @@
 package ke.co.toshngure.androidbasecode.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
@@ -41,12 +42,18 @@ public class UserFragment extends ModelsFragment<User> {
     @Override
     protected void onDataReady(List<User> data) {
         super.onDataReady(data);
-        Snackbar.make(getView(), "Item is ready", Snackbar.LENGTH_INDEFINITE).show();
+        Snackbar.make(getView(), "Data is ready", Snackbar.LENGTH_INDEFINITE).show();
     }
 
     @Override
     protected List<User> onLoadCache() {
-        return super.onLoadCache();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            return super.onLoadCache();
+        }
     }
 
     @Override
