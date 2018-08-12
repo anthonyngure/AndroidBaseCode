@@ -332,7 +332,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
 
     private final class ModelsResponseHandler extends ResponseHandler<M> {
 
-        public ModelsResponseHandler() {
+        ModelsResponseHandler() {
             super((BaseAppActivity) mActivity, mDataLoadingConfig.getModelClass(), false);
         }
 

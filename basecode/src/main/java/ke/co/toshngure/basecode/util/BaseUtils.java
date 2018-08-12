@@ -45,6 +45,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.fastadapter_extensions.dialog.FastAdapterBottomSheetDialog;
@@ -78,15 +79,15 @@ public class BaseUtils {
         imageView.setColorFilter(color);
     }
 
-    public static void showBottomSheetMenu(Context context, OnClickListener<BottomSheetMenu> menuOnClickListener, BottomSheetMenu... bottomSheetMenus) {
-        FastAdapterBottomSheetDialog<BottomSheetMenu> menuFastAdapterBottomSheetDialog = new FastAdapterBottomSheetDialog<>(context);
-        ItemAdapter<BottomSheetMenu> menuItemAdapter = new ItemAdapter<>();
-        FastAdapter<BottomSheetMenu> menuFastItemAdapter = FastAdapter.with(menuItemAdapter);
-        menuFastAdapterBottomSheetDialog.withFastItemAdapter(menuFastItemAdapter, menuItemAdapter);
-        menuFastAdapterBottomSheetDialog.withOnClickListener(menuOnClickListener);
-        menuFastAdapterBottomSheetDialog.withItems(bottomSheetMenus);
-        menuFastAdapterBottomSheetDialog.getRecyclerView()
-                .addItemDecoration(new HorizontalDividerItemDecoration.Builder(context).build());
+
+    public static <T extends IItem<T, ?>> void showBottomSheetMenu(Context context, OnClickListener<T> itemOnClickListener, T... items) {
+        FastAdapterBottomSheetDialog<T> menuFastAdapterBottomSheetDialog = new FastAdapterBottomSheetDialog<>(context);
+        ItemAdapter<T> itemAdapter = new ItemAdapter<>();
+        FastAdapter<T> fastAdapter = FastAdapter.with(itemAdapter);
+        menuFastAdapterBottomSheetDialog.withFastItemAdapter(fastAdapter, itemAdapter);
+        menuFastAdapterBottomSheetDialog.withOnClickListener(itemOnClickListener);
+        menuFastAdapterBottomSheetDialog.withItems(items);
+        menuFastAdapterBottomSheetDialog.getRecyclerView().addItemDecoration(new HorizontalDividerItemDecoration.Builder(context).build());
         menuFastAdapterBottomSheetDialog.show();
     }
 
