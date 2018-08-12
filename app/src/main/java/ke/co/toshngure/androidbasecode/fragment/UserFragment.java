@@ -47,13 +47,14 @@ public class UserFragment extends ModelsFragment<User> {
 
     @Override
     protected List<User> onLoadCache() {
-        try {
+        /*try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             return super.onLoadCache();
-        }
+        }*/
+        return super.onLoadCache();
     }
 
     @Override
