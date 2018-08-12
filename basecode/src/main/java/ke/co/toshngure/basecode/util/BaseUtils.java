@@ -45,6 +45,7 @@ import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mikepenz.fastadapter.FastAdapter;
+import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 import com.mikepenz.fastadapter.listeners.OnClickListener;
@@ -89,19 +90,24 @@ public class BaseUtils {
     }
 
     public static <T extends IItem<T, ?>> void showBottomSheetMenu(Context context, OnClickListener<T> itemOnClickListener, List<T> items) {
-        FastAdapterBottomSheetDialog<T> menuFastAdapterBottomSheetDialog = new FastAdapterBottomSheetDialog<>(context);
+        FastAdapterBottomSheetDialog<T> dialog = new FastAdapterBottomSheetDialog<>(context);
         ItemAdapter<T> itemAdapter = new ItemAdapter<>();
         FastAdapter<T> fastAdapter = FastAdapter.with(itemAdapter);
-        menuFastAdapterBottomSheetDialog.withFastItemAdapter(fastAdapter, itemAdapter);
-        menuFastAdapterBottomSheetDialog.withOnClickListener(itemOnClickListener);
-        menuFastAdapterBottomSheetDialog.withItems(items);
-        menuFastAdapterBottomSheetDialog.getRecyclerView().addItemDecoration(new HorizontalDividerItemDecoration.Builder(context).build());
-        menuFastAdapterBottomSheetDialog.show();
+        dialog.withFastItemAdapter(fastAdapter, itemAdapter);
+        dialog.withOnClickListener((v, adapter, item, position) -> {
+            dialog.hide();
+            itemOnClickListener.onClick(v, adapter, item, position);
+            return false;
+        });
+        dialog.withItems(items);
+        dialog.getRecyclerView().addItemDecoration(new HorizontalDividerItemDecoration.Builder(context).build());
+        dialog.show();
     }
 
     public static void showErrorSnack(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_INDEFINITE)
-                .setAction(android.R.string.ok, v -> {}).show();
+                .setAction(android.R.string.ok, v -> {
+                }).show();
     }
 
 
