@@ -31,5 +31,8 @@
     <string name="error_network_not_available">No internet connection</string>
     <string name="message_no_internet_connetion">Unable to establish an internet connection. Please ensure your internet connection is working properly!</string>
     <string name="message_server_error">An error occurred from the server! Please report this error.</string>
-    <string name="tab">\u0009\u0009\u0009\u0009</string>
+    <string name="one_tab">\u0009</string>
+    <string name="two_tab">\u0009\u0009</string>
+    <string name="three_tab">\u0009\u0009\u0009</string>
+    <string name="four_tab">\u0009\u0009\u0009\u0009</string>
 </resources>
