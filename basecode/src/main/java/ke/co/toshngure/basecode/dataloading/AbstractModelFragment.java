@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -79,7 +80,7 @@ abstract class AbstractModelFragment<M> extends Fragment
     }
 
     protected List<M> onLoadCache() {
-        return null;
+        return new ArrayList<>();
     }
 
     protected void onDataReady(M data) {
