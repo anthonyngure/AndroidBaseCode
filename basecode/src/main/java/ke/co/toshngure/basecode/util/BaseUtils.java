@@ -51,6 +51,8 @@ import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.fastadapter_extensions.dialog.FastAdapterBottomSheetDialog;
 import com.rengwuxian.materialedittext.validation.METValidator;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import ke.co.toshngure.basecode.annotations.GsonAvoid;
@@ -83,7 +85,7 @@ public class BaseUtils {
 
 
     public static <T extends IItem<T, ?>> void showBottomSheetMenu(Context context, OnClickListener<T> itemOnClickListener, T... items) {
-        showBottomSheetMenu(context, itemOnClickListener, items);
+        showBottomSheetMenu(context, itemOnClickListener, Arrays.asList(items));
     }
 
     public static <T extends IItem<T, ?>> void showBottomSheetMenu(Context context, OnClickListener<T> itemOnClickListener, List<T> items) {
