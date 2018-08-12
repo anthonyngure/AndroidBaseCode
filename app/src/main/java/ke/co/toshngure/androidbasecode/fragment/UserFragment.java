@@ -13,9 +13,10 @@ import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.User;
 import ke.co.toshngure.basecode.dataloading.DataLoadingConfig;
 import ke.co.toshngure.basecode.dataloading.ModelFragment;
+import ke.co.toshngure.basecode.dataloading.ModelsFragment;
 import ke.co.toshngure.views.NetworkImage;
 
-public class UserFragment extends ModelFragment<User> {
+public class UserFragment extends ModelsFragment<User> {
 
     public static UserFragment newInstance() {
         
@@ -31,15 +32,21 @@ public class UserFragment extends ModelFragment<User> {
         return super.getDataLoadingConfig()
                 .withFab(R.drawable.ic_android_black_24dp, FloatingActionButton.SIZE_NORMAL,
                         android.R.color.holo_red_dark, android.R.color.holo_orange_dark)
-                .withRelativeUrl("/users/"+new Random().nextInt(20), User.class, true)
+                //.withRelativeUrl("/users", User.class, true)
                 .withRefreshEnabled()
+                .withCacheEnabled(2)
                 .withTopViewCollapsible();
     }
 
     @Override
     protected void onDataReady(List<User> data) {
         super.onDataReady(data);
-        //Snackbar.make(getView(), "Item is ready", Snackbar.LENGTH_INDEFINITE).show();
+        Snackbar.make(getView(), "Item is ready", Snackbar.LENGTH_INDEFINITE).show();
+    }
+
+    @Override
+    protected List<User> onLoadCache() {
+        return super.onLoadCache();
     }
 
     @Override

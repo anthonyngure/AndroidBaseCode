@@ -48,7 +48,6 @@ abstract class AbstractModelFragment<M> extends Fragment
      * Loading View
      */
     private LinearLayout loadingLL;
-    private TextView loadingTV;
 
     /**
      * Error View
@@ -85,17 +84,16 @@ abstract class AbstractModelFragment<M> extends Fragment
 
     protected void onDataReady(M data) {
         this.mData = data;
-        mSwipeRefreshLayout.setRefreshing(false);
         onDataReady(data != null);
     }
 
     protected void onDataReady(List<M> data) {
         this.mDataList = data;
-        mSwipeRefreshLayout.setRefreshing(false);
         onDataReady(data.size() > 0);
     }
 
     private void onDataReady(boolean dataIsAvailable){
+        mSwipeRefreshLayout.setRefreshing(false);
         if (!dataIsAvailable){
             mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
@@ -109,7 +107,27 @@ abstract class AbstractModelFragment<M> extends Fragment
         } else {
             mSwipeRefreshLayout.setVisibility(View.VISIBLE);
             freshLoadContainer.setVisibility(View.GONE);
+
         }
+    }
+
+    /**
+     * Restarts the loader if cache is enabled
+     * Connects if cache is not enabled
+     */
+    protected void refresh() {
+        //Load cache data
+        if (mDataLoadingConfig.isCacheEnabled()) {
+            Objects.requireNonNull(getActivity()).getSupportLoaderManager()
+                    .restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
+        } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
+            connect();
+        }
+    }
+
+    protected void refresh(DataLoadingConfig<M> dataLoadingConfig) {
+        this.mDataLoadingConfig = dataLoadingConfig;
+        refresh();
     }
 
 
@@ -118,7 +136,8 @@ abstract class AbstractModelFragment<M> extends Fragment
         super.onStart();
         //Load cache data
         if (mDataLoadingConfig.isCacheEnabled()) {
-            getActivity().getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(),
+            Objects.requireNonNull(getActivity()).getSupportLoaderManager()
+                    .initLoader(mDataLoadingConfig.getLoaderId(),
                     null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
             connect();
@@ -163,9 +182,9 @@ abstract class AbstractModelFragment<M> extends Fragment
         this.freshLoadContainer.setVisibility(View.GONE);
 
         this.loadingLL = view.findViewById(R.id.loadingLL);
-        this.loadingTV = view.findViewById(R.id.loadingTV);
-        this.loadingTV.setText(mDataLoadingConfig.getLoadingMessage());
-        this.loadingTV.setTextColor(ContextCompat.getColor(loadingTV.getContext(),
+        TextView loadingTV = view.findViewById(R.id.loadingTV);
+        loadingTV.setText(mDataLoadingConfig.getLoadingMessage());
+        loadingTV.setTextColor(ContextCompat.getColor(loadingTV.getContext(),
                 mDataLoadingConfig.getLoadingMessageColor()));
 
         this.errorLL = view.findViewById(R.id.errorLL);
@@ -299,6 +318,11 @@ abstract class AbstractModelFragment<M> extends Fragment
             onDataReady(data.get(0));
         } else {
             onDataReady(data);
+        }
+
+        //Auto refresh if refresh is enabled
+        if (mDataLoadingConfig.isAutoRefreshEnabled()) {
+            connect();
         }
     }
 
