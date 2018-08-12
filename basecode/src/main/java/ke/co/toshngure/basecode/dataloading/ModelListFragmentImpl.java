@@ -134,7 +134,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         if (mItemAdapter.getAdapterItemCount() == 0) {
             //Load cache data
             if (mDataLoadingConfig.isCacheEnabled()) {
-
+                mFreshLoadManager.onStartLoading();
                 mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
             } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
                 mTempModelCursors = new ModelCursor(0, 0);
@@ -252,6 +252,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         //Load cache data
         mItemAdapter.clear();
         if (mDataLoadingConfig.isCacheEnabled()) {
+            mFreshLoadManager.onStartLoading();
             mActivity.getSupportLoaderManager().restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
             mTempModelCursors = new ModelCursor(0, 0);
