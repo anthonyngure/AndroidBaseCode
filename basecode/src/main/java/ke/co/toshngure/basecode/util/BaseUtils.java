@@ -51,6 +51,8 @@ import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.fastadapter_extensions.dialog.FastAdapterBottomSheetDialog;
 import com.rengwuxian.materialedittext.validation.METValidator;
 
+import java.util.List;
+
 import ke.co.toshngure.basecode.annotations.GsonAvoid;
 import ke.co.toshngure.basecode.decoration.HorizontalDividerItemDecoration;
 import ke.co.toshngure.basecode.menu.BottomSheetMenu;
@@ -81,6 +83,10 @@ public class BaseUtils {
 
 
     public static <T extends IItem<T, ?>> void showBottomSheetMenu(Context context, OnClickListener<T> itemOnClickListener, T... items) {
+        showBottomSheetMenu(context, itemOnClickListener, items);
+    }
+
+    public static <T extends IItem<T, ?>> void showBottomSheetMenu(Context context, OnClickListener<T> itemOnClickListener, List<T> items) {
         FastAdapterBottomSheetDialog<T> menuFastAdapterBottomSheetDialog = new FastAdapterBottomSheetDialog<>(context);
         ItemAdapter<T> itemAdapter = new ItemAdapter<>();
         FastAdapter<T> fastAdapter = FastAdapter.with(itemAdapter);
@@ -93,8 +99,7 @@ public class BaseUtils {
 
     public static void showErrorSnack(View view, String msg) {
         Snackbar.make(view, msg, Snackbar.LENGTH_INDEFINITE)
-                .setAction(android.R.string.ok, v -> {
-                }).show();
+                .setAction(android.R.string.ok, v -> {}).show();
     }
 
 
