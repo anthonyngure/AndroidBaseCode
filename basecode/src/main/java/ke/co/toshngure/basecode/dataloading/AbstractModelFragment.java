@@ -123,7 +123,7 @@ abstract class AbstractModelFragment<M> extends Fragment
             errorLL.setVisibility(View.GONE);
             loadingLL.setVisibility(View.VISIBLE);
             Objects.requireNonNull(getActivity()).getSupportLoaderManager()
-                    .initLoader(mDataLoadingConfig.getLoaderId(),
+                    .restartLoader(mDataLoadingConfig.getLoaderId(),
                             null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
             connect();
@@ -140,7 +140,17 @@ abstract class AbstractModelFragment<M> extends Fragment
     public void onStart() {
         super.onStart();
         if (mData == null || mDataList == null){
-            refresh();
+            if (mDataLoadingConfig.isCacheEnabled()) {
+                mSwipeRefreshLayout.setVisibility(View.GONE);
+                freshLoadContainer.setVisibility(View.VISIBLE);
+                errorLL.setVisibility(View.GONE);
+                loadingLL.setVisibility(View.VISIBLE);
+                Objects.requireNonNull(getActivity()).getSupportLoaderManager()
+                        .initLoader(mDataLoadingConfig.getLoaderId(),
+                                null, this);
+            } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
+                connect();
+            }
         }
     }
 

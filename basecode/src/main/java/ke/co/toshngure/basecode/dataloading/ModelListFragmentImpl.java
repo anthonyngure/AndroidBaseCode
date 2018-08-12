@@ -129,7 +129,14 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
 
     void onStart() {
         if (mItemAdapter.getAdapterItemCount() == 0) {
-            refresh();
+            //Load cache data
+            if (mDataLoadingConfig.isCacheEnabled()) {
+                mFreshLoadManager.onStartLoading();
+                mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
+            } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
+                mTempModelCursors = new ModelCursor(0, 0);
+                connect();
+            }
         }
 
     }
@@ -241,10 +248,9 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
     public void refresh() {
         //Load cache data
         mItemAdapter.clear();
-        //Load cache data
         if (mDataLoadingConfig.isCacheEnabled()) {
             mFreshLoadManager.onStartLoading();
-            mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
+            mActivity.getSupportLoaderManager().restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
             mTempModelCursors = new ModelCursor(0, 0);
             connect();
@@ -334,6 +340,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             super.onStart();
             if (isLoadingMore) {
                 mMoreLoadManager.onStartLoading();
+
             } else {
                 if (mItemAdapter.getAdapterItemCount() == 0) {
                     mFreshLoadManager.onStartLoading();
