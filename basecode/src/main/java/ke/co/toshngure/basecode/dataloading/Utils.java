@@ -14,33 +14,37 @@ import ke.co.toshngure.basecode.util.DrawableUtils;
 
 class Utils {
 
-    public static void configureFab(FloatingActionButton fab, DataLoadingConfig mDataLoadingConfig) {
+    public static void configureFab(FloatingActionButton fab, DataLoadingConfig dataLoadingConfig) {
 
-        fab.setSize(mDataLoadingConfig.getFabSize());
-        Drawable icon = ContextCompat.getDrawable(fab.getContext(), mDataLoadingConfig.getFabIcon());
-        fab.setImageDrawable(DrawableUtils.tintDrawable(fab.getContext(), icon, mDataLoadingConfig.getFabIconTint()));
+        if (dataLoadingConfig.isFabShown()){
+            fab.setSize(dataLoadingConfig.getFabSize());
+            Drawable icon = ContextCompat.getDrawable(fab.getContext(), dataLoadingConfig.getFabIcon());
+            fab.setImageDrawable(DrawableUtils.tintDrawable(fab.getContext(), icon, dataLoadingConfig.getFabIconTint()));
 
-        int[][] states = new int[][]{
-                new int[]{android.R.attr.state_enabled}, // enabled
-                new int[]{-android.R.attr.state_enabled}, // disabled
-        };
+            int[][] states = new int[][]{
+                    new int[]{android.R.attr.state_enabled}, // enabled
+                    new int[]{-android.R.attr.state_enabled}, // disabled
+            };
 
-        int[] colors = new int[]{
-                ContextCompat.getColor(fab.getContext(), mDataLoadingConfig.getFabBackgroundTint()),
-                ContextCompat.getColor(fab.getContext(), mDataLoadingConfig.getFabBackgroundTint())
-        };
-        ColorStateList myList = new ColorStateList(states, colors);
-        fab.setBackgroundTintList(myList);
-        fab.setVisibility(mDataLoadingConfig.isFabShown() ? View.VISIBLE : View.GONE);
+            int[] colors = new int[]{
+                    ContextCompat.getColor(fab.getContext(), dataLoadingConfig.getFabBackgroundTint()),
+                    ContextCompat.getColor(fab.getContext(), dataLoadingConfig.getFabBackgroundTint())
+            };
+            ColorStateList stateList = new ColorStateList(states, colors);
+            fab.setBackgroundTintList(stateList);
+        }
+
+        fab.setVisibility(dataLoadingConfig.isFabShown() ? View.VISIBLE : View.GONE);
     }
 
-    public static void configureSwipeRefreshLayout(SwipeRefreshLayout mSwipeRefreshLayout, DataLoadingConfig mDataLoadingConfig) {
-        mSwipeRefreshLayout.setColorSchemeColors(
-                ContextCompat.getColor(mSwipeRefreshLayout.getContext(), R.color.colorPrimary),
-                ContextCompat.getColor(mSwipeRefreshLayout.getContext(), R.color.colorAccent),
-                ContextCompat.getColor(mSwipeRefreshLayout.getContext(), R.color.colorPrimaryDark)
+    public static void configureSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout,
+                                                   DataLoadingConfig dataLoadingConfig) {
+        swipeRefreshLayout.setColorSchemeColors(
+                ContextCompat.getColor(swipeRefreshLayout.getContext(), R.color.colorPrimary),
+                ContextCompat.getColor(swipeRefreshLayout.getContext(), R.color.colorAccent),
+                ContextCompat.getColor(swipeRefreshLayout.getContext(), R.color.colorPrimaryDark)
         );
-        mSwipeRefreshLayout.setEnabled(mDataLoadingConfig.isRefreshEnabled());
+        swipeRefreshLayout.setEnabled(dataLoadingConfig.isRefreshEnabled());
     }
 
 }

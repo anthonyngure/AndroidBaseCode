@@ -54,7 +54,7 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     private ModelListFragmentImpl<M> mModelListFragmentImpl;
     protected FastAdapter<M> mFastAdapter;
-    private FloatingActionButton mFloatingActionButton;
+    protected FloatingActionButton mFloatingActionButton;
 
     public ModelListBottomSheetFragment() {
     }

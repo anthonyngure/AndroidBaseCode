@@ -52,7 +52,7 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
     protected ImageView mBackgroundIV;
     protected SwipeRefreshLayout mSwipeRefreshLayout;
     protected FastAdapter<M> mFastAdapter;
-    private FloatingActionButton mFloatingActionButton;
+    protected FloatingActionButton mFloatingActionButton;
 
     public ModelListFragment() {
     }

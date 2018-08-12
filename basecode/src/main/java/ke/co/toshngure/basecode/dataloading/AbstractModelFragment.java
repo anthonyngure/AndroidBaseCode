@@ -61,7 +61,7 @@ abstract class AbstractModelFragment<M> extends Fragment
     private M mData;
     private List<M> mDataList = null;
     private View errorIV;
-    private FloatingActionButton mFloatingActionButton;
+    protected FloatingActionButton mFloatingActionButton;
 
 
     protected DataLoadingConfig<M> getDataLoadingConfig() {
