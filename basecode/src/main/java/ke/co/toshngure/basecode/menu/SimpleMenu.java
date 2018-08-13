@@ -127,7 +127,7 @@ public class SimpleMenu extends AbstractItem<SimpleMenu, SimpleMenu.ViewHolder> 
                 iconIV.setImageResource(item.iconRes);
                 iconIV.setVisibility(View.VISIBLE);
             }
-            if (item.titleRes != 0) {
+            if (item.titleRes == 0) {
                 titleTV.setText(item.title);
             } else {
                 titleTV.setText(item.titleRes);
