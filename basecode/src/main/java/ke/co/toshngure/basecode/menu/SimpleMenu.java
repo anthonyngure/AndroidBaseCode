@@ -17,9 +17,9 @@ import java.util.List;
 
 import ke.co.toshngure.basecode.R;
 
-@Deprecated
-public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMenu.ViewHolder> implements Parcelable {
+public class SimpleMenu extends AbstractItem<SimpleMenu, SimpleMenu.ViewHolder> implements Parcelable {
 
+    private String title;
     @DrawableRes
     private int idRes;
     @DrawableRes
@@ -27,15 +27,45 @@ public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMe
     @StringRes
     private int titleRes;
 
-    public BottomSheetMenu(@DrawableRes int iconRes, @StringRes int titleRes, @IdRes int idRes) {
-        this.iconRes = iconRes;
+    public SimpleMenu(@StringRes int titleRes) {
+        this(titleRes, 0);
+    }
+
+    public SimpleMenu(String title) {
+        this(title, 0);
+    }
+
+    public SimpleMenu(@StringRes int titleRes, @DrawableRes int iconRes) {
+        this(titleRes, iconRes, 0);
+    }
+
+    public SimpleMenu(String title, @DrawableRes int iconRes) {
+        this(title, iconRes, 0);
+    }
+
+    public SimpleMenu(@StringRes int titleRes, @DrawableRes int iconRes, @IdRes int idRes) {
         this.titleRes = titleRes;
+        this.iconRes = iconRes;
+        this.idRes = idRes;
+    }
+
+    public SimpleMenu(String title, @DrawableRes int iconRes, @IdRes int idRes) {
+        this.title = title;
+        this.iconRes = iconRes;
         this.idRes = idRes;
     }
 
     @Override
     public long getIdentifier() {
         return this.idRes;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getIdRes() {
@@ -78,7 +108,7 @@ public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMe
         return R.layout.item_bottom_sheet_menu;
     }
 
-    static class ViewHolder extends FastAdapter.ViewHolder<BottomSheetMenu> {
+    static class ViewHolder extends FastAdapter.ViewHolder<SimpleMenu> {
 
         ImageView iconIV;
         TextView titleTV;
@@ -90,21 +120,24 @@ public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMe
         }
 
         @Override
-        public void bindView(BottomSheetMenu item, List<Object> payloads) {
-            if (item.iconRes == 0){
+        public void bindView(SimpleMenu item, List<Object> payloads) {
+            if (item.iconRes == 0) {
                 iconIV.setVisibility(View.GONE);
             } else {
                 iconIV.setImageResource(item.iconRes);
                 iconIV.setVisibility(View.VISIBLE);
             }
-            titleTV.setText(item.titleRes);
+            if (item.titleRes != 0) {
+                titleTV.setText(item.title);
+            } else {
+                titleTV.setText(item.titleRes);
+            }
         }
 
         @Override
-        public void unbindView(BottomSheetMenu item) {
+        public void unbindView(SimpleMenu item) {
 
         }
-
 
 
     }
@@ -122,21 +155,21 @@ public class BottomSheetMenu extends AbstractItem<BottomSheetMenu, BottomSheetMe
         dest.writeInt(this.titleRes);
     }
 
-    protected BottomSheetMenu(Parcel in) {
+    protected SimpleMenu(Parcel in) {
         this.idRes = in.readInt();
         this.iconRes = in.readInt();
         this.titleRes = in.readInt();
     }
 
-    public static final Parcelable.Creator<BottomSheetMenu> CREATOR = new Parcelable.Creator<BottomSheetMenu>() {
+    public static final Creator<SimpleMenu> CREATOR = new Creator<SimpleMenu>() {
         @Override
-        public BottomSheetMenu createFromParcel(Parcel source) {
-            return new BottomSheetMenu(source);
+        public SimpleMenu createFromParcel(Parcel source) {
+            return new SimpleMenu(source);
         }
 
         @Override
-        public BottomSheetMenu[] newArray(int size) {
-            return new BottomSheetMenu[size];
+        public SimpleMenu[] newArray(int size) {
+            return new SimpleMenu[size];
         }
     };
 }
