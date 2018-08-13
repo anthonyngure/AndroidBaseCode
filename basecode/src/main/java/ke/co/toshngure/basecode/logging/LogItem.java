@@ -62,7 +62,7 @@ public class LogItem extends AbstractItem<LogItem, LogItem.ViewHolder> {
         return R.layout.item_log_item;
     }
 
-    static class ViewHolder extends FastAdapter.ViewHolder<LogItem> {
+    static class ViewHolder extends FastItemAdapter.ViewHolder<LogItem> {
 
         TextView detailsTV;
         TextView titleTV;

@@ -20,8 +20,5 @@ import ke.co.toshngure.basecode.app.BaseAppActivity;
 
 @SuppressLint("Registered")
 public class BaseActivity extends BaseAppActivity {
-    @Override
-    public boolean isDebuggable() {
-        return BuildConfig.DEBUG;
-    }
+
 }
