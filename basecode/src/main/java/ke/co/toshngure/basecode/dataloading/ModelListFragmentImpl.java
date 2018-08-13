@@ -48,11 +48,12 @@ import ke.co.toshngure.basecode.util.DrawableUtils;
  */
 
 class ModelListFragmentImpl<M extends IItem<M, ?>> implements
-        LoaderManager.LoaderCallbacks<List<M>>, SwipeRefreshLayout.OnRefreshListener {
+        LoaderManager.LoaderCallbacks<List<M>>,
+        SwipeRefreshLayout.OnRefreshListener {
 
 
     private static final String TAG = "ModelListFragmentImpl";
-    private static final String SHARED_PREFS_NAME = "data_loading2_prefs";
+    private static final String SHARED_PREFS_NAME = "data_loading_prefs";
     private Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
@@ -332,7 +333,8 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
     private final class ModelsResponseHandler extends ResponseHandler<M> {
 
         ModelsResponseHandler() {
-            super((BaseAppActivity) mActivity, mDataLoadingConfig.getModelClass(), false);
+            super((BaseAppActivity) mActivity, mDataLoadingConfig.getModelClass(),
+                    mDataLoadingConfig.isShowDialogEnabled());
         }
 
         @Override

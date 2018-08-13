@@ -33,6 +33,7 @@ public class DataLoadingConfig<M> {
     private boolean loadingMoreEnabled = false;
     /*If items are cached*/
     private boolean cacheEnabled = false;
+    private boolean showDialogEnabled = false;
     private int loadMoreThreshold = 0;
     private String relativeUrl;
     private int perPage = 10;
@@ -151,6 +152,14 @@ public class DataLoadingConfig<M> {
         return this;
     }
 
+    public DataLoadingConfig<M> withShowDialogEnabled() {
+        this.showDialogEnabled = true;
+        return this;
+    }
+
+    public boolean isShowDialogEnabled() {
+        return showDialogEnabled;
+    }
 
     int getLoadMoreThreshold() {
         return loadMoreThreshold;
