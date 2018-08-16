@@ -365,7 +365,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             if (isLoadingMore) {
                 mItemAdapter.add(items);
                 isLoadingMore = false;
-                hasMoreToBottom = items.size() != 0;
+                hasMoreToBottom = items.size() != 0 && items.size() > mDataLoadingConfig.getPerPage();
             } else {
                 mItemAdapter.add(0, items);
                 mRecyclerView.smoothScrollToPosition(0);
@@ -378,6 +378,9 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             }
             mFreshLoadManager.onDataParsed();
             mMoreLoadManager.onDataParsed();
+
+
+
             mListener.onDataReady(items);
         }
 
