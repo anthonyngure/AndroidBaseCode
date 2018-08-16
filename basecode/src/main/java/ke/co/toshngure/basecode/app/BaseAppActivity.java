@@ -27,6 +27,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import ke.co.toshngure.basecode.R;
+import ke.co.toshngure.basecode.fragment.LogItemsFragment;
+import ke.co.toshngure.basecode.logging.BeeLog;
 import ke.co.toshngure.basecode.util.BaseUtils;
 
 /**
@@ -34,7 +36,7 @@ import ke.co.toshngure.basecode.util.BaseUtils;
  * Email : anthonyngure25@gmail.com.
  */
 
-public abstract class BaseAppActivity extends AppCompatActivity {
+public class BaseAppActivity extends AppCompatActivity {
 
     private static final String TAG = "BaseAppActivity";
 
@@ -134,6 +136,9 @@ public abstract class BaseAppActivity extends AppCompatActivity {
         }
     }
 
+    public void viewLogs(){
+        ReusableFragmentActivity.start(this, LogItemsFragment.newInstance(), "Log Items");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -198,7 +203,7 @@ public abstract class BaseAppActivity extends AppCompatActivity {
     }
 
     public void toastDebug(Object msg) {
-        if (isDebuggable()) {
+        if (BeeLog.DEBUG) {
             toast(msg);
         }
     }
@@ -231,6 +236,5 @@ public abstract class BaseAppActivity extends AppCompatActivity {
         return R.anim.slide_right_out;
     }
 
-    public abstract boolean isDebuggable();
 
 }

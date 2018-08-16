@@ -95,9 +95,4 @@ public class ReusableFragmentActivity extends BaseAppActivity {
             super.onBackPressed();
         }
     }
-
-    @Override
-    public boolean isDebuggable() {
-        return false;
-    }
 }

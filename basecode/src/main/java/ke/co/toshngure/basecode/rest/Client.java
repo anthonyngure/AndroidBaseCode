@@ -15,6 +15,7 @@ import android.text.TextUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.SyncHttpClient;
 
+import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.logging.BeeLog;
 
 
@@ -94,6 +95,7 @@ public class Client {
         client.setLoggingEnabled(BeeLog.DEBUG);
         client.addHeader("Accept-Encoding", "gzip");
         client.addHeader("Accept", "application/json");
+        client.addHeader("User-Agent", mConfig.getUserAgent());
         client.setTimeout(mConfig.getRequestTimeout());
         client.setResponseTimeout(mConfig.getResponseTimeout());
         client.setMaxRetriesAndTimeout(mConfig.getMaxRetries(), mConfig.getRequestTimeout());
@@ -131,12 +133,16 @@ public class Client {
         protected void onError(int statusCode) {
         }
 
-        public boolean enableRedirects() {
+        protected boolean enableRedirects() {
             return false;
         }
 
-        public boolean enableRelativeRedirects() {
+        protected boolean enableRelativeRedirects() {
             return true;
+        }
+
+        protected String getUserAgent() {
+            return getContext().getString(R.string.app_name);
         }
     }
 }

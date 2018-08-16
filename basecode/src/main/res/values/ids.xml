@@ -27,5 +27,6 @@
     <item name="loadingLL" type="id" />
     <item name="errorTV" type="id" />
     <item name="item_type_bottom_sheet_menu" type="id" />
+    <item name="item_type_log_item" type="id" />
 </resources>
 
