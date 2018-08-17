@@ -365,12 +365,13 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             if (isLoadingMore) {
                 mItemAdapter.add(items);
                 isLoadingMore = false;
-                hasMoreToBottom = items.size() != 0;
             } else {
                 mItemAdapter.add(0, items);
                 mRecyclerView.smoothScrollToPosition(0);
                 mSwipeRefreshLayout.setRefreshing(false);
             }
+
+            hasMoreToBottom = items.size() != 0 && items.size() > mDataLoadingConfig.getPerPage();
 
             //In case of cursor problems
             if (mItemAdapter.getAdapterItemCount() == 0 && mDataLoadingConfig.isCacheEnabled()) {
@@ -378,6 +379,9 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             }
             mFreshLoadManager.onDataParsed();
             mMoreLoadManager.onDataParsed();
+
+
+
             mListener.onDataReady(items);
         }
 
