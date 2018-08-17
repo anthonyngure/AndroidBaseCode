@@ -252,7 +252,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         if (mDataLoadingConfig.isCacheEnabled()) {
             mFreshLoadManager.onStartLoading();
             mActivity.getSupportLoaderManager().restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
-        } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
+        } else if (mDataLoadingConfig.isAutoRefreshEnabled() || mItemAdapter.getAdapterItemCount() == 0) {
             mTempModelCursors = new ModelCursor(0, 0);
             connect();
         }
@@ -333,7 +333,8 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
     private final class ModelsResponseHandler extends ResponseHandler<M> {
 
         ModelsResponseHandler() {
-            super((BaseAppActivity) mActivity, mDataLoadingConfig.getModelClass(),
+            super((BaseAppActivity) mActivity,
+                    mDataLoadingConfig.getModelClass(),
                     mDataLoadingConfig.isShowDialogEnabled());
         }
 
@@ -342,14 +343,11 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             super.onStart();
             if (isLoadingMore) {
                 mMoreLoadManager.onStartLoading();
-
+            } else if (mItemAdapter.getAdapterItemCount() == 0) {
+                mFreshLoadManager.onStartLoading();
             } else {
-                if (mItemAdapter.getAdapterItemCount() == 0) {
-                    mFreshLoadManager.onStartLoading();
-                } else {
-                    //This is when AutoRefresh is enabled and there is cache
-                    mSwipeRefreshLayout.setRefreshing(true);
-                }
+                //This is when AutoRefresh is enabled and there is cache
+                mSwipeRefreshLayout.setRefreshing(true);
             }
         }
 

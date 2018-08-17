@@ -55,10 +55,10 @@ class FreshLoadManager {
 
     void onStartLoading() {
         if (mModelListFragmentImpl.mItemAdapter.getAdapterItemCount() == 0) {
-            mModelListFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
-            errorLL.setVisibility(View.GONE);
             loadingLL.setVisibility(View.VISIBLE);
+            mModelListFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
+            errorLL.setVisibility(View.GONE);
         }
     }
 
@@ -67,9 +67,7 @@ class FreshLoadManager {
             mModelListFragmentImpl.mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
-            errorLL.setOnClickListener(view1 -> {
-                mModelListFragmentImpl.refresh();
-            });
+            errorLL.setOnClickListener(view1 -> mModelListFragmentImpl.refresh());
             loadingLL.setVisibility(View.GONE);
             errorIV.setVisibility(mModelListFragmentImpl.mDataLoadingConfig.getMessageIconVisibility());
             errorTV.setText(mModelListFragmentImpl.mDataLoadingConfig.getEmptyDataMessage());
