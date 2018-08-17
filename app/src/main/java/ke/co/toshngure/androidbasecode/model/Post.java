@@ -17,8 +17,7 @@ import ke.co.toshngure.androidbasecode.R;
  * Email : anthonyngure25@gmail.com.
  */
 
-public class Post<Parent extends IItem & IExpandable & ISubItem & IClickable>
-        extends AbstractItem<Post<Parent>, Post.ViewHolder> implements ISubItem<Post, Parent> {
+public class Post extends AbstractItem<Post, Post.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder getViewHolder(View v) {
@@ -33,16 +32,6 @@ public class Post<Parent extends IItem & IExpandable & ISubItem & IClickable>
     @Override
     public int getLayoutRes() {
         return R.layout.item_post;
-    }
-
-    @Override
-    public Parent getParent() {
-        return null;
-    }
-
-    @Override
-    public Post withParent(Parent parent) {
-        return null;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

@@ -1,35 +1,29 @@
 package ke.co.toshngure.androidbasecode.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import java.util.List;
-import java.util.Random;
-
 import ke.co.toshngure.androidbasecode.R;
-import ke.co.toshngure.androidbasecode.model.User;
+import ke.co.toshngure.androidbasecode.model.Post;
 import ke.co.toshngure.basecode.dataloading.DataLoadingConfig;
 import ke.co.toshngure.basecode.dataloading.ModelFragment;
-import ke.co.toshngure.basecode.dataloading.ModelsFragment;
 import ke.co.toshngure.views.NetworkImage;
 
-public class UserFragment extends ModelsFragment<User> {
+public class PostFragment extends ModelFragment<Post> {
 
-    public static UserFragment newInstance() {
+    public static PostFragment newInstance() {
         
         Bundle args = new Bundle();
         
-        UserFragment fragment = new UserFragment();
+        PostFragment fragment = new PostFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    protected DataLoadingConfig<User> getDataLoadingConfig() {
+    protected DataLoadingConfig<Post> getDataLoadingConfig() {
         return super.getDataLoadingConfig()
                 .withFab(R.drawable.ic_android_black_24dp, FloatingActionButton.SIZE_NORMAL,
                         android.R.color.holo_red_dark, android.R.color.holo_orange_dark)
@@ -40,22 +34,10 @@ public class UserFragment extends ModelsFragment<User> {
     }
 
     @Override
-    protected void onDataReady(List<User> data) {
+    protected void onDataReady(Post data) {
         super.onDataReady(data);
-        Snackbar.make(getView(), "Data is ready", Snackbar.LENGTH_INDEFINITE).show();
     }
 
-    @Override
-    protected List<User> onLoadCache() {
-        /*try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            return super.onLoadCache();
-        }*/
-        return super.onLoadCache();
-    }
 
     @Override
     protected void setUpTopView(FrameLayout topViewContainer) {
@@ -65,18 +47,9 @@ public class UserFragment extends ModelsFragment<User> {
         topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
     }
 
-
-    /*@Override
-    protected void setUpBottomView(FrameLayout bottomViewContainer) {
-        super.setUpBottomView(bottomViewContainer);
-        LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, bottomViewContainer);
-        NetworkImage topViewNI = bottomViewContainer.findViewById(R.id.topViewNI);
-        topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
-    }*/
-
     @Override
     protected void onSetUpContentView(FrameLayout contentView) {
         super.onSetUpContentView(contentView);
-        LayoutInflater.from(getActivity()).inflate(R.layout.item_user, contentView);
+        LayoutInflater.from(getActivity()).inflate(R.layout.item_post, contentView);
     }
 }

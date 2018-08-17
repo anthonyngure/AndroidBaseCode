@@ -15,6 +15,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import ke.co.toshngure.basecode.R;
+import ke.co.toshngure.basecode.rest.Client;
 
 /**
  * Created by Anthony Ngure on 15/09/2017.
@@ -35,7 +36,7 @@ public class DataLoadingConfig<M> {
     private boolean cacheEnabled = false;
     private boolean showDialogEnabled = false;
     private int loadMoreThreshold = 0;
-    private String relativeUrl;
+    private String url;
     private int perPage = 10;
     private CursorImpl cursorImpl;
     private Class<M> modelClass;
@@ -170,12 +171,16 @@ public class DataLoadingConfig<M> {
         return this;
     }
 
-    String getRelativeUrl() {
-        return relativeUrl;
+    String getUrl() {
+        return url;
     }
 
     public DataLoadingConfig<M> withRelativeUrl(String relativeUrl, Class<M> modelClass, boolean autoRefreshEnabled) {
-        this.relativeUrl = relativeUrl;
+        return this.withUrl(Client.absoluteUrl(relativeUrl), modelClass, autoRefreshEnabled);
+    }
+
+    public DataLoadingConfig<M> withUrl(String url, Class<M> modelClass, boolean autoRefreshEnabled) {
+        this.url = url;
         this.modelClass = modelClass;
         this.autoRefreshEnabled = autoRefreshEnabled;
         return this;

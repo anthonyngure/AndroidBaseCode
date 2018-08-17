@@ -2,10 +2,7 @@ package ke.co.toshngure.basecode.dataloading;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +10,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.LoaderManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -40,7 +36,6 @@ import ke.co.toshngure.basecode.decoration.HorizontalDividerItemDecoration;
 import ke.co.toshngure.basecode.logging.BeeLog;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
-import ke.co.toshngure.basecode.util.DrawableUtils;
 
 /**
  * Created by Anthony Ngure on 25/01/2018.
@@ -187,7 +182,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         }
 
         BeeLog.i(TAG, "Params : " + requestParams.toString());
-        String url = Client.absoluteUrl(mDataLoadingConfig.getRelativeUrl());
+        String url = mDataLoadingConfig.getUrl();
         BeeLog.i(TAG, "Url : " + url);
 
         Client.getInstance().getClient().get(mActivity, url, requestParams, new ModelsResponseHandler());

@@ -1,9 +1,6 @@
 package ke.co.toshngure.basecode.dataloading;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -34,7 +31,6 @@ import ke.co.toshngure.basecode.app.BaseAppActivity;
 import ke.co.toshngure.basecode.database.BaseAsyncTaskLoader;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
-import ke.co.toshngure.basecode.util.DrawableUtils;
 
 abstract class AbstractModelFragment<M> extends Fragment
         implements LoaderManager.LoaderCallbacks<List<M>>,
@@ -236,8 +232,8 @@ abstract class AbstractModelFragment<M> extends Fragment
         log("connect");
         RequestParams requestParams = getRequestParams();
         log("Params : " + requestParams.toString());
-        log("Endpoint : " + mDataLoadingConfig.getRelativeUrl());
-        String url = Client.absoluteUrl(mDataLoadingConfig.getRelativeUrl());
+        log("Endpoint : " + mDataLoadingConfig.getUrl());
+        String url = mDataLoadingConfig.getUrl();
         log("Url : " + url);
         Client.getInstance().getClient().get(getActivity(), url, requestParams, new ModelResponseHandler());
     }

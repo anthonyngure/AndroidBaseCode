@@ -24,25 +24,20 @@
         android:padding="@dimen/activity_vertical_margin">
 
         <ke.co.toshngure.views.SimpleListItemView
-            android:id="@+id/dataLoadingFullFragmentSLIV"
+            android:id="@+id/fullModelListFragmentSLIV"
             style="@style/TestSimpleListItemView"
-            app:sliTitle="Full Fragment Data Loading" />
+            app:sliTitle="Full Model List Fragment" />
 
         <ke.co.toshngure.views.SimpleListItemView
-            android:id="@+id/dataLoading2FullFragmentSLIV"
+            android:id="@+id/bottomSheetModelListFragmentSLIV"
             style="@style/TestSimpleListItemView"
-            app:sliTitle="Full Fragment Data Loading 2" />
-
-        <ke.co.toshngure.views.SimpleListItemView
-            android:id="@+id/dataLoadingBottomSheetSLIV"
-            style="@style/TestSimpleListItemView"
-            app:sliTitle="Bottom Sheet Data Loading" />
+            app:sliTitle="Bottom Sheet Model List Fragment" />
 
 
         <ke.co.toshngure.views.SimpleListItemView
-            android:id="@+id/modelDataLoadingFragmentSLIV"
+            android:id="@+id/modelFragmentSLIV"
             style="@style/TestSimpleListItemView"
-            app:sliTitle="Model Data Loading" />
+            app:sliTitle="Model Fragment" />
 
         <ke.co.toshngure.views.SimpleListItemView
             android:id="@+id/networkImageSLIV"

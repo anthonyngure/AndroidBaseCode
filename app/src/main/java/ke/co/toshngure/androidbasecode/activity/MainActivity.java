@@ -18,7 +18,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.fragment.ImagePickerFragment;
-import ke.co.toshngure.androidbasecode.fragment.UserFragment;
+import ke.co.toshngure.androidbasecode.fragment.PostsFragment;
+import ke.co.toshngure.androidbasecode.fragment.PostFragment;
 import ke.co.toshngure.basecode.app.ReusableFragmentActivity;
 
 public class MainActivity extends BaseActivity {
@@ -53,24 +54,22 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick(R.id.dataLoadingBottomSheetSLIV)
-    public void onDataLoadingBottomSheetSLIVClick() {
+
+    @OnClick(R.id.fullModelListFragmentSLIV)
+    public void onFullFragmentSLIVSLIVClick() {
+        ReusableFragmentActivity.start(this, PostsFragment.newInstance(), "Model Data Loading");
     }
 
-    @OnClick(R.id.dataLoadingFullFragmentSLIV)
-    public void onDataLoadingFullFragmentSLIVClick() {
-        //startActivity(new Intent(this, DataLoadingActivity.class));
-        //startActivity(new Intent(this, TestActivity.class));
+    @OnClick(R.id.bottomSheetModelListFragmentSLIV)
+    public void onBottomSheetModelListFragmentSLIVClick() {
+        ReusableFragmentActivity.start(this, PostsFragment.newInstance(), "Model Data Loading");
     }
 
-    @OnClick(R.id.modelDataLoadingFragmentSLIV)
+    @OnClick(R.id.modelFragmentSLIV)
     public void onModelDataLoadingFragmentSLIVClick() {
-        ReusableFragmentActivity.start(this, UserFragment.newInstance(), "Model Data Loading");
+        ReusableFragmentActivity.start(this, PostFragment.newInstance(), "Model Fragment");
     }
 
-    @OnClick(R.id.dataLoading2FullFragmentSLIV)
-    public void onDataLoading2FullFragmentSLIVClick() {
-    }
 
     @OnClick(R.id.drawableUtilsSLIV)
     public void onDrawableUtilsSLIVClick() {

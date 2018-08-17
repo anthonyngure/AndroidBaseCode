@@ -9,25 +9,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/BaseCode.LinearLayout"
-    android:layout_width="wrap_content"
-    android:layout_gravity="center"
     android:background="?attr/selectableItemBackground"
-    android:gravity="center"
-    android:orientation="vertical"
     android:padding="@dimen/list_row_padding">
 
     <ke.co.toshngure.views.NetworkImage
         android:id="@+id/avatarNI"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_vertical_margin"
         app:niBackground="@color/colorAccent"
         app:niCircled="true" />
 
-    <TextView
-        style="@style/BaseCode.Heading"
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:text="@string/app_name" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/BaseCode.Heading"/>
+
+
+        <TextView
+            style="@style/BaseCode.Body"/>
+
+    </LinearLayout>
 
 </LinearLayout>
