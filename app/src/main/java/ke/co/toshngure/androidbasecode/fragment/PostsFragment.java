@@ -41,7 +41,7 @@ public class PostsFragment extends ModelListFragment<Post> {
     @Override
     public void onDataReady(List<Post> data) {
         super.onDataReady(data);
-        Snackbar.make(mRecyclerView, "Data is ready", Snackbar.LENGTH_INDEFINITE).show();
+        //Snackbar.make(mRecyclerView, "Data is ready", Snackbar.LENGTH_INDEFINITE).show();
     }
 
 
@@ -56,8 +56,9 @@ public class PostsFragment extends ModelListFragment<Post> {
     @Override
     public RequestParams getRequestParams() {
         RequestParams params = super.getRequestParams();
-        params.put("page", 200);
-        params.put("limit", 1);
+        //params.put("_page", 100);
+        //params.put("_limit", 1);
+        params.put("q", "tosh_ngure");
         return params;
     }
 }
