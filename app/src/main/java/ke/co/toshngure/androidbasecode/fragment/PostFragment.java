@@ -5,13 +5,18 @@ import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
+import com.loopj.android.http.RequestParams;
+
+import java.util.List;
+
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.Post;
 import ke.co.toshngure.basecode.dataloading.DataLoadingConfig;
 import ke.co.toshngure.basecode.dataloading.ModelFragment;
+import ke.co.toshngure.basecode.dataloading.ModelsFragment;
 import ke.co.toshngure.views.NetworkImage;
 
-public class PostFragment extends ModelFragment<Post> {
+public class PostFragment extends ModelsFragment<Post> {
 
     public static PostFragment newInstance() {
         
@@ -25,11 +30,9 @@ public class PostFragment extends ModelFragment<Post> {
     @Override
     protected DataLoadingConfig<Post> getDataLoadingConfig() {
         return super.getDataLoadingConfig()
-                .withFab(R.drawable.ic_android_black_24dp, FloatingActionButton.SIZE_NORMAL,
-                        android.R.color.holo_red_dark, android.R.color.holo_orange_dark)
-                //.withRelativeUrl("/users", User.class, true)
+                .withFab(R.drawable.ic_add_black_24dp)
+                .withUrl("https://jsonplaceholder.typicode.com/posts", Post.class, true)
                 .withRefreshEnabled()
-                .withCacheEnabled(2)
                 .withTopViewCollapsible();
     }
 
@@ -38,6 +41,10 @@ public class PostFragment extends ModelFragment<Post> {
         super.onDataReady(data);
     }
 
+    @Override
+    protected void onDataReady(List<Post> data) {
+        super.onDataReady(data);
+    }
 
     @Override
     protected void setUpTopView(FrameLayout topViewContainer) {
@@ -51,5 +58,14 @@ public class PostFragment extends ModelFragment<Post> {
     protected void onSetUpContentView(FrameLayout contentView) {
         super.onSetUpContentView(contentView);
         LayoutInflater.from(getActivity()).inflate(R.layout.item_post, contentView);
+    }
+
+    @Override
+    public RequestParams getRequestParams() {
+        RequestParams params = super.getRequestParams();
+        //params.put("_page", 100);
+        //params.put("_limit", 1);
+        params.put("q", "tosh_ngure");
+        return params;
     }
 }

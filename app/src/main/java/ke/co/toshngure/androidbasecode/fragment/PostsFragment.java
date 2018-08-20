@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 import com.loopj.android.http.RequestParams;
 
 import java.util.List;
+import java.util.Random;
 
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.Post;
@@ -50,7 +51,8 @@ public class PostsFragment extends ModelListFragment<Post> {
         super.setUpTopView(topViewContainer);
         LayoutInflater.from(getActivity()).inflate(R.layout.fragment_users_top_view, topViewContainer);
         NetworkImage topViewNI = topViewContainer.findViewById(R.id.topViewNI);
-        topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?33483");
+        Random random = new Random();
+        topViewNI.loadImageFromNetwork("https://lorempixel.com/400/400/cats/?"+random.nextInt());
     }
 
     @Override

@@ -248,7 +248,7 @@ abstract class AbstractModelFragment<M> extends Fragment
         @Override
         public void onStart() {
             super.onStart();
-            if (mData == null && mDataList == null) {
+            if (mData == null && (mDataList == null || mDataList.size() == 0)) {
                 mSwipeRefreshLayout.setVisibility(View.GONE);
                 freshLoadContainer.setVisibility(View.VISIBLE);
                 errorLL.setVisibility(View.GONE);
