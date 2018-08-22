@@ -152,4 +152,9 @@ public class ModelListBottomSheetFragment<M extends IItem<M, ?>> extends BottomS
     public void onSetUpFab(FloatingActionButton fab) {
         this.mFloatingActionButton = fab;
     }
+
+    @Override
+    public void onCacheReady(List<M> data) {
+
+    }
 }

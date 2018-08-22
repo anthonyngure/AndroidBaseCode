@@ -152,4 +152,9 @@ public class ModelListFragment<M extends IItem<M, ?>> extends Fragment
         this.mFloatingActionButton = fab;
     }
 
+    @Override
+    public void onCacheReady(List<M> data) {
+
+    }
+
 }

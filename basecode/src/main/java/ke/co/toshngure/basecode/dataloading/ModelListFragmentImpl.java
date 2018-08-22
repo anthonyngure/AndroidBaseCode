@@ -162,6 +162,8 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             connect();
         }
 
+        mListener.onCacheReady(data);
+
     }
 
     @Override
@@ -290,6 +292,8 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         void refresh(DataLoadingConfig<M> dataLoadingConfig);
 
         void onSetUpFab(FloatingActionButton fab);
+
+        void onCacheReady(List<M> data);
     }
 
 
