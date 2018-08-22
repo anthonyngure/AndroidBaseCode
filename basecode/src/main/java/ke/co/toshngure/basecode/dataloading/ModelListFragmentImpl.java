@@ -163,7 +163,6 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         }
 
         mListener.onCacheReady(data);
-
     }
 
     @Override
