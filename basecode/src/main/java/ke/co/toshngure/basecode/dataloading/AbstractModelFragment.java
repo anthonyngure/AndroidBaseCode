@@ -29,10 +29,11 @@ import java.util.Objects;
 import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
 import ke.co.toshngure.basecode.database.BaseAsyncTaskLoader;
+import ke.co.toshngure.basecode.fragment.BaseAppFragment;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
 
-abstract class AbstractModelFragment<M> extends Fragment
+abstract class AbstractModelFragment<M> extends BaseAppFragment
         implements LoaderManager.LoaderCallbacks<List<M>>,
         SwipeRefreshLayout.OnRefreshListener {
 
