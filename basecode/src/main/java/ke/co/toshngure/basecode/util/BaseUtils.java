@@ -28,6 +28,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.Snackbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.Display;
@@ -44,6 +45,10 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
@@ -52,6 +57,9 @@ import com.mikepenz.fastadapter.listeners.OnClickListener;
 import com.mikepenz.fastadapter_extensions.dialog.FastAdapterBottomSheetDialog;
 import com.rengwuxian.materialedittext.validation.METValidator;
 
+import java.lang.reflect.Type;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -226,17 +234,48 @@ public class BaseUtils {
     }
 
     public static Gson getSafeGson() {
-        return new GsonBuilder().setExclusionStrategies(new ExclusionStrategy() {
-            @Override
-            public boolean shouldSkipField(FieldAttributes fieldAttributes) {
-                return ((fieldAttributes.getAnnotation(GsonAvoid.class) != null));
-            }
+        return new GsonBuilder()
+                .setExclusionStrategies(new ExclusionStrategy() {
+                    @Override
+                    public boolean shouldSkipField(FieldAttributes fieldAttributes) {
+                        return ((fieldAttributes.getAnnotation(GsonAvoid.class) != null));
+                    }
 
-            @Override
-            public boolean shouldSkipClass(Class<?> aClass) {
-                return false;
-            }
-        }).create();
+                    @Override
+                    public boolean shouldSkipClass(Class<?> aClass) {
+                        return false;
+                    }
+                })
+                .registerTypeAdapter(Date.class, new JsonDeserializer<Date>() {
+
+                    @Override
+                    public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+
+                        String date = json.getAsString();
+                        if (TextUtils.isEmpty(date)) {
+                            return null;
+                        }
+
+                        try {
+                            return Date.valueOf(date);
+                        } catch (Exception e) {
+                            return null;
+                        }
+                    }
+                })
+                .registerTypeAdapter(Time.class, (JsonDeserializer<Time>) (json, typeOfT, context) -> {
+                    String time = json.getAsString();
+                    if (TextUtils.isEmpty(time)) {
+                        return null;
+                    }
+
+                    try {
+                        return Time.valueOf(time);
+                    } catch (Exception e) {
+                        return null;
+                    }
+                })
+                .create();
     }
 
     public static Gson getSafeGson(final String... avoidNames) {

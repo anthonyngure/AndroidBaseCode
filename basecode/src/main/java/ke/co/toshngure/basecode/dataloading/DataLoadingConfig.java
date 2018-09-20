@@ -14,6 +14,8 @@ import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
+import com.google.gson.Gson;
+
 import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.rest.Client;
 
@@ -71,8 +73,11 @@ public class DataLoadingConfig<M> {
     @ColorRes
     private int fabBackgroundTint;
 
+    private Gson gson;
+
     public DataLoadingConfig() {
     }
+
 
 
     boolean isFabShown() {
@@ -93,6 +98,9 @@ public class DataLoadingConfig<M> {
         return autoRefreshEnabled;
     }
 
+    public Gson getGson() {
+        return gson;
+    }
 
     boolean isRefreshEnabled() {
         return refreshEnabled;
@@ -177,6 +185,11 @@ public class DataLoadingConfig<M> {
 
     public DataLoadingConfig<M> withRelativeUrl(String relativeUrl, Class<M> modelClass, boolean autoRefreshEnabled) {
         return this.withUrl(Client.absoluteUrl(relativeUrl), modelClass, autoRefreshEnabled);
+    }
+
+    public DataLoadingConfig<M> withGson(Gson gson) {
+        this.gson = gson;
+        return this;
     }
 
     public DataLoadingConfig<M> withUrl(String url, Class<M> modelClass, boolean autoRefreshEnabled) {
