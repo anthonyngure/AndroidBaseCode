@@ -32,10 +32,10 @@ allprojects {
 }
 
 ext {
-    compileSdkVersion = 27
-    supportLibVersion = '27.1.1'
+    compileSdkVersion = 28
+    supportLibVersion = '28.0.0-rc02'
     minSdkVersion = 14
-    targetSdkVersion = 27
+    targetSdkVersion = 28
 }
 
 task clean(type: Delete) {

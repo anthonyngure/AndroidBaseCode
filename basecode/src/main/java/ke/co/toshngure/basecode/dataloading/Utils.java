@@ -14,12 +14,12 @@ import ke.co.toshngure.basecode.util.DrawableUtils;
 
 class Utils {
 
-    public static void configureFab(FloatingActionButton fab, DataLoadingConfig dataLoadingConfig) {
+    public static void configureFab(FloatingActionButton fab, DataLoadingConfig config) {
 
-        if (dataLoadingConfig.isFabShown()){
-            fab.setSize(dataLoadingConfig.getFabSize());
-            Drawable icon = ContextCompat.getDrawable(fab.getContext(), dataLoadingConfig.getFabIcon());
-            fab.setImageDrawable(DrawableUtils.tintDrawable(fab.getContext(), icon, dataLoadingConfig.getFabIconTint()));
+        if (config.isFabShown()){
+            fab.setSize(config.getFabSize());
+            Drawable icon = ContextCompat.getDrawable(fab.getContext(), config.getFabIcon());
+            fab.setImageDrawable(DrawableUtils.tintDrawable(fab.getContext(), icon, config.getFabIconTint()));
 
             int[][] states = new int[][]{
                     new int[]{android.R.attr.state_enabled}, // enabled
@@ -27,14 +27,14 @@ class Utils {
             };
 
             int[] colors = new int[]{
-                    ContextCompat.getColor(fab.getContext(), dataLoadingConfig.getFabBackgroundTint()),
-                    ContextCompat.getColor(fab.getContext(), dataLoadingConfig.getFabBackgroundTint())
+                    ContextCompat.getColor(fab.getContext(), config.getFabBackgroundTint()),
+                    ContextCompat.getColor(fab.getContext(), config.getFabBackgroundTint())
             };
             ColorStateList stateList = new ColorStateList(states, colors);
             fab.setBackgroundTintList(stateList);
         }
 
-        fab.setVisibility(dataLoadingConfig.isFabShown() ? View.VISIBLE : View.GONE);
+        fab.setVisibility(config.isFabShown() ? View.VISIBLE : View.GONE);
     }
 
     public static void configureSwipeRefreshLayout(SwipeRefreshLayout swipeRefreshLayout,
