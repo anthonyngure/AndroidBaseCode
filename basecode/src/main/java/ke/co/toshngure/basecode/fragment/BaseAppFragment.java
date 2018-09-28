@@ -9,8 +9,8 @@
 package ke.co.toshngure.basecode.fragment;
 
 import android.graphics.Color;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 

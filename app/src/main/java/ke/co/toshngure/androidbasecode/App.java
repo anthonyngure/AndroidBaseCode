@@ -9,7 +9,7 @@
 package ke.co.toshngure.androidbasecode;
 
 import android.app.Application;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.loopj.android.http.AsyncHttpClient;
 

@@ -8,7 +8,7 @@
 
 package ke.co.toshngure.logging;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Log;
 
 

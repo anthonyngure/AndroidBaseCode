@@ -13,8 +13,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.graphics.Palette;
+import androidx.core.content.ContextCompat;
+import androidx.palette.graphics.Palette;
 import android.widget.TextView;
 
 import java.util.Random;
