@@ -2,10 +2,12 @@ package ke.co.toshngure.basecode.dataloading;
 
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.core.content.ContextCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+
+import java.util.Objects;
 
 import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.util.DrawableUtils;

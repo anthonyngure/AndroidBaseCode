@@ -11,7 +11,7 @@ package ke.co.toshngure.camera;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Camera;
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * Created by desmond on 4/10/15.

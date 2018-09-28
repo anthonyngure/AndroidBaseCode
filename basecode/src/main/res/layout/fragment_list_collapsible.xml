@@ -6,20 +6,20 @@
   ~ Email : anthonyngure25@gmail.com
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <com.google.android.material.appbar.AppBarLayout
+    <android.support.design.widget.AppBarLayout
         android:id="@id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         app:expanded="true">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        <android.support.design.widget.CollapsingToolbarLayout
             android:id="@id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,8 +36,8 @@
 
             </FrameLayout>
 
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -58,18 +58,18 @@
                 android:scaleType="centerCrop"
                 android:src="@android:color/white" />
 
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            <android.support.v4.widget.SwipeRefreshLayout
                 android:id="@id/swipeRefreshLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="gone">
 
-                <androidx.recyclerview.widget.RecyclerView
+                <android.support.v7.widget.RecyclerView
                     android:id="@id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
 
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </android.support.v4.widget.SwipeRefreshLayout>
 
             <include layout="@layout/layout_loading_fresh" />
 
@@ -92,7 +92,7 @@
 
     </RelativeLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <android.support.design.widget.FloatingActionButton
         android:id="@id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,5 +102,5 @@
         app:layout_anchor="@id/appBarLayout"
         app:layout_anchorGravity="bottom|end" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</android.support.design.widget.CoordinatorLayout>
 

@@ -9,7 +9,7 @@
 package ke.co.toshngure.basecode.util;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.text.format.DateUtils;
 
 import java.sql.Timestamp;

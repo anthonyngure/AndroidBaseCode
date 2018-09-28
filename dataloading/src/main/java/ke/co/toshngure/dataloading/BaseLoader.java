@@ -9,7 +9,7 @@
 package ke.co.toshngure.dataloading;
 
 import android.content.Context;
-import androidx.loader.content.AsyncTaskLoader;
+import android.support.v4.content.AsyncTaskLoader;
 
 import java.util.List;
 

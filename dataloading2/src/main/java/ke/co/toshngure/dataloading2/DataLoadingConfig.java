@@ -8,9 +8,9 @@
 
 package ke.co.toshngure.dataloading2;
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
+import android.support.annotation.ColorRes;
+import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.view.View;
 
 import com.loopj.android.http.AsyncHttpClient;

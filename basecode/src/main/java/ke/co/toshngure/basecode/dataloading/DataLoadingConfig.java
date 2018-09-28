@@ -8,10 +8,10 @@
 
 package ke.co.toshngure.basecode.dataloading;
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.StringRes;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
 import com.google.gson.Gson;

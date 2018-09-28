@@ -8,7 +8,7 @@
 
 package ke.co.toshngure.camera;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;

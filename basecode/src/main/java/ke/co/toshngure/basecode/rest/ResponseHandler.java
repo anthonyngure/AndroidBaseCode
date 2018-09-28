@@ -1,7 +1,7 @@
 package ke.co.toshngure.basecode.rest;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -85,6 +85,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
         }
     }
 
+
     public void onStart() {
         super.onStart();
         if (BaseUtils.canConnect(Client.getConfig().getContext())) {
@@ -96,6 +97,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
             onError(baseAppActivity.getString(R.string.message_server_error));
         }
     }
+
 
     @Override
     public void onProgress(long bytesWritten, long totalSize) {

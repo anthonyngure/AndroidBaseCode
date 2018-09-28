@@ -10,8 +10,8 @@ package ke.co.toshngure.basecode.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 /**
  * Created by Anthony Ngure on 16/02/2017.

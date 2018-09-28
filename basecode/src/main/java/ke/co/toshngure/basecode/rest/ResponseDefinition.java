@@ -1,6 +1,6 @@
 package ke.co.toshngure.basecode.rest;
 
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

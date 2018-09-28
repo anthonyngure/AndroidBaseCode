@@ -8,7 +8,7 @@
 
 package ke.co.toshngure.basecode.adapter;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView;
 
 /**
  * Created by Anthony Ngure on 27/02/2017.

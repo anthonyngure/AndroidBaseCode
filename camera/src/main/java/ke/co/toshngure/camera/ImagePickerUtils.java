@@ -7,12 +7,13 @@ package ke.co.toshngure.camera;/*
  */
 
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
 import java.util.Objects;

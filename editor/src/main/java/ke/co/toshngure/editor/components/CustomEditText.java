@@ -5,7 +5,7 @@ package ke.co.toshngure.editor.components;
  */
 
 import android.content.Context;
-import com.google.android.material.textfield.TextInputEditText;
+import android.support.design.widget.TextInputEditText;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;

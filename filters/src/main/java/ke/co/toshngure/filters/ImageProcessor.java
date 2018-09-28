@@ -21,7 +21,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import androidx.annotation.ColorInt;
+import android.support.annotation.ColorInt;
 
 import java.util.Random;
 

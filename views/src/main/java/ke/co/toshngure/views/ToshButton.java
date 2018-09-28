@@ -13,9 +13,9 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.widget.AppCompatButton;
+import android.support.annotation.RequiresApi;
+import android.support.v7.content.res.AppCompatResources;
+import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
 import ke.co.toshngure.views.utils.VectorUtils;
@@ -29,7 +29,7 @@ public class ToshButton extends AppCompatButton {
     }
 
     public ToshButton(Context context, AttributeSet attrs) {
-        this(context, attrs, androidx.appcompat.R.attr.buttonStyle);
+        this(context, attrs, android.support.v7.appcompat.R.attr.buttonStyle);
     }
 
     public ToshButton(Context context, AttributeSet attrs, int defStyleAttr) {

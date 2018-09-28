@@ -9,7 +9,7 @@
 package ke.co.toshngure.dataloading2;
 
 import android.content.Context;
-import androidx.loader.content.AsyncTaskLoader;
+import android.support.v4.content.AsyncTaskLoader;
 
 /**
  * Created by Anthony Ngure on 8/26/2016.

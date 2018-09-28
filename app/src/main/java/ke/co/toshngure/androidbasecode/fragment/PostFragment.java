@@ -1,6 +1,7 @@
 package ke.co.toshngure.androidbasecode.fragment;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.Post;
 import ke.co.toshngure.basecode.dataloading.DataLoadingConfig;
+import ke.co.toshngure.basecode.dataloading.ModelFragment;
 import ke.co.toshngure.basecode.dataloading.ModelsFragment;
 import ke.co.toshngure.views.NetworkImage;
 

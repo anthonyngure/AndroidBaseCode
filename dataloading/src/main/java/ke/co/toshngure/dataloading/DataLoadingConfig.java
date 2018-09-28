@@ -8,8 +8,8 @@
 
 package ke.co.toshngure.dataloading;
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.StringRes;
+import android.support.annotation.ColorRes;
+import android.support.annotation.StringRes;
 
 import com.loopj.android.http.AsyncHttpClient;
 

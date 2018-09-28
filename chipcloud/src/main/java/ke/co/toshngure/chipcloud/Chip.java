@@ -6,7 +6,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
-import androidx.core.content.ContextCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -14,7 +14,7 @@ import android.view.View;
 
 import com.adroitandroid.chipcloud.R;
 
-public class Chip extends androidx.appcompat.widget.AppCompatTextView implements View.OnClickListener {
+public class Chip extends android.support.v7.widget.AppCompatTextView implements View.OnClickListener {
 
     private int index = -1;
     private boolean selected = false;

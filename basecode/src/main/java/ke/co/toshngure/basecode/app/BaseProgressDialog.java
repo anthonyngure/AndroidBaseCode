@@ -9,8 +9,8 @@
 package ke.co.toshngure.basecode.app;
 
 import android.content.Context;
-import androidx.annotation.StringRes;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import android.support.annotation.StringRes;
+import android.support.design.widget.BottomSheetDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
