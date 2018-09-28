@@ -11,7 +11,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.widget.Toast;
 
 

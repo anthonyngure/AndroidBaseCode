@@ -3,8 +3,8 @@ package ke.co.toshngure.views.utils;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.support.annotation.AttrRes;
-import android.support.annotation.ColorInt;
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
 
 /**
  * Created by Anthony Ngure on 23/01/2018.

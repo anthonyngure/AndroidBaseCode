@@ -2,10 +2,10 @@ package ke.co.toshngure.basecode.menu;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;

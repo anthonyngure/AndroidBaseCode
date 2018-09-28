@@ -1,6 +1,6 @@
 package ke.co.toshngure.dataloading2;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;

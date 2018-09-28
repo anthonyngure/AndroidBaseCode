@@ -9,7 +9,7 @@
 package ke.co.toshngure.androidbasecode;
 
 import android.app.Application;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.loopj.android.http.AsyncHttpClient;
 
@@ -30,6 +30,8 @@ import ke.co.toshngure.camera2.Camera2App;
 public class App extends Camera2App {
 
     private static App mInstance;
+
+
 
     public static App getInstance() {
         return mInstance;

@@ -1,8 +1,8 @@
 package ke.co.toshngure.androidbasecode.fragment;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
@@ -15,8 +15,6 @@ import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.Post;
 import ke.co.toshngure.basecode.dataloading.DataLoadingConfig;
 import ke.co.toshngure.basecode.dataloading.ModelListFragment;
-import ke.co.toshngure.basecode.dataloading.ModelsFragment;
-import ke.co.toshngure.basecode.rest.Response;
 import ke.co.toshngure.views.NetworkImage;
 
 public class PostsFragment extends ModelListFragment<Post> {

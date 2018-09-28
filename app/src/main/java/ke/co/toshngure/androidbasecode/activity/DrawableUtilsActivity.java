@@ -10,7 +10,7 @@ package ke.co.toshngure.androidbasecode.activity;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.widget.Button;
 import android.widget.ImageView;
 
