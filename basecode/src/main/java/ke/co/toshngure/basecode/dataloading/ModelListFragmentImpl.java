@@ -174,7 +174,8 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         BeeLog.i(TAG, "connect");
         RequestParams requestParams = mListener.getRequestParams();
 
-        if (mDataLoadingConfig.isRefreshEnabled() || mDataLoadingConfig.isLoadingMoreEnabled()) {
+        if ((mDataLoadingConfig.isRefreshEnabled() || mDataLoadingConfig.isLoadingMoreEnabled())
+                && mDataLoadingConfig.getCursorImpl() != null) {
             ModelCursor modelCursor = getModelCursor();
             requestParams.put(mDataLoadingConfig.getCursorImpl().getAfterKey(), modelCursor.getAfter());
             requestParams.put(mDataLoadingConfig.getCursorImpl().getBeforeKey(), modelCursor.getBefore());
@@ -191,7 +192,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
 
     private void updateModelCursor(ModelCursor modelCursor) {
         BeeLog.i(TAG, "updateModelCursor");
-        if (mDataLoadingConfig.isCacheEnabled()) {
+        if (mDataLoadingConfig.isCacheEnabled() && mDataLoadingConfig.getCursorImpl() != null) {
             getSharedPreferences().edit()
                     .putLong(getCursorKeyPrefix() + "_" + mDataLoadingConfig.getCursorImpl().getAfterKey(), modelCursor.getAfter())
                     .putLong(getCursorKeyPrefix() + "_" + mDataLoadingConfig.getCursorImpl().getBeforeKey(), modelCursor.getBefore())
@@ -232,6 +233,10 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         BeeLog.i(TAG, "onRefresh");
         if (!isLoadingMore && mDataLoadingConfig.isRefreshEnabled()) {
             mSwipeRefreshLayout.setRefreshing(true);
+            //When we do a refresh we clear current items shown if there is no pagination
+            if (mDataLoadingConfig.getCursorImpl() == null){
+                mItemAdapter.clear();
+            }
             connect();
         } else {
             mSwipeRefreshLayout.setRefreshing(false);
