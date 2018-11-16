@@ -55,18 +55,18 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'androidx.annotation:annotation:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.github.jaychang0917:SimpleRecyclerView:1.2.8'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 
-    implementation 'com.mikepenz:fastadapter:3.2.7'
-    implementation 'com.mikepenz:fastadapter-commons:3.2.7'
-    implementation 'com.mikepenz:fastadapter-extensions:3.2.7'
-    implementation 'com.mikepenz:fastadapter-extensions-expandable:3.2.7'
+    implementation 'com.mikepenz:fastadapter:3.3.1'
+    implementation 'com.mikepenz:fastadapter-commons:3.3.1'
+    implementation 'com.mikepenz:fastadapter-extensions:3.3.1'
+    implementation 'com.mikepenz:fastadapter-extensions-expandable:3.3.1'
 
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.wang.avi:library:2.1.3'
 
 }
