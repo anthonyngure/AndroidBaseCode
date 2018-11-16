@@ -46,14 +46,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/camera_camera" />
+            android:tint="@android:color/white"
+            android:src="@drawable/ic_switch_camera_black_24dp" />
 
         <ImageView
             android:id="@+id/capture_image_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/camera__capture_photo_button" />
+            android:tint="@android:color/white"
+            android:src="@drawable/ic_camera_black_24dp" />
 
         <LinearLayout
             android:id="@+id/flash"
@@ -66,7 +68,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/camera__toggle_flash" />
+                android:tint="@android:color/white"
+                android:src="@drawable/ic_flash_on_black_24dp" />
 
             <TextView
                 android:id="@+id/auto_flash_icon"
