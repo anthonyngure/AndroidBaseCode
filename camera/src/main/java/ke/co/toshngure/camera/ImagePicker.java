@@ -9,11 +9,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -27,8 +22,15 @@ import android.widget.Toast;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by Anthony Ngure on 31/12/2017.
@@ -129,7 +131,7 @@ public class ImagePicker extends FrameLayout {
                     try {
                         return new ImageCompressor.Builder(mContext)
                                 .setDestinationDirectoryPath(FileUtil.getAppExternalDirectoryFolder(mContext))
-                                .setFileName("image_" + mRequestCode)
+                                .setFileName("image_" + mRequestCode + "_" + Calendar.getInstance().getTimeInMillis())
                                 .build().compressToFile(FileUtil.from(mContext, uris[0]));
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -201,7 +203,7 @@ public class ImagePicker extends FrameLayout {
         photoFL.setVisibility(VISIBLE);
     }
 
-    private void setPermissionsMessage(String message){
+    private void setPermissionsMessage(String message) {
         permissionTV.setText(message);
     }
 
@@ -222,10 +224,10 @@ public class ImagePicker extends FrameLayout {
     public void onPermissionFLClicked(View v) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             List<String> permissions = getMissingPermissions();
-            if (mActivity != null){
-                mActivity.requestPermissions(permissions.toArray(new String[permissions.size()]), 0);
+            if (mActivity != null) {
+                mActivity.requestPermissions(permissions.toArray(new String[0]), 0);
             } else {
-                mFragment.requestPermissions(permissions.toArray(new String[permissions.size()]), 0);
+                mFragment.requestPermissions(permissions.toArray(new String[0]), 0);
             }
 
         }
@@ -235,7 +237,7 @@ public class ImagePicker extends FrameLayout {
         ArrayList<String> permissions = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             AppCompatActivity appCompatActivity = mActivity;
-            if (appCompatActivity == null){
+            if (appCompatActivity == null) {
                 appCompatActivity = (AppCompatActivity) mContext;
             }
 
