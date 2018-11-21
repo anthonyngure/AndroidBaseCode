@@ -2,8 +2,10 @@ package ke.co.toshngure.basecode.dataloading;
 
 import android.content.Context;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -11,6 +13,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.core.content.ContextCompat;
 import androidx.loader.content.Loader;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +33,7 @@ import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
 import ke.co.toshngure.basecode.database.BaseAsyncTaskLoader;
 import ke.co.toshngure.basecode.fragment.BaseAppFragment;
+import ke.co.toshngure.basecode.logging.BeeLog;
 import ke.co.toshngure.basecode.rest.Client;
 import ke.co.toshngure.basecode.rest.ResponseHandler;
 
@@ -89,9 +93,9 @@ abstract class AbstractModelFragment<M> extends BaseAppFragment
         onDataReady(data.size() > 0);
     }
 
-    private void onDataReady(boolean dataIsAvailable){
+    private void onDataReady(boolean dataIsAvailable) {
         mSwipeRefreshLayout.setRefreshing(false);
-        if (!dataIsAvailable){
+        if (!dataIsAvailable) {
             mSwipeRefreshLayout.setVisibility(View.GONE);
             freshLoadContainer.setVisibility(View.VISIBLE);
             errorLL.setVisibility(View.VISIBLE);
@@ -136,15 +140,16 @@ abstract class AbstractModelFragment<M> extends BaseAppFragment
     @Override
     public void onStart() {
         super.onStart();
-        if (mData == null || mDataList == null){
+        BeeLog.i(TAG, "There is no data " + (mData == null && mDataList == null));
+        //If both mData and mDataList are empty, then nothing has been loaded yet
+        if (mData == null && mDataList == null) {
             if (mDataLoadingConfig.isCacheEnabled()) {
                 mSwipeRefreshLayout.setVisibility(View.GONE);
                 freshLoadContainer.setVisibility(View.VISIBLE);
                 errorLL.setVisibility(View.GONE);
                 loadingLL.setVisibility(View.VISIBLE);
-                Objects.requireNonNull(getActivity()).getSupportLoaderManager()
-                        .initLoader(mDataLoadingConfig.getLoaderId(),
-                                null, this);
+                LoaderManager.getInstance(this).initLoader(mDataLoadingConfig.getLoaderId(),
+                        null, this);
             } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
                 connect();
             }
@@ -321,7 +326,7 @@ abstract class AbstractModelFragment<M> extends BaseAppFragment
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<M>> loader, List<M> data) {
-        if (loadsSingleItem() && data.size() > 0){
+        if (loadsSingleItem() && data.size() > 0) {
             onDataReady(data.get(0));
         } else {
             onDataReady(data);
@@ -348,7 +353,6 @@ abstract class AbstractModelFragment<M> extends BaseAppFragment
             mSwipeRefreshLayout.setRefreshing(false);
         }
     }
-
 
 
     abstract boolean loadsSingleItem();
