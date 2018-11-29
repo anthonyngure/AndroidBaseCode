@@ -44,6 +44,7 @@ public class DataLoadingConfig<M> {
     private Class<M> modelClass;
     private boolean topViewCollapsible = false;
     private boolean horizontalDividerEnabled = true;
+    private int cacheValidityHours = 0;
 
     @StringRes
     private int loadingMessage = R.string.message_loading;
@@ -159,6 +160,17 @@ public class DataLoadingConfig<M> {
         this.cacheEnabled = true;
         this.loaderId = loaderId;
         return this;
+    }
+
+    public DataLoadingConfig<M> withCacheEnabled(int loaderId, int cacheValidityHours) {
+        this.cacheEnabled = true;
+        this.loaderId = loaderId;
+        this.cacheValidityHours = cacheValidityHours;
+        return this;
+    }
+
+    public int getCacheValidityHours() {
+        return cacheValidityHours;
     }
 
     public DataLoadingConfig<M> withShowDialogEnabled() {

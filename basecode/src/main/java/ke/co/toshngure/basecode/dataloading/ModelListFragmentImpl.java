@@ -3,10 +3,13 @@ package ke.co.toshngure.basecode.dataloading;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.loader.app.LoaderManager;
@@ -15,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +53,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
 
     private static final String TAG = "ModelListFragmentImpl";
     private static final String SHARED_PREFS_NAME = "data_loading_prefs";
+    private Fragment mFragment;
     private Listener<M> mListener;
     SwipeRefreshLayout mSwipeRefreshLayout;
     DataLoadingConfig<M> mDataLoadingConfig;
@@ -66,6 +71,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             this.mListener = listener;
             this.mDataLoadingConfig = listener.getDataLoadingConfig();
             this.mActivity = ((Fragment) listener).getActivity();
+            this.mFragment = (Fragment) listener;
             this.mFreshLoadManager = new FreshLoadManager(this);
             this.mMoreLoadManager = new MoreLoadManager(this);
         } else {
@@ -128,7 +134,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             //Load cache data
             if (mDataLoadingConfig.isCacheEnabled()) {
                 mFreshLoadManager.onStartLoading();
-                mActivity.getSupportLoaderManager().initLoader(mDataLoadingConfig.getLoaderId(), null, this);
+                LoaderManager.getInstance(mFragment).initLoader(mDataLoadingConfig.getLoaderId(), null, this);
             } else if (mDataLoadingConfig.isAutoRefreshEnabled()) {
                 mTempModelCursors = new ModelCursor(0, 0);
                 connect();
@@ -234,7 +240,7 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         if (!isLoadingMore && mDataLoadingConfig.isRefreshEnabled()) {
             mSwipeRefreshLayout.setRefreshing(true);
             //When we do a refresh we clear current items shown if there is no pagination
-            if (mDataLoadingConfig.getCursorImpl() == null){
+            if (mDataLoadingConfig.getCursorImpl() == null) {
                 mItemAdapter.clear();
             }
             connect();
@@ -252,7 +258,8 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
         mItemAdapter.clear();
         if (mDataLoadingConfig.isCacheEnabled()) {
             mFreshLoadManager.onStartLoading();
-            mActivity.getSupportLoaderManager().restartLoader(mDataLoadingConfig.getLoaderId(), null, this);
+            LoaderManager.getInstance(mFragment).restartLoader(
+                    mDataLoadingConfig.getLoaderId(), null, this);
         } else if (mDataLoadingConfig.isAutoRefreshEnabled() || mItemAdapter.getAdapterItemCount() == 0) {
             mTempModelCursors = new ModelCursor(0, 0);
             connect();
@@ -382,7 +389,6 @@ class ModelListFragmentImpl<M extends IItem<M, ?>> implements
             }
             mFreshLoadManager.onDataParsed();
             mMoreLoadManager.onDataParsed();
-
 
 
             mListener.onDataReady(items);

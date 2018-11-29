@@ -11,10 +11,11 @@ import java.util.List;
 import ke.co.toshngure.androidbasecode.R;
 import ke.co.toshngure.androidbasecode.model.Post;
 import ke.co.toshngure.basecode.dataloading.DataLoadingConfig;
+import ke.co.toshngure.basecode.dataloading.ModelFragment;
 import ke.co.toshngure.basecode.dataloading.ModelsFragment;
 import ke.co.toshngure.views.NetworkImage;
 
-public class PostFragment extends ModelsFragment<Post> {
+public class PostFragment extends ModelFragment<Post> {
 
     public static PostFragment newInstance() {
         
@@ -29,7 +30,7 @@ public class PostFragment extends ModelsFragment<Post> {
     protected DataLoadingConfig<Post> getDataLoadingConfig() {
         return super.getDataLoadingConfig()
                 .withFab(R.drawable.ic_add_black_24dp)
-                .withUrl("https://jsonplaceholder.typicode.com/posts", Post.class, true)
+                .withUrl("https://jsonplaceholder.typicode.com/posts/1", Post.class, true)
                 .withRefreshEnabled()
                 .withTopViewCollapsible();
     }
