@@ -110,6 +110,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
             }*/
             double progress = (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1;
             if (baseAppActivity != null) {
+                //String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(((int) progress)) + "%";
                 String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(((int) progress)) + "%";
                 baseAppActivity.updateProgressDialogMessage(newMessage);
             }
