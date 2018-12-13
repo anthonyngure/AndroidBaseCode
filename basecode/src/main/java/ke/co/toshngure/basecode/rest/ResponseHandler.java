@@ -94,7 +94,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
                 baseAppActivity.showProgressDialog();
             }
         } else {
-            onError(baseAppActivity.getString(R.string.message_server_error));
+            onError(baseAppActivity.getString(R.string.message_connection_error));
         }
     }
 
@@ -228,7 +228,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
         if (showDialog) {
             baseAppActivity.hideProgressDialog();
         }
-        onError(message);
+        // onError(message);
     }
 
 }
