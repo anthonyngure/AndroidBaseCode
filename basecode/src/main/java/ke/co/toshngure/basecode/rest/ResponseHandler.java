@@ -1,7 +1,5 @@
 package ke.co.toshngure.basecode.rest;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -13,6 +11,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import cz.msebera.android.httpclient.Header;
 import ke.co.toshngure.basecode.R;
 import ke.co.toshngure.basecode.app.BaseAppActivity;
@@ -111,7 +111,7 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
             double progress = (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1;
             if (baseAppActivity != null) {
                 //String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(((int) progress)) + "%";
-                String newMessage = baseAppActivity.getString(R.string.message_waiting) + " " + String.valueOf(((int) progress)) + "%";
+                String newMessage =  baseAppActivity.getString(R.string.message_waiting);
                 baseAppActivity.updateProgressDialogMessage(newMessage);
             }
         } catch (Exception e) {
@@ -196,15 +196,16 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
         super.onFailure(statusCode, headers, throwable, errorResponse);
-        handleFailure(statusCode, String.valueOf(errorResponse),
-                Client.getConfig().getResponseDefinition().message(statusCode, errorResponse));
+        String message =
+                Client.getConfig().getResponseDefinition().message(statusCode, errorResponse);
+        handleFailure(statusCode, String.valueOf(errorResponse), message);
     }
 
     @Override
     public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
         super.onFailure(statusCode, headers, throwable, errorResponse);
-        handleFailure(statusCode, String.valueOf(errorResponse),
-                Client.getConfig().getResponseDefinition().message(statusCode, errorResponse));
+        String message = Client.getConfig().getResponseDefinition().message(statusCode, errorResponse);
+        handleFailure(statusCode, String.valueOf(errorResponse), message);
     }
 
     @Override
@@ -224,11 +225,12 @@ public class ResponseHandler<M> extends JsonHttpResponseHandler {
                 break;
             default:
                 Client.getConfig().onError(statusCode);
+                onError(message);
         }
         if (showDialog) {
             baseAppActivity.hideProgressDialog();
         }
-        // onError(message);
+        // ;
     }
 
 }
